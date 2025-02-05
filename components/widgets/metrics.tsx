@@ -1,6 +1,7 @@
 import React from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
-import { FaSackDollar, FaRegClock, FaStar } from "react-icons/fa6";
+import { FaRegClock, FaSackDollar, FaStar } from "react-icons/fa6";
+
+import { Card, CardContent,CardHeader, CardTitle } from "../ui/card";
 
 export default function Metrics() {
   // Sample Data
