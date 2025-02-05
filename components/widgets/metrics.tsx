@@ -1,13 +1,16 @@
 import React from "react";
 import { FaRegClock, FaSackDollar, FaStar } from "react-icons/fa6";
 
-import { Card, CardContent,CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 export default function Metrics() {
   // Sample Data
-  const moneySaved = 1000;
-  const timeSaved = 10;
-  const newCallers = 5;
+  const data = {
+    moneySaved: 1000,
+    timeSaved: 10,
+    newCallers: 5,
+  };
+
   const cardContentStyles = "flex flex-row justify-center text-lg md:text-xl";
   const iconStyles = "h-5 w-5 text-gray-400 sm:h-6 sm:w-6";
   const cardHeadingStyles = "justify-center text-xl lg:text-2xl ";
@@ -29,7 +32,7 @@ export default function Metrics() {
         <CardContent>
           <div className={cardContentStyles}>
             <p className="font-bold text-green-600">$</p>
-            <span>{moneySaved}</span>
+            <span>{data.moneySaved}</span>
           </div>
         </CardContent>
       </Card>
@@ -46,7 +49,7 @@ export default function Metrics() {
           <div className={cardContentStyles}>
             <p className="font-bold text-green-600">+</p>
             <div className="flex flex-row gap-1">
-              <span>{timeSaved}</span>
+              <span>{data.timeSaved}</span>
               <p> hrs</p>
             </div>
           </div>
@@ -63,7 +66,7 @@ export default function Metrics() {
         </CardHeader>
         <CardContent>
           <div className={cardContentStyles}>
-            <p>{newCallers}</p>
+            <p>{data.newCallers}</p>
           </div>
         </CardContent>
       </Card>
