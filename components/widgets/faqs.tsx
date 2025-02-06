@@ -38,7 +38,7 @@ export default function Faqs() {
       <Accordion type="single" collapsible className="w-full">
         {questions.map(({ id, question, frequency, dates }) => (
           <AccordionItem key={id} value={id}>
-            <AccordionTrigger className="flex w-full flex-row border-b py-2 hover:bg-gray-900 active:bg-gray-900">
+            <AccordionTrigger className="hover:bg-primary-gray active:bg-primary-gray flex w-full flex-row border-b py-2">
               <div className="flex w-full flex-row items-center justify-between">
                 <p className="text-left text-base md:text-lg">{question}</p>
                 <FaChevronDown />
@@ -46,7 +46,7 @@ export default function Faqs() {
             </AccordionTrigger>
             <AccordionContent className="w-full p-2">
               <div className="flex flex-col gap-2">
-                <p className="text-lg font-bold text-sky-200">
+                <p className="text-lg font-bold text-secondary">
                   Frequency: {frequency}
                 </p>
                 <p className="font-bold">Dates:</p>

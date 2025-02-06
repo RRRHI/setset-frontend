@@ -19,7 +19,7 @@ export default function Metrics() {
     satisfaction: 9.7,
   };
 
-  const iconStyles = "h-5 w-5 text-sky-200 sm:h-6 sm:w-6";
+  const iconStyles = "h-5 w-5 text-secondary sm:h-6 sm:w-6";
   const cardContentStyles = "flex flex-col items-center justify-center";
   const cardInnerStyles =
     "flex flex-col items-center justify-center text-xl lg:text-2xl font-bold";
