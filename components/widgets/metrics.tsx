@@ -1,75 +1,91 @@
 import React from "react";
-import { FaRegClock, FaSackDollar, FaStar } from "react-icons/fa6";
+import {
+  FaFaceSmile,
+  FaRegClock,
+  FaRegClone,
+  FaSackDollar,
+  FaUser,
+} from "react-icons/fa6";
 
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 
 export default function Metrics() {
   // Sample Data
   const data = {
-    moneySaved: 1000,
-    timeSaved: 10,
-    newCallers: 5,
+    moneySaved: 601194,
+    timeSaved: 100227,
+    newCallers: 66813,
+    appointmentsBooked: 57267,
+    satisfaction: 9.7,
   };
 
-  const cardContentStyles = "flex flex-row justify-center text-lg md:text-xl";
-  const iconStyles = "h-5 w-5 text-gray-400 sm:h-6 sm:w-6";
-  const cardHeadingStyles = "justify-center text-xl lg:text-2xl ";
+  const iconStyles = "h-5 w-5 text-sky-200 sm:h-6 sm:w-6";
+  const cardContentStyles = "flex flex-col items-center justify-center";
+  const cardInnerStyles =
+    "flex flex-col items-center justify-center text-xl lg:text-2xl font-bold";
+  const iconDivStyles = "items-center justify-center pt-6";
+
+  // Replace with actual values from backend in future
+  const cards = [
+    {
+      id: "money-saved",
+      icon: <FaSackDollar className={iconStyles} />,
+      title: "MONEY SAVED",
+      value: data.moneySaved,
+    },
+    {
+      id: "time-saved",
+      icon: <FaRegClock className={iconStyles} />,
+      title: "MINUTES TIME SAVED",
+      value: data.timeSaved,
+    },
+    {
+      id: "new-callers",
+      icon: <FaUser className={iconStyles} />,
+      title: "NEW CALLERS",
+      value: data.newCallers,
+    },
+    {
+      id: "appointments-booked",
+      icon: <FaRegClone className={iconStyles} />,
+      title: "APPOINTMENTS BOOKED",
+      value: 57267,
+    },
+    {
+      id: "satisfaction",
+      icon: <FaFaceSmile className={iconStyles} />,
+      title: "SATISFACTION",
+      value: data.satisfaction,
+    },
+  ];
+
+  const formatValue = (value: number, type: string) => {
+    if (type === "money-saved") {
+      return `$${value.toLocaleString()}`;
+    }
+    if (type === "satisfaction") {
+      // Keep decimal places for satisfaction score
+      return `${value.toFixed(2)}/10`;
+    }
+    return value.toLocaleString();
+  };
 
   return (
     <div
       id="metrics"
       className="flex w-full flex-col justify-between gap-5 sm:flex-row"
     >
-      <Card id="money-saved" className="flex-1 justify-center">
-        <CardHeader className="items-center">
-          <CardTitle>
-            <div className="flex flex-row items-center justify-center gap-2">
-              <FaSackDollar className={iconStyles} />
-              <p className={cardHeadingStyles}>Money Saved</p>
+      {cards.map((card) => (
+        <Card key={card.id} className="flex-1 justify-center">
+          <CardContent className={cardContentStyles}>
+            <div className={iconDivStyles}>{card.icon}</div>
+            <div className={cardInnerStyles}>
+              <p className="pt-2">{formatValue(card.value, card.id)}</p>
+              <p className="pt-2 text-sm">{card.title}</p>
             </div>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className={cardContentStyles}>
-            <p className="font-bold text-green-600">$</p>
-            <span>{data.moneySaved}</span>
-          </div>
-        </CardContent>
-      </Card>
-      <Card id="time-saved" className="flex-1 justify-center">
-        <CardHeader className="items-center">
-          <CardTitle>
-            <div className="flex flex-row items-center justify-center gap-2">
-              <FaRegClock className={iconStyles} />
-              <p className={cardHeadingStyles}>Time Saved</p>
-            </div>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className={cardContentStyles}>
-            <p className="font-bold text-green-600">+</p>
-            <div className="flex flex-row gap-1">
-              <span>{data.timeSaved}</span>
-              <p> hrs</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-      <Card id="new-callers" className="flex-1">
-        <CardHeader className="items-center">
-          <CardTitle>
-            <div className="flex flex-row items-center justify-center gap-2">
-              <FaStar className={iconStyles} />
-              <p className={cardHeadingStyles}>New Callers</p>
-            </div>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className={cardContentStyles}>
-            <p>{data.newCallers}</p>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }
