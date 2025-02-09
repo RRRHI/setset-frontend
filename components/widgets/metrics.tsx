@@ -1,6 +1,7 @@
 import React from "react";
 import {
   FaFaceSmile,
+  FaPhone,
   FaRegClock,
   FaRegClone,
   FaSackDollar,
@@ -12,6 +13,7 @@ import { Card, CardContent } from "../ui/card";
 export default function Metrics() {
   // Sample Data
   const data = {
+    callMinutes: 100227,
     moneySaved: 601194,
     timeSaved: 100227,
     newCallers: 66813,
@@ -27,6 +29,12 @@ export default function Metrics() {
 
   // Replace with actual values from backend in future
   const cards = [
+    {
+      id: "call-minutes",
+      icon: <FaPhone className={iconStyles} />,
+      title: "CALL MINUTES",
+      value: data.callMinutes,
+    },
     {
       id: "money-saved",
       icon: <FaSackDollar className={iconStyles} />,
@@ -81,7 +89,7 @@ export default function Metrics() {
             <div className={iconDivStyles}>{card.icon}</div>
             <div className={cardInnerStyles}>
               <p className="pt-2">{formatValue(card.value, card.id)}</p>
-              <p className="pt-2 text-sm">{card.title}</p>
+              <p className="pt-2 text-center text-sm">{card.title}</p>
             </div>
           </CardContent>
         </Card>
