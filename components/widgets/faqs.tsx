@@ -1,11 +1,11 @@
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  AccordionContent,
 } from "@radix-ui/react-accordion";
 import React from "react";
-import { FaC, FaChevronDown } from "react-icons/fa6";
+import { FaChevronDown } from "react-icons/fa6";
 
 export default function Faqs() {
   //Sample data
@@ -38,7 +38,7 @@ export default function Faqs() {
       <Accordion type="single" collapsible className="w-full">
         {questions.map(({ id, question, frequency, dates }) => (
           <AccordionItem key={id} value={id}>
-            <AccordionTrigger className="hover:bg-primary-gray active:bg-primary-gray flex w-full flex-row border-b py-2">
+            <AccordionTrigger className="flex w-full flex-row border-b py-2 hover:bg-primary-gray active:bg-primary-gray">
               <div className="flex w-full flex-row items-center justify-between">
                 <p className="text-left text-base md:text-lg">{question}</p>
                 <FaChevronDown />
