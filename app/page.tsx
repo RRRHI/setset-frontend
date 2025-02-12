@@ -1,4 +1,5 @@
 import Appointments from "@/components/widgets/appointments";
+import DataTable from "@/components/widgets/callSection";
 import Faqs from "@/components/widgets/faqs";
 import Metrics from "@/components/widgets/metrics";
 
@@ -11,6 +12,7 @@ export default function Home() {
       <Metrics />
       <Appointments />
       <Faqs />
+      <DataTable />
     </div>
   );
 }
