@@ -8,9 +8,10 @@ import {
   FaUser,
 } from "react-icons/fa6";
 
+import { MetricsData } from "@/lib/types";
+
 import { Card, CardContent } from "../ui/card";
 import { DatePickerWithRange } from "../ui/date-picker";
-import { MetricsData } from "@/lib/types";
 
 export default function Metrics() {
   // Sample Data

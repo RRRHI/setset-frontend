@@ -35,9 +35,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { CallRecording } from "@/lib/types";
 
 import { DatePickerWithRange } from "../ui/date-picker";
-import { CallRecording } from "@/lib/types";
 
 // Sample data for Call Recordings
 const callRecordingsData: CallRecording[] = [

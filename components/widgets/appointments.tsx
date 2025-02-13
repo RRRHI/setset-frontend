@@ -1,8 +1,9 @@
 import React from "react";
 
+import { AppointmentsData } from "@/lib/types";
+
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { DatePickerWithRange } from "../ui/date-picker";
-import { AppointmentsData } from "@/lib/types";
 
 export default function Appointments() {
   // Sample Data
