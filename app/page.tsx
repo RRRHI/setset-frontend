@@ -1,5 +1,5 @@
 import Appointments from "@/components/widgets/appointments";
-import DataTable from "@/components/widgets/callSection";
+import DataTable from "@/components/widgets/call-history";
 import Faqs from "@/components/widgets/faqs";
 import Metrics from "@/components/widgets/metrics";
 
