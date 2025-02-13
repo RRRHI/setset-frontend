@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   ColumnDef,
@@ -11,12 +11,12 @@ import {
   SortingState,
   useReactTable,
   VisibilityState,
-} from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
-import  {useEffect,useRef,useState} from "react"
+} from "@tanstack/react-table";
+import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -24,9 +24,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Progress } from "@/components/ui/progress"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Progress } from "@/components/ui/progress";
 import {
   Table,
   TableBody,
@@ -34,8 +34,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { CalendarButton } from "@/components/widgets/calendarButton"
+} from "@/components/ui/table";
+import { DatePickerWithRange } from "../ui/date-picker";
 
 // Sample data for Call Recordings
 const callRecordingsData: CallRecording[] = [
@@ -45,7 +45,8 @@ const callRecordingsData: CallRecording[] = [
     invoice: "INV001",
     status: "Booked",
     duration: "0:18",
-    recordingUrl: "https://actions.google.com/sounds/v1/cartoon/rainstick_slow.ogg",
+    recordingUrl:
+      "https://actions.google.com/sounds/v1/cartoon/rainstick_slow.ogg",
   },
   {
     id: "2",
@@ -53,7 +54,8 @@ const callRecordingsData: CallRecording[] = [
     invoice: "INV002",
     status: "Cancelled",
     duration: "0:50",
-    recordingUrl: "https://actions.google.com/sounds/v1/ambiences/barnyard_with_animals.ogg",
+    recordingUrl:
+      "https://actions.google.com/sounds/v1/ambiences/barnyard_with_animals.ogg",
   },
   {
     id: "3",
@@ -79,47 +81,46 @@ const callRecordingsData: CallRecording[] = [
     duration: "6:12",
     recordingUrl: "https://example.com/recording5.mp3",
   },
-]
-
+];
 
 export type CallRecording = {
-  id: string
-  date: string
-  invoice: string
-  status: "Booked" | "Cancelled" | "Transferred" | "Rescheduled"
-  duration: string
-  recordingUrl: string
-}
+  id: string;
+  date: string;
+  invoice: string;
+  status: "Booked" | "Cancelled" | "Transferred" | "Rescheduled";
+  duration: string;
+  recordingUrl: string;
+};
 
 const RecordingCell: React.FC<{ url: string }> = ({ url }) => {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const audioRef = useRef<HTMLAudioElement>(null)
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
+    const audio = audioRef.current;
+    if (!audio) return;
 
     const updateProgress = () => {
-      setProgress((audio.currentTime / audio.duration) * 100)
-    }
+      setProgress((audio.currentTime / audio.duration) * 100);
+    };
 
-    audio.addEventListener("timeupdate", updateProgress)
+    audio.addEventListener("timeupdate", updateProgress);
     return () => {
-      audio.removeEventListener("timeupdate", updateProgress)
-    }
-  }, [])
+      audio.removeEventListener("timeupdate", updateProgress);
+    };
+  }, []);
 
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.pause()
+        audioRef.current.pause();
       } else {
-        audioRef.current.play()
+        audioRef.current.play();
       }
-      setIsPlaying(!isPlaying)
+      setIsPlaying(!isPlaying);
     }
-  }
+  };
 
   return (
     <div className="flex flex-col space-y-2">
@@ -127,21 +128,32 @@ const RecordingCell: React.FC<{ url: string }> = ({ url }) => {
         <Button variant="outline" size="sm" onClick={togglePlay}>
           {isPlaying ? "Pause" : "Play"}
         </Button>
-        <Button variant="outline" size="sm" onClick={() => console.log("Download recording:", url)}>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => console.log("Download recording:", url)}
+        >
           Download
         </Button>
       </div>
       <Progress value={progress} className="w-full" />
-      <audio ref={audioRef} src={url} onEnded={() => { setIsPlaying(false); setProgress(0); }} />
+      <audio
+        ref={audioRef}
+        src={url}
+        onEnded={() => {
+          setIsPlaying(false);
+          setProgress(0);
+        }}
+      />
     </div>
-  )
-}
+  );
+};
 
 export const columns: ColumnDef<CallRecording>[] = [
   {
     id: "select",
     header: ({ table }) => (
-      <div className = "py-5 pl-4 ">
+      <div className="py-5 pl-4">
         <Checkbox
           checked={
             table.getIsAllPageRowsSelected() ||
@@ -153,7 +165,7 @@ export const columns: ColumnDef<CallRecording>[] = [
       </div>
     ),
     cell: ({ row }) => (
-      <div className = "pl-4">
+      <div className="pl-4">
         <Checkbox
           checked={row.getIsSelected()}
           onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -173,9 +185,9 @@ export const columns: ColumnDef<CallRecording>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Date
-          <ArrowUpDown className="ml-2 size-4 " />
+          <ArrowUpDown className="ml-2 size-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => <div>{row.getValue("date")}</div>,
   },
@@ -205,7 +217,7 @@ export const columns: ColumnDef<CallRecording>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const recording = row.original
+      const recording = row.original;
 
       return (
         <DropdownMenu>
@@ -227,16 +239,16 @@ export const columns: ColumnDef<CallRecording>[] = [
             <DropdownMenuItem>Report problems</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
+      );
     },
   },
-]
+];
 
 export default function DataTable() {
-  const [sorting, setSorting] = useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = useState({})
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data: callRecordingsData,
@@ -249,27 +261,22 @@ export default function DataTable() {
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-      rowSelection,
-    },
-  })
+    state: { sorting, columnFilters, columnVisibility, rowSelection },
+  });
 
   // Function to handle downloading selected invoices
   const handleDownloadSelected = () => {
-    const selectedRows = table.getFilteredSelectedRowModel().rows
-    const selectedInvoices = selectedRows.map((row) => row.original.invoice)
-    console.log("Downloading selected invoices:", selectedInvoices)
-  }
+    const selectedRows = table.getFilteredSelectedRowModel().rows;
+    const selectedInvoices = selectedRows.map((row) => row.original.invoice);
+    console.log("Downloading selected invoices:", selectedInvoices);
+  };
 
   return (
     <div className="w-full">
       <p className="text-xl font-semibold md:text-2xl lg:text-3xl">
         Call history
       </p>
-      <div className="flex items-center py-4">
+      <div className="flex flex-col justify-between py-4 md:flex-row">
         <Input
           placeholder="Filter invoices..."
           value={(table.getColumn("invoice")?.getFilterValue() as string) ?? ""}
@@ -278,31 +285,40 @@ export default function DataTable() {
           }
           className="max-w-sm"
         />
-        {/* Dropdown to filter by status */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-2">
-              Filter by Status <ChevronDown className="ml-2 size-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {["Booked", "Cancelled", "Transferred", "Rescheduled"].map(
-              (status) => (
-                <DropdownMenuCheckboxItem
-                  key={status}
-                  checked={table.getColumn("status")?.getFilterValue() === status}
-                  onCheckedChange={(value) =>
-                    table.getColumn("status")?.setFilterValue(value ? status : undefined)
-                  }
-                >
-                  {status}
-                </DropdownMenuCheckboxItem>
-              )
-            )}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4">
+          {/* Dropdown to filter by status */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-fit justify-between bg-inherit"
+              >
+                Filter by Status <ChevronDown className="size-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {["Booked", "Cancelled", "Transferred", "Rescheduled"].map(
+                (status) => (
+                  <DropdownMenuCheckboxItem
+                    key={status}
+                    checked={
+                      table.getColumn("status")?.getFilterValue() === status
+                    }
+                    onCheckedChange={(value) =>
+                      table
+                        .getColumn("status")
+                        ?.setFilterValue(value ? status : undefined)
+                    }
+                  >
+                    {status}
+                  </DropdownMenuCheckboxItem>
+                ),
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-        <CalendarButton />
+          <DatePickerWithRange />
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>
@@ -316,10 +332,10 @@ export default function DataTable() {
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -335,7 +351,7 @@ export default function DataTable() {
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -389,5 +405,5 @@ export default function DataTable() {
         </div>
       </div>
     </div>
-  )
+  );
 }

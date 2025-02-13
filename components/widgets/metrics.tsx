@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa6";
 
 import { Card, CardContent } from "../ui/card";
+import { DatePickerWithRange } from "../ui/date-picker";
 
 export default function Metrics() {
   // Sample Data
@@ -79,23 +80,23 @@ export default function Metrics() {
   };
 
   return (
-    <div
-      id="metrics"
-      className="flex flex-col justify-between gap-5 lg:flex-row"
-    >
-      {cards.map((card) => (
-        <Card key={card.id} className="flex-1 justify-center">
-          <CardContent className={cardContentStyles}>
-            <div className={iconDivStyles}>{card.icon}</div>
-            <div className={cardInnerStyles}>
-              <p className="pt-2">{formatValue(card.value, card.id)}</p>
-              <p className="pt-2 text-center text-xs md:text-sm">
-                {card.title}
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+    <div id="metrics" className="flex flex-col gap-5">
+      <DatePickerWithRange />
+      <div className="flex flex-col justify-between gap-5 lg:flex-row">
+        {cards.map((card) => (
+          <Card key={card.id} className="flex-1 justify-center">
+            <CardContent className={cardContentStyles}>
+              <div className={iconDivStyles}>{card.icon}</div>
+              <div className={cardInnerStyles}>
+                <p className="pt-2">{formatValue(card.value, card.id)}</p>
+                <p className="pt-2 text-center text-xs md:text-sm">
+                  {card.title}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }
