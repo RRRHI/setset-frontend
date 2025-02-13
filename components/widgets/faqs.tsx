@@ -1,3 +1,4 @@
+import { FaqData } from "@/lib/types";
 import {
   Accordion,
   AccordionContent,
@@ -9,7 +10,7 @@ import { FaChevronDown } from "react-icons/fa6";
 
 export default function Faqs() {
   //Sample data
-  const questions = [
+  const questions: FaqData[] = [
     {
       id: "1",
       question: "Are you open today?",

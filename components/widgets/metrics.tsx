@@ -10,10 +10,11 @@ import {
 
 import { Card, CardContent } from "../ui/card";
 import { DatePickerWithRange } from "../ui/date-picker";
+import { MetricsData } from "@/lib/types";
 
 export default function Metrics() {
   // Sample Data
-  const data = {
+  const data: MetricsData = {
     callMinutes: 100227,
     moneySaved: 601194,
     timeSaved: 100227,
@@ -28,7 +29,7 @@ export default function Metrics() {
     "flex flex-col items-center justify-center text-lg md:text-lg lg:text-2xl font-bold";
   const iconDivStyles = "items-center justify-center pt-6";
 
-  // Replace with actual values from backend in future
+  //TODO: Replace with actual values from backend in future
   const cards = [
     {
       id: "call-minutes",

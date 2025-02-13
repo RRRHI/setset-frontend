@@ -37,6 +37,7 @@ import {
 } from "@/components/ui/table";
 
 import { DatePickerWithRange } from "../ui/date-picker";
+import { CallRecording } from "@/lib/types";
 
 // Sample data for Call Recordings
 const callRecordingsData: CallRecording[] = [
@@ -83,17 +84,7 @@ const callRecordingsData: CallRecording[] = [
     recordingUrl: "https://example.com/recording5.mp3",
   },
 ];
-
-export type CallRecording = {
-  id: string;
-  date: string;
-  invoice: string;
-  status: "Booked" | "Cancelled" | "Transferred" | "Rescheduled";
-  duration: string;
-  recordingUrl: string;
-};
-
-const RecordingCell: React.FC<{ url: string }> = ({ url }) => {
+const RecordingCell = ({ url }: { url: string }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);

@@ -2,10 +2,11 @@ import React from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { DatePickerWithRange } from "../ui/date-picker";
+import { AppointmentsData } from "@/lib/types";
 
 export default function Appointments() {
   // Sample Data
-  const data = {
+  const data: AppointmentsData = {
     booked: 57267,
     cancelled: 100,
     rescheduled: 200,
