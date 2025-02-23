@@ -30,3 +30,8 @@ export type CallRecording = {
   recordingUrl: string;
   transcriptUrl: string;
 };
+
+export type AppointmentsRadar = {
+  type: "Booked" | "Cancelled" | "Transferred" | "Rescheduled";
+  customers: number;
+};
