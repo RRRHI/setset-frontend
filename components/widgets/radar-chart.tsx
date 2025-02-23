@@ -10,6 +10,8 @@ import {
 import { AppointmentsRadar } from "@/lib/types";
 
 const chartData: AppointmentsRadar[] = [
+  //sample data
+
   { type: "Booked", customers: 305 },
   { type: "Rescheduled", customers: 186 },
   { type: "Transferred", customers: 237 },
