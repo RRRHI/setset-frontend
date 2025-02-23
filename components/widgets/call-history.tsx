@@ -22,7 +22,7 @@ import {
   FaArrowsUpDown } 
 from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
-
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -107,6 +107,7 @@ const RecordingCell = ({ recordingUrl, transcriptUrl, invoice }: { recordingUrl:
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -135,7 +136,7 @@ const RecordingCell = ({ recordingUrl, transcriptUrl, invoice }: { recordingUrl:
 
   return (
     <div className="flex w-full flex-col items-center space-x-4">
-      <Tabs defaultValue="recording" className="w-full">
+      <Tabs defaultValue="recording" className={isMobile ? "w-[400px]" : "w-full"}>
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="recording">Recording</TabsTrigger>
           <TabsTrigger value="transcript">Transcript</TabsTrigger>
@@ -154,14 +155,13 @@ const RecordingCell = ({ recordingUrl, transcriptUrl, invoice }: { recordingUrl:
           </div>
         </TabsContent>
 
-        <TabsContent value="transcript" className="size-full overflow-auto">
-          <div className="flex size-full items-center justify-between">
+        <TabsContent value="transcript" className="w-full">
+          <div className="flex w-full items-center justify-between">
             <div className="flex items-center space-x-2">
               <FaFileArrowDown />
               <span>{invoice}</span>
             </div>
             <Button variant="outline" size="sm" onClick={() => console.log("Download transcript:", transcriptUrl)}>
-              Download transcript     
               <FaDownload />
             </Button>
           </div>
@@ -207,7 +207,7 @@ export const columns: ColumnDef<CallRecording>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Date
-          <FaArrowsUpDown className="ml-2 size-4" />
+          <FaArrowsUpDown className="size-4" />
         </Button>
       );
     },
@@ -296,7 +296,7 @@ export default function DataTable() {
   };
 
   return (
-    <div className="w-full">
+    <div id="call-history" className="w-full">
       <p className="text-xl font-semibold md:text-2xl lg:text-3xl">
         Call history
       </p>
