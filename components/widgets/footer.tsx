@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
+import Link from "next/link";
 
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -17,34 +17,34 @@ export function Footer() {
           <Link 
             href="#" 
             className="
-              flex items-center gap-2 text-muted-foreground transition-colors 
-              bg-transparent
-              border border-transparent
+              flex items-center gap-2 rounded-md border 
+              border-transparent
+              bg-transparent text-muted-foreground
+              outline-none
+              transition-colors
               hover:border-white
               focus:border-white
-              rounded-md
-              outline-none
               focus:outline-none
             "
           >
-            <Mail className="h-4 w-4" />
+            <Mail className="size-4" />
             <span>Contact Us</span>
           </Link>
           
           <Link 
             href="#" 
             className="
-              flex items-center gap-2 text-muted-foreground transition-colors 
-              bg-transparent
-              border border-transparent
+              flex items-center gap-2 rounded-md border 
+              border-transparent
+              bg-transparent text-muted-foreground
+              outline-none
+              transition-colors
               hover:border-white
               focus:border-white
-              rounded-md
-              outline-none
               focus:outline-none
             "
           >
-            <Phone className="h-4 w-4" />
+            <Phone className="size-4" />
             <span>Support</span>
           </Link>
         </div>

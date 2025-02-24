@@ -1,6 +1,7 @@
 "use client";
 import { TrendingUp } from "lucide-react";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
+
 import {
   ChartConfig,
   ChartContainer,
@@ -51,7 +52,7 @@ export function AppointmentsRadarChart() {
       <div className="mt-4 flex flex-col items-center gap-2 text-xs md:text-sm">
         <div className="flex items-center gap-2 text-center font-medium">
           5.2% more appointments booked this month
-          <TrendingUp className="h-4 w-4" />
+          <TrendingUp className="size-4" />
         </div>
         <div className="flex items-center text-muted-foreground">
           February 2025

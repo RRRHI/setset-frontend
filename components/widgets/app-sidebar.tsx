@@ -1,31 +1,25 @@
 "use client";
 
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
-import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
+import { Separator } from "@/components/ui/separator";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarInset,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Separator } from "@/components/ui/separator";
 
 // Menu items.
 const items = [
@@ -51,7 +45,7 @@ const items = [
   },
 ];
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({}: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar>
       <SidebarContent>

@@ -1,13 +1,13 @@
-import { AppSidebar } from "@/components/widgets/app-sidebar";
 import {
-  SidebarProvider,
   SidebarInset,
+  SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/widgets/app-sidebar";
 import Appointments from "@/components/widgets/appointments";
 import DataTable from "@/components/widgets/call-history";
-import { Footer } from "@/components/widgets/footer";
 import Faqs from "@/components/widgets/faqs";
+import { Footer } from "@/components/widgets/footer";
 import Metrics from "@/components/widgets/metrics";
 
 export default function Home() {

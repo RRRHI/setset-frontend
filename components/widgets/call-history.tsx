@@ -12,17 +12,16 @@ import {
   useReactTable,
   VisibilityState,
 } from "@tanstack/react-table";
+import { useEffect, useRef, useState } from "react";
 import { 
-  FaPlay, 
+  FaArrowsUpDown,  FaChevronDown, 
   FaDownload, 
   FaEllipsis,
-  FaPause, 
   FaFileArrowDown, 
-  FaChevronDown, 
-  FaArrowsUpDown } 
+  FaPause, 
+  FaPlay } 
 from "react-icons/fa6";
-import { useEffect, useRef, useState } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
+
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -49,6 +48,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import { useIsMobile } from "@/hooks/use-mobile";
 import { CallRecording } from "@/lib/types";
 
 import { DatePickerWithRange } from "../ui/date-picker";
@@ -244,7 +244,7 @@ export const columns: ColumnDef<CallRecording>[] = [
       const recording = row.original;
 
       return (
-        <div className="flex size-full flex-col items-center mt-auto pb-10"> 
+        <div className="mt-auto flex size-full flex-col items-center pb-10"> 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="size-8 p-0">

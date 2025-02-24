@@ -1,19 +1,16 @@
 "use client"
 
-import * as React from "react"
+import { DialogTitle } from "@radix-ui/react-dialog";
 import { Slot } from "@radix-ui/react-slot"
-import { VariantProps, cva } from "class-variance-authority"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+import { cva,VariantProps } from "class-variance-authority"
+import * as React from "react"
 import { FaAlignJustify } from "react-icons/fa6";
 
-import { useIsMobile } from "@/hooks/use-mobile"
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent } from "@/components/ui/sheet"
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
-
 import { Skeleton } from "@/components/ui/skeleton"
 import {
   Tooltip,
@@ -21,6 +18,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { useIsMobile } from "@/hooks/use-mobile"
+import { cn } from "@/lib/utils"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -212,7 +211,7 @@ const Sidebar = React.forwardRef<
          <VisuallyHidden asChild>
           <DialogTitle>Sidebar Menu</DialogTitle>
         </VisuallyHidden>
-        <div className="flex h-full w-full flex-col">{children}</div>
+        <div className="flex size-full flex-col">{children}</div>
       </SheetContent>
     </Sheet>
   )
@@ -254,7 +253,7 @@ const Sidebar = React.forwardRef<
         >
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-gradient-to-b from-black to-primary-gray group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+            className="flex size-full flex-col bg-gradient-to-b from-black to-primary-gray group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
           >
             {children}
           </div>

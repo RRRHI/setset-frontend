@@ -1,9 +1,11 @@
 import React from "react";
+
 import { AppointmentsData } from "@/lib/types";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+
+import { Card, CardContent } from "../ui/card";
 import { DatePickerWithRange } from "../ui/date-picker";
-import { AppointmentsRadarChart } from "./radar-chart";
 import { AppointmentsAreaChart } from "./area-chart";
+import { AppointmentsRadarChart } from "./radar-chart";
 
 export default function Appointments() {
   const data: AppointmentsData = {
