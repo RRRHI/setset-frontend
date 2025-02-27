@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   WalletMinimal,
   Voicemail,
@@ -11,62 +12,69 @@ import {
 import { MetricsData } from "@/lib/types";
 
 import { Card, CardContent } from "../ui/card";
-import { DatePickerWithRange } from "../ui/date-picker";
+import { cn } from "@/lib/utils";
 
 export default function Metrics() {
   // Sample Data
   const data: MetricsData = {
-    callMinutes: 100227,
-    moneySaved: 601194,
-    timeSaved: 100227,
-    newCallers: 66813,
-    appointmentsBooked: 57267,
-    satisfaction: 9.7,
+    callMinutes: { minutes: 100227, difference: -1.4 },
+    moneySaved: { money: 601194, difference: 2.5 },
+    timeSaved: { time: 100227, difference: 1.8 },
+    newCallers: { callers: 66813, difference: -0.5 },
+    appointmentsBooked: { appointments: 57267, difference: 0.7 },
+    satisfactionScore: { score: 9.7, difference: 0.3 },
   };
 
-  const iconStyles = "lg:h-6 lg:w-6 text-secondary h-4 w-4";
-  const cardContentStyles = "flex flex-col items-center justify-center";
+  const iconStyles =
+    "lg:h-10 lg:w-10 text-white dark:text-black h-8 w-8 bg-black dark:bg-white rounded-lg p-2";
+  const cardContentStyles = "flex flex-col px-4 py-6 justify-center";
   const cardInnerStyles =
-    "flex flex-col items-center justify-center text-lg md:text-lg lg:text-2xl font-bold";
-  const iconDivStyles = "items-center justify-center pt-6";
+    "flex flex-col  justify-center text-lg md:text-lg lg:text-2xl";
+  const [isPos, setIsPos] = useState(true);
 
   //TODO: Replace with actual values from backend in future
   const cards = [
     {
       id: "money-saved",
       icon: <WalletMinimal className={iconStyles} />,
-      title: "MONEY SAVED",
-      value: data.moneySaved,
+      title: "Money Saved",
+      value: data.moneySaved.money,
+      difference: data.moneySaved.difference,
     },
     {
       id: "call-minutes",
       icon: <Voicemail className={iconStyles} />,
-      title: "CALL MINUTES",
-      value: data.callMinutes,
+      title: "Call Minutes",
+      value: data.callMinutes.minutes,
+      difference: data.callMinutes.difference,
     },
     {
       id: "minutes-saved",
       icon: <TimerReset className={iconStyles} />,
-      title: "MINUTES SAVED",
-      value: data.timeSaved,
+      title: "Minutes Saved",
+      value: data.timeSaved.time,
+      difference: data.timeSaved.difference,
     },
     {
       id: "new-callers",
       icon: <Users className={iconStyles} />,
-      title: "NEW CALLERS",
-      value: data.newCallers,
+      title: "New Callers",
+      value: data.newCallers.callers,
+      difference: data.newCallers.difference,
     },
     {
       id: "appointments-booked",
       icon: <MonitorCheck className={iconStyles} />,
-      title: "APPOINTMENTS BOOKED",
-      value: 57267,
+      title: "Appointments Booked",
+      value: data.appointmentsBooked.appointments,
+      difference: data.appointmentsBooked.difference,
     },
     {
-      id: "satisfaction",
+      id: "satisfactionScore",
       icon: <ThumbsUp className={iconStyles} />,
-      title: "SATISFACTION",
-      value: data.satisfaction,
+      title: "Satisfaction Score",
+      value: data.satisfactionScore.score,
+      difference: data.satisfactionScore.difference,
     },
   ];
 
@@ -76,24 +84,36 @@ export default function Metrics() {
     }
     if (type === "satisfaction") {
       // Keep decimal places for satisfaction score
-      return `${value.toFixed(2)}/10`;
+      return `${value.toFixed(1)}/10`;
     }
     return value.toLocaleString(); // Add commas for large numbers
   };
 
   return (
     <div id="metrics" className="flex flex-col gap-5">
-      <DatePickerWithRange />
-      <div className="flex flex-col justify-between gap-5 lg:flex-row">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6">
         {cards.map((card) => (
           <Card key={card.id} className="flex-1 justify-center">
             <CardContent className={cardContentStyles}>
-              <div className={iconDivStyles}>{card.icon}</div>
+              <div>{card.icon}</div>
               <div className={cardInnerStyles}>
-                <p className="pt-2">{formatValue(card.value, card.id)}</p>
-                <p className="pt-2 text-center text-xs md:text-sm">
-                  {card.title}
-                </p>
+                <p className="pt-4 text-xs md:text-sm">{card.title}</p>
+                <div className="flex flex-row items-center gap-2">
+                  <p className="font-bold">
+                    {formatValue(card.value, card.id)}
+                  </p>
+                  <p
+                    className={cn(
+                      "text-xs font-bold",
+                      card.difference >= 0 ? "text-green-500" : "text-red-500",
+                    )}
+                  >
+                    {card.difference >= 0
+                      ? `+${card.difference}`
+                      : card.difference}
+                    %
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
