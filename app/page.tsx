@@ -1,3 +1,4 @@
+import { DatePickerWithRange } from "@/components/ui/date-picker";
 import {
   SidebarInset,
   SidebarProvider,
@@ -23,12 +24,15 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="flex flex-1 flex-col gap-10 p-10 pt-0">
-          <Metrics />
-          {/* <Appointments />
+        <div className="flex flex-1 flex-col gap-4 p-10 pt-0">
+          <DatePickerWithRange />
+          <div className="flex flex-1 flex-col gap-10">
+            <Metrics />
+            {/* <Appointments />
           <Faqs />
           <DataTable /> */}
-          <Footer />
+            <Footer />
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>
