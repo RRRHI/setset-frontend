@@ -1,18 +1,16 @@
-"use client";
-import React, { useState } from "react";
 import {
-  WalletMinimal,
-  Voicemail,
-  TimerReset,
-  Users,
   MonitorCheck,
   ThumbsUp,
+  TimerReset,
+  Users,
+  Voicemail,
+  WalletMinimal,
 } from "lucide-react";
 
 import { MetricsData } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 import { Card, CardContent } from "../ui/card";
-import { cn } from "@/lib/utils";
 
 export default function Metrics() {
   // Sample Data
@@ -30,7 +28,6 @@ export default function Metrics() {
   const cardContentStyles = "flex flex-col px-4 py-6 justify-center";
   const cardInnerStyles =
     "flex flex-col  justify-center text-lg md:text-lg lg:text-2xl";
-  const [isPos, setIsPos] = useState(true);
 
   //TODO: Replace with actual values from backend in future
   const cards = [
