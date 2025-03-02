@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent } from "../../ui/card";
 import { metricsData } from "@/lib/sampleData";
 
 export default function Metrics() {

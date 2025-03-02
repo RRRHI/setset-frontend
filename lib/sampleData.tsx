@@ -1,4 +1,11 @@
-import { AppointmentsData, MetricsData, CallRecording } from "./types";
+import { AppointmentsData, MetricsData, CallRecording, FaqData } from "./types";
+import {
+  MonitorCheck,
+  TimerReset,
+  Users,
+  Voicemail,
+  WalletMinimal,
+} from "lucide-react";
 
 export const metricsData: MetricsData = {
   callMinutes: { minutes: 100227, difference: -1.4 },
@@ -150,5 +157,70 @@ export const callRecordingsData: CallRecording[] = [
     duration: "6:12",
     recordingUrl: "https://example.com/recording5.mp3",
     transcriptUrl: "https://example.com/recording5.pdf",
+  },
+];
+
+const iconStyles =
+  "lg:h-10 lg:w-10 text-white dark:text-black h-8 w-8 bg-black dark:bg-white rounded-lg p-2";
+export const faqsData: FaqData[] = [
+  {
+    id: "1",
+    question: "How accurate is the AI understanding customer inquiries?",
+    answer:
+      "Our AI is trained with advanced speech recognition and natural language processing (NLP), achieving an average accuracy rate of 90-95%. However, accuracy can vary based on background noise, accents, and industry-specific terms.",
+    frequency: 32,
+    icon: <Voicemail className={iconStyles} />,
+    timeRangeStart: "4:00 PM",
+    timeRangeEnd: "6:00 PM",
+  },
+  {
+    id: "2",
+    question: "Can AI handle bookings, cancellations, and reschedules?",
+    answer:
+      "Yes! The AI is designed to automate appointment management. It can:\nSchedule new bookings based on availability,\nCancel existing appointments upon request,\nReschedule based on open time slots,\nAll updates sync with the business's calendar and CRM system.",
+    frequency: 22,
+    icon: <TimerReset className={iconStyles} />,
+    timeRangeStart: "6:00 PM",
+    timeRangeEnd: "8:00 PM",
+  },
+  {
+    id: "3",
+    question: "How accurate is the AI in understanding customer inquiries?",
+    answer:
+      'If the AI detects low confidence in its response or the caller requests a human agent, it will: Transfer the call to an available representative, Send a detailed summary of the conversation to the agent, Log the request in the dashboard under "Escalated Calls" for review. Businesses can customize escalation thresholds and triggers in the settings.',
+    frequency: 18,
+    icon: <Users className={iconStyles} />,
+    timeRangeStart: "4:00 PM",
+    timeRangeEnd: "9:30 PM",
+  },
+  {
+    id: "4",
+    question: "How accurate is the AI in understanding customer inquiries?",
+    answer:
+      "Our AI is trained with advanced speech recognition and natural language processing (NLP), achieving an average accuracy rate of 90-95%. However, accuracy can vary based on background noise, accents, and industry-specific terms.",
+    frequency: 32,
+    icon: <WalletMinimal className={iconStyles} />,
+    timeRangeStart: "9:00 AM",
+    timeRangeEnd: "10:00 AM",
+  },
+  {
+    id: "5",
+    question: "How accurate is the AI in understanding customer inquiries?",
+    answer:
+      "Our AI is trained with advanced speech recognition and natural language processing (NLP), achieving an average accuracy rate of 90-95%. However, accuracy can vary based on background noise, accents, and industry-specific terms.",
+    frequency: 32,
+    icon: <MonitorCheck className={iconStyles} />,
+    timeRangeStart: "10:00 AM",
+    timeRangeEnd: "12:00 PM",
+  },
+  {
+    id: "6",
+    question: "What is the average time saved per call?",
+    answer:
+      " On average, our AI saves businesses 2-3 minutes per call. This time is spent on repetitive tasks like verifying customer information, scheduling appointments, and answering common questions. Over time, these minutes add up to significant cost and time savings.",
+    frequency: 32,
+    icon: <TimerReset className={iconStyles} />,
+    timeRangeStart: "4:00 PM",
+    timeRangeEnd: "6:00 PM",
   },
 ];
