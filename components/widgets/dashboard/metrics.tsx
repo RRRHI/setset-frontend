@@ -6,10 +6,11 @@ import {
   Voicemail,
   WalletMinimal,
 } from "lucide-react";
+
+import { metricsData } from "@/lib/sampleData";
 import { cn } from "@/lib/utils";
 
 import { Card, CardContent } from "../../ui/card";
-import { metricsData } from "@/lib/sampleData";
 
 export default function Metrics() {
   const iconStyles =

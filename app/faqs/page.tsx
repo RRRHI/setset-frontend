@@ -1,6 +1,6 @@
-import { FaqData } from "@/lib/types";
-import { faqsData } from "@/lib/sampleData";
 import { Card, CardContent } from "@/components/ui/card";
+import { faqsData } from "@/lib/sampleData";
+import { FaqData } from "@/lib/types";
 
 export default function Faqs({ data = faqsData }: { data: FaqData[] }) {
   const cardContentStyles = "flex flex-col px-4 py-6 justify-center";

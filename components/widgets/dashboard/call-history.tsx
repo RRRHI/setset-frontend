@@ -45,10 +45,10 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { callRecordingsData } from "@/lib/sampleData";
 import { CallRecording } from "@/lib/types";
 
 import { DatePickerWithRange } from "../ui/date-picker";
-import { callRecordingsData } from "@/lib/sampleData";
 
 const RecordingCell = ({
   recordingUrl,

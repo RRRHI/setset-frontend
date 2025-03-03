@@ -2,13 +2,14 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/widgets/sidebar/app-sidebar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { AppSidebar } from "@/components/widgets/sidebar/app-sidebar";
 import { ModeToggle } from "@/components/widgets/sidebar/theme-toggle";
 
 const geistSans = Geist({

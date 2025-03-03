@@ -1,5 +1,3 @@
-import { JSX } from "react";
-
 export type MetricsData = {
   callMinutes: {
     minutes: number;

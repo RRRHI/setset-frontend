@@ -1,8 +1,7 @@
 import { DatePickerWithRange } from "@/components/ui/date-picker";
 import Appointments from "@/components/widgets/dashboard/appointments";
-
-import Footer from "@/components/widgets/footer";
 import Metrics from "@/components/widgets/dashboard/metrics";
+import Footer from "@/components/widgets/footer";
 
 export default function Home() {
   return (

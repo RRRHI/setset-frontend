@@ -1,4 +1,3 @@
-import { AppointmentsData, MetricsData, CallRecording, FaqData } from "./types";
 import {
   MonitorCheck,
   TimerReset,
@@ -6,6 +5,8 @@ import {
   Voicemail,
   WalletMinimal,
 } from "lucide-react";
+
+import { AppointmentsData, CallRecording, FaqData,MetricsData } from "./types";
 
 export const metricsData: MetricsData = {
   callMinutes: { minutes: 100227, difference: -1.4 },
@@ -187,7 +188,7 @@ export const faqsData: FaqData[] = [
     id: "3",
     question: "How accurate is the AI in understanding customer inquiries?",
     answer:
-      'If the AI detects low confidence in its response or the caller requests a human agent, it will: Transfer the call to an available representative, Send a detailed summary of the conversation to the agent, Log the request in the dashboard under "Escalated Calls" for review. Businesses can customize escalation thresholds and triggers in the settings.',
+      "If the AI detects low confidence in its response or the caller requests a human agent, it will: Transfer the call to an available representative, Send a detailed summary of the conversation to the agent, Log the request in the dashboard under \"Escalated Calls\" for review. Businesses can customize escalation thresholds and triggers in the settings.",
     frequency: 18,
     icon: <Users className={iconStyles} />,
     timeRangeStart: "4:00 PM",
