@@ -1,4 +1,6 @@
 import { DateRange } from "react-day-picker";
+import { IconType } from "recharts/types/component/DefaultLegendContent";
+import { ReactElement } from "react";
 
 export type DateContextType = {
   dateRange?: DateRange;
@@ -70,4 +72,18 @@ export type BusinessStat =
   moneySaved: number;
   satisfaction: number;
   newCallers: number;
+};
+
+export type Card = {
+  id: string;
+  icon: ReactElement;
+  title: string;
+  value: number;
+};
+
+export type Business = {
+  id: string;
+  title: string;
+  content: string;
+  cards: Card[];
 };

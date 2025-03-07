@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { BusinessStat } from "@/lib/types";
-import { Button } from "../ui/button";
-import { useEffect } from 'react';
-import { Input } from "../ui/input";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
+import {business} from "@/lib/sampleData";
+import {BusinessInfo } from "@/lib/types";
 import {
   Pagination,
   PaginationContent,
@@ -16,10 +16,6 @@ import {
 
 //some icons that needed
 import {
-  WalletMinimal,
-  TimerReset,
-  ThumbsUp,
-  UsersRound,
   MessageSquareText,
   Search
 } from "lucide-react";
@@ -32,150 +28,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "../../ui/card";
 
 const layoutFormat = "flex flex-items mt-6";
 const iconStyles = "flex lg:w-6 lg:h-6 text-accent";
 const paginationItemformat = "bg-card text-card-foreground rounded-lg";
 
-const testData: BusinessStat = {
-  callMinutes: 123456,
-  moneySaved: 601194,
-  satisfaction: 5.5,
-  newCallers: 6789,
-};
-
-//Metric Card for this test business
-const cards = [
-  {
-    id: "money-saved",
-    icon: <WalletMinimal className={iconStyles} />,
-    title: "Money Saved",
-    value: testData.moneySaved,
-  },
-  {
-    id: "satisfaction",
-    icon: <ThumbsUp className={iconStyles} />,
-    title: "Satisfaction",
-    value: testData.satisfaction,
-  },
-  {
-    id: "minutes-saved",
-    icon: <TimerReset className={iconStyles} />,
-    title: "Minutes Saved",
-    value: testData.callMinutes,
-  },
-  {
-    id: "new-callers",
-    icon: <UsersRound className={iconStyles} />,
-    title: "New Callers",
-    value: testData.newCallers,
-  },
-];
-
-const cards2 = [
-  {
-    id: "money-saved",
-    icon: <WalletMinimal className={iconStyles} />,
-    title: "Money Saved",
-    value: testData.moneySaved,
-  },
-  {
-    id: "satisfaction",
-    icon: <ThumbsUp className={iconStyles} />,
-    title: "Satisfaction",
-    value: testData.satisfaction,
-  },
-  {
-    id: "minutes-saved",
-    icon: <TimerReset className={iconStyles} />,
-    title: "Minutes Saved",
-    value: 1000000,
-  },
-  {
-    id: "new-callers",
-    icon: <UsersRound className={iconStyles} />,
-    title: "New Callers",
-    value: testData.newCallers,
-  },
-];
-
-//Test data for business
-type Business = {
-  id: string;
-  title: string;
-  content: string;
-  cards: typeof cards;
-};
-
-const business: Business[] = [
-  {
-    id: "1",
-    title: "Business Name 1",
-    content: "Description 1",
-    cards: cards,
-  },
-  {
-    id: "2",
-    title: "Business Name 2",
-    content: "Description 2",
-    cards: cards,
-  },
-  {
-    id: "3",
-    title: "Business Name 3",
-    content: "Description 3",
-    cards: cards,
-  },
-  {
-    id: "4",
-    title: "Business Name 4",
-    content: "Description 4",
-    cards: cards,
-  },
-  {
-    id: "5",
-    title: "Business Name 5",
-    content: "Description 5",
-    cards: cards,
-  },
-  {
-    id: "6",
-    title: "Business Name 6",
-    content: "Description 6",
-    cards: cards,
-  },
-  {
-    id: "7",
-    title: "Business Name 7",
-    content: "Description 7",
-    cards: cards2,
-  },
-  {
-    id: "8",
-    title: "Business Name 8",
-    content: "Description 8",
-    cards: cards,
-  },
-  {
-    id: "9",
-    title: "Business Name 9",
-    content: "Description 9",
-    cards: cards,
-  },
-  {
-    id: "10",
-    title: "Business Name 10345",
-    content: "Description 10",
-    cards: cards,
-  },
-  {
-    id: "11",
-    title: "Business Name 11",
-    content: "Description 11",
-    cards: cards,
-  },
-];
 //Format value for money and satisfaction
 const formatValue = (value: number, type: string) => {
   if (type === "money-saved") {
@@ -188,7 +46,7 @@ const formatValue = (value: number, type: string) => {
   return value.toLocaleString(); // Add commas for large numbers
 };
 
-const getFilteredBusiness = (search: string, business: Business[]) => {
+const getFilteredBusiness = (search: string, business: BusinessInfo[]) => {
   if(!search)
   {
     return business;

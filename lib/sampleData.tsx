@@ -1,12 +1,14 @@
 import {
   MonitorCheck,
+  ThumbsUp,
   TimerReset,
   Users,
+  UsersRound,
   Voicemail,
   WalletMinimal,
 } from "lucide-react";
 
-import { AppointmentsData, CallRecording, FaqData,MetricsData } from "./types";
+import { AppointmentsData, BusinessStat, BusinessInfo, CallRecording, FaqData, MetricsData, Card } from "./types";
 
 export const metricsData: MetricsData = {
   callMinutes: { minutes: 100227, difference: -1.4 },
@@ -223,5 +225,138 @@ export const faqsData: FaqData[] = [
     icon: <TimerReset className={iconStyles} />,
     timeRangeStart: "4:00 PM",
     timeRangeEnd: "6:00 PM",
+  },
+];
+
+const testData: BusinessStat = {
+  callMinutes: 123456,
+  moneySaved: 601194,
+  satisfaction: 5.5,
+  newCallers: 6789,
+};
+
+//Metric Card for this test business
+const cards:Card[] = [
+  {
+    id: "money-saved",
+    icon: <WalletMinimal className={iconStyles} />,
+    title: "Money Saved",
+    value: testData.moneySaved,
+  },
+  {
+    id: "satisfaction",
+    icon: <ThumbsUp className={iconStyles} />,
+    title: "Satisfaction",
+    value: testData.satisfaction,
+  },
+  {
+    id: "minutes-saved",
+    icon: <TimerReset className={iconStyles} />,
+    title: "Minutes Saved",
+    value: testData.callMinutes,
+  },
+  {
+    id: "new-callers",
+    icon: <UsersRound className={iconStyles} />,
+    title: "New Callers",
+    value: testData.newCallers,
+  },
+];
+
+const cards2:Card[] = [
+  {
+    id: "money-saved",
+    icon: <WalletMinimal className={iconStyles} />,
+    title: "Money Saved",
+    value: testData.moneySaved,
+  },
+  {
+    id: "satisfaction",
+    icon: <ThumbsUp className={iconStyles} />,
+    title: "Satisfaction",
+    value: testData.satisfaction,
+  },
+  {
+    id: "minutes-saved",
+    icon: <TimerReset className={iconStyles} />,
+    title: "Minutes Saved",
+    value: 1000000,
+  },
+  {
+    id: "new-callers",
+    icon: <UsersRound className={iconStyles} />,
+    title: "New Callers",
+    value: testData.newCallers,
+  },
+];
+
+//Test data for business
+
+export const business: BusinessInfo[] = [
+  {
+    id: "1",
+    title: "Business Name 1",
+    content: "Description 1",
+    cards: cards,
+  },
+  {
+    id: "2",
+    title: "Business Name 2",
+    content: "Description 2",
+    cards: cards,
+  },
+  {
+    id: "3",
+    title: "Business Name 3",
+    content: "Description 3",
+    cards: cards,
+  },
+  {
+    id: "4",
+    title: "Business Name 4",
+    content: "Description 4",
+    cards: cards,
+  },
+  {
+    id: "5",
+    title: "Business Name 5",
+    content: "Description 5",
+    cards: cards,
+  },
+  {
+    id: "6",
+    title: "Business Name 6",
+    content: "Description 6",
+    cards: cards,
+  },
+  {
+    id: "7",
+    title: "Business Name 7",
+    content: "Description 7",
+    cards: cards2,
+  },
+  {
+    id: "8",
+    title: "Business Name 8",
+    content: "Description 8",
+    cards: cards,
+  },
+  {
+    id: "9",
+    title: "Business Name 9",
+    content: "Description 9",
+    cards: cards,
+  },
+  {
+    id: "10",
+    title: "Business Name 10345",
+    content: "Description 10",
+    cards: cards,
+  },
+  {
+    id: "11",
+    title: "Business Name 11",
+    content: "Description 11",
+    cards: cards,
   },
 ];

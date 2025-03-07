@@ -1,6 +1,6 @@
 import React from "react";
-import Business from "@/components/widgets/business-card";
-import { ModeToggle } from "@/components/widgets/theme-toggle";
+import Business from "@/components/widgets/admin/business-card";
+import { ModeToggle } from "@/components/widgets/sidebar/theme-toggle";
 
 export default function Page() {
 
