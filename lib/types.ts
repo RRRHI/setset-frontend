@@ -62,3 +62,12 @@ export type AppointmentsRadar = {
   type: "Booked" | "Cancelled" | "Transferred" | "Rescheduled";
   customers: number;
 };
+
+export type BusinessStat =
+{
+  //name: string;
+  callMinutes: number;
+  moneySaved: number;
+  satisfaction: number;
+  newCallers: number;
+};
