@@ -31,7 +31,6 @@ import {
 } from "../../ui/card";
 
 const layoutFormat = "flex flex-items mt-6";
-const iconStyles = "flex lg:w-6 lg:h-6 text-accent";
 const paginationItemformat = "bg-card text-card-foreground rounded-lg";
 
 //Format value for money and satisfaction

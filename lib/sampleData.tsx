@@ -8,7 +8,7 @@ import {
   WalletMinimal,
 } from "lucide-react";
 
-import { AppointmentsData, BusinessStat, BusinessInfo, CallRecording, FaqData, MetricsData, Card } from "./types";
+import { AppointmentsData, BusinessStat, BusinessInfo, CallRecording, FaqData, MetricsData, BusinessCard } from "./types";
 
 export const metricsData: MetricsData = {
   callMinutes: { minutes: 100227, difference: -1.4 },
@@ -236,7 +236,7 @@ const testData: BusinessStat = {
 };
 
 //Metric Card for this test business
-const cards:Card[] = [
+const cards:BusinessCard[] = [
   {
     id: "money-saved",
     icon: <WalletMinimal className={iconStyles} />,
@@ -263,7 +263,7 @@ const cards:Card[] = [
   },
 ];
 
-const cards2:Card[] = [
+const cards2:BusinessCard[] = [
   {
     id: "money-saved",
     icon: <WalletMinimal className={iconStyles} />,

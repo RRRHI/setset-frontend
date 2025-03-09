@@ -65,8 +65,7 @@ export type AppointmentsRadar = {
   customers: number;
 };
 
-export type BusinessStat =
-{
+export type BusinessStat = {
   //name: string;
   callMinutes: number;
   moneySaved: number;
@@ -74,16 +73,16 @@ export type BusinessStat =
   newCallers: number;
 };
 
-export type Card = {
+export type BusinessCard = {
   id: string;
   icon: ReactElement;
   title: string;
   value: number;
 };
 
-export type Business = {
+export type BusinessInfo = {
   id: string;
   title: string;
   content: string;
-  cards: Card[];
+  cards: BusinessCard[];
 };
