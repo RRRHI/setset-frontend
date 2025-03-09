@@ -1,5 +1,4 @@
 import { DateRange } from "react-day-picker";
-import { IconType } from "recharts/types/component/DefaultLegendContent";
 import { ReactElement } from "react";
 
 export type DateContextType = {
