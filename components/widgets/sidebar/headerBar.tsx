@@ -16,7 +16,7 @@ interface HeaderBarProps {
 
 const SidebarIcon = ({ currPage }: { currPage: sideBarPageProp }) => {
   return (
-    <SidebarTrigger className="flex w-full items-center gap-5 text-lg font-semibold text-foreground hover:bg-transparent md:text-2xl">
+    <SidebarTrigger className=" flex w-full items-center gap-5 font-semibold text-foreground hover:bg-transparent md:text-2xl">
       <span className="rounded-xl bg-primary-foreground p-2">
       {
           currPage.title === "Settings"? (
@@ -27,7 +27,7 @@ const SidebarIcon = ({ currPage }: { currPage: sideBarPageProp }) => {
           )
         }
       </span>
-      <p className="truncate whitespace-nowrap ">{currPage.title}</p>
+      <p className="max-w-[190px] truncate whitespace-nowrap sm:max-w-full">{currPage.title}</p>
     </SidebarTrigger>
   );
 };
@@ -49,7 +49,7 @@ export function HeaderBar({ currPage }: HeaderBarProps) {
         <SidebarIcon currPage={currPage} />
       </div>
 
-      <div className="flex items-center gap-3 md:gap-[30px]">
+      <div className="flex items-center gap-5 md:gap-[30px]">
         <ChangeTheme/>
         <UserButton />
         <Button variant="ghost" className="hidden p-0 hover:bg-transparent sm:block">
