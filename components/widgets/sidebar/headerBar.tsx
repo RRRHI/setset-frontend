@@ -4,9 +4,11 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Notification from "@/components/widgets/sidebar/notification";
+import { ChangeTheme } from "@/components/widgets/theme_Toggle";
 import SettingIcon from "@/lib/settings";
 import { SettingsHeader } from "@/lib/settings";
 import { sideBarPageProp } from "@/lib/types";
+
 
 interface HeaderBarProps {
   currPage: sideBarPageProp;
@@ -33,8 +35,9 @@ const SidebarIcon = ({ currPage }: { currPage: sideBarPageProp }) => {
 
 const UserButton = () => {
   return (
-    <Button variant="ghost" className="flex items-center gap-2 hover:bg-transparent">
-      <UserRound className="fill-foreground stroke-foreground" />
+    <Button variant="ghost" className="flex items-center gap-2 p-0 hover:bg-transparent">
+      <UserRound className="!size-6 fill-foreground stroke-foreground" />
+      <p className="hidden text-lg md:block">Sign In</p>
     </Button>
   );
 };
@@ -46,9 +49,10 @@ export function HeaderBar({ currPage }: HeaderBarProps) {
         <SidebarIcon currPage={currPage} />
       </div>
 
-      <div className="flex items-center gap-3 md:gap-7">
+      <div className="flex items-center gap-3 md:gap-[30px]">
+        <ChangeTheme/>
         <UserButton />
-        <Button variant="ghost" className="hidden hover:bg-transparent sm:block">
+        <Button variant="ghost" className="hidden p-0 hover:bg-transparent sm:block">
         <SettingIcon  />
         </Button>
         <Notification  />

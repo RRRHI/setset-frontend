@@ -6,7 +6,6 @@ import { DatePickerWithRange } from "@/components/ui/date-picker";
 import Appointments from "@/components/widgets/dashboard/appointments";
 import Metrics from "@/components/widgets/dashboard/metrics";
 import Footer from "@/components/widgets/footer";
-import {ModeToggle} from "@/components/widgets/theme-toggle";
 import { DateProvider } from "@/context/DateContext";
 import { useDateRange } from "@/hooks/use-date-range";
 
@@ -21,7 +20,6 @@ function DashboardContent() {
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-10 pt-0">
-        <ModeToggle />
       <div className="flex flex-row gap-4">
         <DatePickerWithRange />
         <Button className="flex flex-row gap-2" onClick={handleReset}>
