@@ -27,7 +27,7 @@ const SidebarIcon = ({ currPage }: { currPage: sideBarPageProp }) => {
           )
         }
       </span>
-      <p className="max-w-[190px] truncate whitespace-nowrap sm:max-w-full">{currPage.title}</p>
+      <p className="max-w-24 text-pretty text-left  leading-none sm:max-w-full ">{currPage.title}</p>
     </SidebarTrigger>
   );
 };
@@ -36,7 +36,7 @@ const SidebarIcon = ({ currPage }: { currPage: sideBarPageProp }) => {
 const UserButton = () => {
   return (
     <Button variant="ghost" className="flex items-center gap-2 p-0 hover:bg-transparent">
-      <UserRound className="!size-6 fill-foreground stroke-foreground" />
+      <UserRound className="!size-5 fill-foreground stroke-foreground sm:!size-6" />
       <p className="hidden text-lg md:block">Sign In</p>
     </Button>
   );
