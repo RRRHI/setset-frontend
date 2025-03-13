@@ -22,7 +22,7 @@ function DashboardContent() {
     <div className="flex flex-1 flex-col gap-4 p-10 pt-0">
       <div className="flex flex-row gap-4">
         <DatePickerWithRange />
-        <Button className="flex flex-row gap-2" onClick={handleReset}>
+        <Button className= "flex flex-row gap-2" onClick={handleReset}>
           <RefreshCw />
           <p>Reset Filters</p>
         </Button>

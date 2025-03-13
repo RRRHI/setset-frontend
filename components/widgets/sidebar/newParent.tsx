@@ -1,6 +1,5 @@
 "use client";
 import { ReactNode, useCallback, useState } from "react";
-
 import { SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/widgets/sidebar/app-sidebar";
 import { HeaderBar } from "@/components/widgets/sidebar/headerBar";

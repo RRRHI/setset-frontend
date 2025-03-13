@@ -13,6 +13,7 @@ import {
   VisibilityState,
 } from "@tanstack/react-table";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   ArrowDownUp,
   ChevronDown,
@@ -22,7 +23,6 @@ import {
 } from "lucide-react";
 import { Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -32,7 +32,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
 import { DualRangeSlider } from "@/components/ui/dual-slider";
 import {
   Table,
@@ -45,6 +44,8 @@ import {
 
 import { CallRecording } from "@/lib/types";
 import { callRecordingsData } from "@/lib/sampleData";
+
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const RecordingCell = ({ recordingUrl, transcriptUrl, id }: { recordingUrl: string, transcriptUrl: string, id: string }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -63,12 +64,16 @@ const RecordingCell = ({ recordingUrl, transcriptUrl, id }: { recordingUrl: stri
 
   return (
     <div className="flex space-x-20 justify-end">
-      <Button variant="outline" size="sm" className="bg-sidebar-ring" onClick={togglePlay}>
+      <Button variant="ghost" 
+              size="sm" 
+              className="bg-sidebar-ring text-black" 
+              // onClick={togglePlay}
+              >
         {isPlaying ? <Pause /> : <Play />}
         Listen
       </Button>
       <Button
-        variant="outline"
+        variant="ghost"
         size="sm"
         className="bg-foreground text-card"
         onClick={() => console.log("Download transcript:", transcriptUrl)}
@@ -138,6 +143,8 @@ export default function DataTable() {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [durationRange, setDurationRange] = useState<[number, number]>([0, 0]);
 
+  const isMobile = useIsMobile();
+
   const convertDurationToMinutes = (duration: string) => {
     const [minutes, seconds] = duration.split(":").map(Number);
     return minutes + seconds / 60;
@@ -147,6 +154,12 @@ export default function DataTable() {
   useEffect(() => {
     setDurationRange([0, maxDuration]);
   }, [maxDuration]);
+
+  const router = useRouter();
+  const handleViewMore = () => {
+    router.push("/recordings-and-transcripts");
+  }
+
 
   const isRowHidden = (duration: string) => {
     const durationInMinutes = convertDurationToMinutes(duration);
@@ -168,12 +181,12 @@ export default function DataTable() {
 
   return (
     <div id="call-history" className="bg-card rounded-lg p-10">
-      <div className="flex flex-col justify-between py-4 md:flex-row">
+      <div className= {`flex flex-col justify-between  md:flex-row ${isMobile ? 'space-y-4' : ''}`}>
         <p className="text-m font-semibold md:text-2xl lg:text-3xl">
           Call history and transcripts
         </p>
 
-        <div className="mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4">
+        <div className={`mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? 'space-y-4' : ''}`}>
           <Input
             placeholder="Search"
             value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
@@ -193,7 +206,7 @@ export default function DataTable() {
                 Category <ChevronDown className="size-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="bg-background">
               {["Booking", "Cancellation", "General Inquiry", "Reschedule"].map(
                 (status) => (
                   <DropdownMenuCheckboxItem
@@ -307,6 +320,7 @@ export default function DataTable() {
           <Button
             variant="outline"
             size="sm"
+            onClick={handleViewMore}
           >
             View more
           </Button>

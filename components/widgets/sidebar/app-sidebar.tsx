@@ -2,6 +2,7 @@
 
 import { Settings } from "lucide-react";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import {
   Sidebar,
@@ -16,9 +17,10 @@ import {
 } from "@/components/ui/sidebar";
 import { sideBarPageProp } from "@/lib/types";
 
-const getPageInfo = (page: string, items: sideBarPageProp[]): sideBarPageProp | undefined => {
-  return items.find((item) => item.title === page);
+const getPageInfo = (path: string, items: sideBarPageProp[]): sideBarPageProp | undefined => {
+  return items.find((item) => item.url === path);
 };
+
 export function AppSidebar({
   updateCurrPage,
   items,
@@ -26,21 +28,20 @@ export function AppSidebar({
   updateCurrPage: (page: sideBarPageProp) => void;
   items: sideBarPageProp[];
 }) {
-  const [currSelectd, setCurrSelected] = useState("Dashboard");
-  // useEffect to send data to parent on page load
+  const pathname = usePathname();
+  const [currSelected, setCurrSelected] = useState(items[0].title);
+  
   useEffect(() => {
-    const pageInfo = getPageInfo("Dashboard",items);
+    const pageInfo = getPageInfo(pathname, items);
     if (pageInfo) {
+      setCurrSelected(pageInfo.title);
       updateCurrPage(pageInfo);
     }
-  }, [updateCurrPage, items]);
+  }, [pathname, items, updateCurrPage]);
 
-  const handleSelected = (item: string) => {
-    setCurrSelected(item);
-    const pageInfo = getPageInfo(item, items);
-    if (pageInfo) {
-      updateCurrPage(pageInfo);
-    }
+  const handleSelected = (item: sideBarPageProp) => {
+    setCurrSelected(item.title);
+    updateCurrPage(item);
   };
 
   return (
@@ -56,7 +57,7 @@ export function AppSidebar({
                 <SidebarMenuItem
                   key={item.title}
                   className="mb-2"
-                  onClick={() => handleSelected(item.title)}
+                  onClick={() => handleSelected(item)}
                 >
                   <SidebarMenuButton asChild className="text-base md:text-sm">
                     <a
@@ -64,17 +65,15 @@ export function AppSidebar({
                       className={`p-[30px] hover:text-sidebar-foreground ${item.title === "Settings" ? "sm:hidden " : ""}`}
                     >
                       <span
-                        className={`flex !size-[38px] shrink-0 items-center justify-center ${currSelectd === item.title ? "rounded-lg bg-primary-foreground font-semibold" : "bg-transparent"}`}
+                        className={`flex !size-[38px] shrink-0 items-center justify-center ${currSelected === item.title ? "rounded-lg bg-primary-foreground font-semibold" : "bg-transparent"}`}
                       >
                         {item.title === "Settings" ? (
-                          <Settings className={`!size-[18px] ${currSelectd === item.title ? "stroke-primary" : "text-muted-foreground"}`} />
-                        ) :
-                        (
-                        <item.icon
-                          className={`!size-[18px]  ${currSelectd === item.title ? "stroke-primary" : "text-muted-foreground"} `}
-                        />
+                          <Settings className={`!size-[18px] ${currSelected === item.title ? "stroke-primary" : "text-muted-foreground"}`} />
+                        ) : (
+                          <item.icon
+                            className={`!size-[18px]  ${currSelected === item.title ? "stroke-primary" : "text-muted-foreground"} `}
+                          />
                         )}
-                        
                       </span>
                       <span className="h-max !text-wrap text-left">
                         {item.title}
