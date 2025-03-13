@@ -1,4 +1,5 @@
 import { DateRange } from "react-day-picker";
+import { ReactElement } from "react";
 
 export type DateContextType = {
   dateRange?: DateRange;
@@ -51,8 +52,8 @@ export type AppointmentsData = {
 export type CallRecording = {
   id: string;
   date: string;
-  invoice: string;
-  status: "Booked" | "Cancelled" | "Transferred" | "Rescheduled";
+  category: "Booking" | "Cancellation" | "General Inquiry" | "Reschedule";
+  confidenceScore: number;
   duration: string;
   recordingUrl: string;
   transcriptUrl: string;
@@ -63,6 +64,27 @@ export type AppointmentsRadar = {
   customers: number;
 };
 
+export type BusinessStat = {
+  //name: string;
+  callMinutes: number;
+  moneySaved: number;
+  satisfaction: number;
+  newCallers: number;
+};
+
+export type BusinessCard = {
+  id: string;
+  icon: ReactElement;
+  title: string;
+  value: number;
+};
+
+export type BusinessInfo = {
+  id: string;
+  title: string;
+  content: string;
+  cards: BusinessCard[];
+};
 export type notificationObject = {
   id: number;
   type: string;
@@ -71,14 +93,14 @@ export type notificationObject = {
   time: string;
   img: string;
   read: boolean;
-}
+};
 
-export type  sideBarPageProp = {
+export type sideBarPageProp = {
   title: string;
   url: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-}
+};
 export type settingSVGProp = React.SVGProps<SVGSVGElement> & {
   fillProp: string;
   circleProp: string;
-}
+};

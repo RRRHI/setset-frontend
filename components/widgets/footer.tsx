@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function Footer() {
   return (
-    <Card className="mt-6 w-full">
+    <Card className="w-full">
       <CardContent className="flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-2 text-sm text-muted-foreground">
           <p>© 2025 SetSet. All rights reserved.</p>

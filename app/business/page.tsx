@@ -6,7 +6,7 @@ export default function Page() {
     <>
       <div>
         <div className="mt-0 flex flex-col p-8 pt-0">
-          <Business isAdminPage={true}/>
+          <Business isAdminPage={false}/>
         </div>
       </div>
     </>

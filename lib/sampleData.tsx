@@ -3,15 +3,26 @@ import {
   Home,
   MonitorCheck,
   ShieldAlert,
+  ThumbsUp,
   TimerReset,
   Users,
+  UsersRound,
   Voicemail,
   WalletMinimal,
 } from "lucide-react";
 
-import Settings  from "@/lib/settings";
+import Settings from "@/lib/settings";
 
-import { AppointmentsData, CallRecording, FaqData,MetricsData, sideBarPageProp } from "./types";
+import {
+  AppointmentsData,
+  BusinessStat,
+  BusinessInfo,
+  CallRecording,
+  FaqData,
+  MetricsData,
+  BusinessCard,
+  sideBarPageProp,
+} from "./types";
 
 export const metricsData: MetricsData = {
   callMinutes: { minutes: 100227, difference: -1.4 },
@@ -119,19 +130,19 @@ export const chartData: AppointmentsData[] = [
 export const callRecordingsData: CallRecording[] = [
   {
     id: "1",
-    date: "2023-10-01",
-    invoice: "INV001",
-    status: "Booked",
+    date: "2025-02-10",
+    category: "Booking",
+    confidenceScore: 9.8,
     duration: "0:18",
     recordingUrl:
       "https://actions.google.com/sounds/v1/cartoon/rainstick_slow.ogg",
-    transcriptUrl: "https://example.com/recording2.pdf",
+    transcriptUrl: "https://example.com/recording1.pdf",
   },
   {
     id: "2",
-    date: "2023-10-02",
-    invoice: "INV002",
-    status: "Cancelled",
+    date: "2025-02-08",
+    category: "Cancellation",
+    confidenceScore: 9.9,
     duration: "0:50",
     recordingUrl:
       "https://actions.google.com/sounds/v1/ambiences/barnyard_with_animals.ogg",
@@ -139,33 +150,32 @@ export const callRecordingsData: CallRecording[] = [
   },
   {
     id: "3",
-    date: "2023-10-03",
-    invoice: "INV003",
-    status: "Cancelled",
+    date: "2025-02-18",
+    category: "Reschedule",
+    confidenceScore: 9.9,
     duration: "7:48",
     recordingUrl: "https://example.com/recording3.mp3",
     transcriptUrl: "https://example.com/recording3.pdf",
   },
   {
     id: "4",
-    date: "2023-10-04",
-    invoice: "INV004",
-    status: "Transferred",
+    date: "2025-02-20",
+    category: "General Inquiry",
+    confidenceScore: 9.9,
     duration: "4:56",
     recordingUrl: "https://example.com/recording4.mp3",
     transcriptUrl: "https://example.com/recording4.pdf",
   },
   {
     id: "5",
-    date: "2023-10-05",
-    invoice: "INV005",
-    status: "Rescheduled",
+    date: "2025-01-20",
+    category: "Cancellation",
+    confidenceScore: 9.9,
     duration: "6:12",
     recordingUrl: "https://example.com/recording5.mp3",
     transcriptUrl: "https://example.com/recording5.pdf",
   },
 ];
-
 
 export const initialNotifications = [
   {
@@ -241,7 +251,7 @@ export const faqsData: FaqData[] = [
     id: "3",
     question: "How accurate is the AI in understanding customer inquiries?",
     answer:
-      "If the AI detects low confidence in its response or the caller requests a human agent, it will: Transfer the call to an available representative, Send a detailed summary of the conversation to the agent, Log the request in the dashboard under \"Escalated Calls\" for review. Businesses can customize escalation thresholds and triggers in the settings.",
+      'If the AI detects low confidence in its response or the caller requests a human agent, it will: Transfer the call to an available representative, Send a detailed summary of the conversation to the agent, Log the request in the dashboard under "Escalated Calls" for review. Businesses can customize escalation thresholds and triggers in the settings.',
     frequency: 18,
     icon: <Users className={iconStyles} />,
     timeRangeStart: "4:00 PM",
@@ -279,7 +289,142 @@ export const faqsData: FaqData[] = [
   },
 ];
 
-export const items:sideBarPageProp[] = [
+const testData: BusinessStat = {
+  callMinutes: 123456,
+  moneySaved: 601194,
+  satisfaction: 5.5,
+  newCallers: 6789,
+};
+
+//Metric Card for this test business
+const BusinessIconStyles =
+  "lg:h-14 lg:w-14 text-white dark:text-black h-12 w-12 bg-black dark:bg-white rounded-lg p-3";
+const cards: BusinessCard[] = [
+  {
+    id: "money-saved",
+    icon: <WalletMinimal className={BusinessIconStyles}/>,
+    title: "Money Saved",
+    value: testData.moneySaved,
+  },
+  {
+    id: "satisfaction",
+    icon: <ThumbsUp className={BusinessIconStyles}/>,
+    title: "Satisfaction",
+    value: testData.satisfaction,
+  },
+  {
+    id: "minutes-saved",
+    icon: <TimerReset className={BusinessIconStyles}/>,
+    title: "Minutes Saved",
+    value: testData.callMinutes,
+  },
+  {
+    id: "new-callers",
+    icon: <UsersRound className={BusinessIconStyles}/>,
+    title: "New Callers",
+    value: testData.newCallers,
+  },
+];
+
+const cards2: BusinessCard[] = [
+  {
+    id: "money-saved",
+    icon: <WalletMinimal className={BusinessIconStyles}/>,
+    title: "Money Saved",
+    value: testData.moneySaved,
+  },
+  {
+    id: "satisfaction",
+    icon: <ThumbsUp className={BusinessIconStyles}/>,
+    title: "Satisfaction",
+    value: testData.satisfaction,
+  },
+  {
+    id: "minutes-saved",
+    icon: <TimerReset className={BusinessIconStyles}/>,
+    title: "Minutes Saved",
+    value: 1000000,
+  },
+  {
+    id: "new-callers",
+    icon: <UsersRound className={BusinessIconStyles}/>,
+    title: "New Callers",
+    value: testData.newCallers,
+  },
+];
+
+//Test data for business
+
+export const business: BusinessInfo[] = [
+  {
+    id: "1",
+    title: "Business Name 1",
+    content: "Description 1",
+    cards: cards,
+  },
+  {
+    id: "2",
+    title: "Business Name 2",
+    content: "Description 2",
+    cards: cards,
+  },
+  {
+    id: "3",
+    title: "Business Name 3",
+    content: "Description 3",
+    cards: cards,
+  },
+  {
+    id: "4",
+    title: "Business Name 4",
+    content: "Description 4",
+    cards: cards,
+  },
+  {
+    id: "5",
+    title: "Business Name 5",
+    content: "Description 5",
+    cards: cards,
+  },
+  {
+    id: "6",
+    title: "Business Name 6",
+    content: "Description 6",
+    cards: cards,
+  },
+  {
+    id: "7",
+    title: "Business Name 7",
+    content: "Description 7",
+    cards: cards2,
+  },
+  {
+    id: "8",
+    title: "Business Name 8",
+    content: "Description 8",
+    cards: cards,
+  },
+  {
+    id: "9",
+    title: "Business Name 9",
+    content: "Description 9",
+    cards: cards,
+  },
+  {
+    id: "10",
+    title: "Business Name 10345",
+    content: "Description 10",
+    cards: cards,
+  },
+  {
+    id: "11",
+    title: "Business Name 11",
+    content: "Description 11",
+    cards: cards,
+  },
+];
+
+export const items: sideBarPageProp[] = [
   {
     title: "Dashboard",
     url: "#",

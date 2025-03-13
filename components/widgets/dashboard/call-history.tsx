@@ -14,15 +14,13 @@ import {
 } from "@tanstack/react-table";
 import { useEffect, useRef, useState } from "react";
 import {
-  FaArrowsUpDown,
-  FaChevronDown,
-  FaDownload,
-  FaEllipsis,
-  FaFileArrowDown,
-  FaPause,
-  FaPlay,
-} from "react-icons/fa6";
-
+  ArrowDownUp,
+  ChevronDown,
+  File,
+  Pause,
+  Play,
+} from "lucide-react";
+import { Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -35,6 +33,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
+import { DualRangeSlider } from "@/components/ui/dual-slider";
 import {
   Table,
   TableBody,
@@ -43,40 +42,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { callRecordingsData } from "@/lib/sampleData";
+
 import { CallRecording } from "@/lib/types";
+import { callRecordingsData } from "@/lib/sampleData";
 
-import { DatePickerWithRange } from "../ui/date-picker";
-
-const RecordingCell = ({
-  recordingUrl,
-  transcriptUrl,
-  invoice,
-}: {
-  recordingUrl: string;
-  transcriptUrl: string;
-  invoice: string;
-}) => {
+const RecordingCell = ({ recordingUrl, transcriptUrl, id }: { recordingUrl: string, transcriptUrl: string, id: string }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const isMobile = useIsMobile();
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const updateProgress = () => {
-      setProgress((audio.currentTime / audio.duration) * 100);
-    };
-
-    audio.addEventListener("timeupdate", updateProgress);
-    return () => {
-      audio.removeEventListener("timeupdate", updateProgress);
-    };
-  }, []);
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -90,86 +62,34 @@ const RecordingCell = ({
   };
 
   return (
-    <div className="flex w-full flex-col items-center space-x-4">
-      <Tabs
-        defaultValue="recording"
-        className={isMobile ? "w-[400px]" : "w-full"}
+    <div className="flex space-x-20 justify-end">
+      <Button variant="outline" size="sm" className="bg-sidebar-ring" onClick={togglePlay}>
+        {isPlaying ? <Pause /> : <Play />}
+        Listen
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        className="bg-foreground text-card"
+        onClick={() => console.log("Download transcript:", transcriptUrl)}
       >
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="recording">Recording</TabsTrigger>
-          <TabsTrigger value="transcript">Transcript</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="recording" className="w-full">
-          <div className="flex w-full items-center space-x-2">
-            <Button variant="outline" size="sm" onClick={togglePlay}>
-              {isPlaying ? <FaPause /> : <FaPlay />}
-            </Button>
-            <Progress value={progress} className="w-full" />
-            <audio
-              ref={audioRef}
-              src={recordingUrl}
-              onEnded={() => {
-                setIsPlaying(false);
-                setProgress(0);
-              }}
-            />
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => console.log("Download recording:", recordingUrl)}
-            >
-              <FaDownload />
-            </Button>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="transcript" className="w-full">
-          <div className="flex w-full items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <FaFileArrowDown />
-              <span>{invoice}</span>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => console.log("Download transcript:", transcriptUrl)}
-            >
-              <FaDownload />
-            </Button>
-          </div>
-        </TabsContent>
-      </Tabs>
+        <File /> 
+        Transcript
+      </Button>
+      <audio
+        ref={audioRef}
+        src={recordingUrl}
+        onEnded={() => setIsPlaying(false)}
+      />
     </div>
   );
 };
 
 export const columns: ColumnDef<CallRecording>[] = [
   {
-    id: "select",
-    header: ({ table }) => (
-      <div className="py-5 pl-4">
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      </div>
-    ),
-    cell: ({ row }) => (
-      <div className="pl-4">
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      </div>
-    ),
-    enableSorting: false,
-    enableHiding: false,
+    accessorKey: "id",
+    header: "Call ID",
+    cell: ({ row }) => <div>{row.getValue("id")}</div>,
   },
   {
     accessorKey: "date",
@@ -180,23 +100,23 @@ export const columns: ColumnDef<CallRecording>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Date
-          <FaArrowsUpDown className="size-4" />
+          <ArrowDownUp className="size-4" />
         </Button>
       );
     },
     cell: ({ row }) => <div>{row.getValue("date")}</div>,
   },
   {
-    accessorKey: "invoice",
-    header: "Invoice",
-    cell: ({ row }) => <div>{row.getValue("invoice")}</div>,
+    accessorKey: "category",
+    header: "Category",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("category")}</div>
+    ),
   },
   {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
-    ),
+    accessorKey: "confidenceScore",
+    header: "AI confidence score",
+    cell: ({ row }) => <div>{row.getValue("confidenceScore")}</div>,
   },
   {
     accessorKey: "duration",
@@ -205,53 +125,33 @@ export const columns: ColumnDef<CallRecording>[] = [
   },
   {
     accessorKey: "recording",
-    header: "Recording",
-    cell: ({ row }) => (
-      <div className="py-5">
-        <RecordingCell
-          recordingUrl={row.original.recordingUrl}
-          transcriptUrl={row.original.transcriptUrl}
-          invoice={row.original.invoice}
-        />
-      </div>
-    ),
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const recording = row.original;
-
-      return (
-        <div className="mt-auto flex size-full flex-col items-center pb-10">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="size-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <FaEllipsis />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(recording.id)}
-              >
-                Copy recording ID
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Report</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      );
-    },
-  },
+    header: "",
+    cell: ({ row }) => <div className="py-3"><RecordingCell recordingUrl={row.original.recordingUrl} 
+                                                        transcriptUrl={row.original.transcriptUrl}
+                                                        id = {row.original.id}/></div>,
+  }
 ];
 
 export default function DataTable() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState({});
+  const [durationRange, setDurationRange] = useState<[number, number]>([0, 0]);
+
+  const convertDurationToMinutes = (duration: string) => {
+    const [minutes, seconds] = duration.split(":").map(Number);
+    return minutes + seconds / 60;
+  };
+
+  const maxDuration = Math.max(...callRecordingsData.map(recording => convertDurationToMinutes(recording.duration)));
+  useEffect(() => {
+    setDurationRange([0, maxDuration]);
+  }, [maxDuration]);
+
+  const isRowHidden = (duration: string) => {
+    const durationInMinutes = convertDurationToMinutes(duration);
+    return durationInMinutes < durationRange[0] || durationInMinutes > durationRange[1];
+  };
 
   const table = useReactTable({
     data: callRecordingsData,
@@ -263,53 +163,47 @@ export default function DataTable() {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
-    state: { sorting, columnFilters, columnVisibility, rowSelection },
+    state: { sorting, columnFilters, columnVisibility },
   });
 
-  // Function to handle downloading selected invoices
-  const handleDownloadSelected = () => {
-    const selectedRows = table.getFilteredSelectedRowModel().rows;
-    const selectedInvoices = selectedRows.map((row) => row.original.invoice);
-    console.log("Downloading selected invoices:", selectedInvoices);
-  };
-
   return (
-    <div id="call-history" className="w-full">
-      <p className="text-xl font-semibold md:text-2xl lg:text-3xl">
-        Call history
-      </p>
+    <div id="call-history" className="bg-card rounded-lg p-10">
       <div className="flex flex-col justify-between py-4 md:flex-row">
-        <Input
-          placeholder="Filter invoices..."
-          value={(table.getColumn("invoice")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("invoice")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        {/* Dropdown to filter by status */}
+        <p className="text-m font-semibold md:text-2xl lg:text-3xl">
+          Call history and transcripts
+        </p>
+
         <div className="mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4">
+          <Input
+            placeholder="Search"
+            value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("id")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+
+          {/* Dropdown to filter by category */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
                 className="w-fit justify-between bg-inherit"
               >
-                Filter by Status <FaChevronDown className="size-4" />
+                Category <ChevronDown className="size-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {["Booked", "Cancelled", "Transferred", "Rescheduled"].map(
+              {["Booking", "Cancellation", "General Inquiry", "Reschedule"].map(
                 (status) => (
                   <DropdownMenuCheckboxItem
                     key={status}
                     checked={
-                      table.getColumn("status")?.getFilterValue() === status
+                      table.getColumn("category")?.getFilterValue() === status
                     }
                     onCheckedChange={(value) =>
                       table
-                        .getColumn("status")
+                        .getColumn("category")
                         ?.setFilterValue(value ? status : undefined)
                     }
                   >
@@ -320,10 +214,40 @@ export default function DataTable() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <DatePickerWithRange />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-fit justify-between bg-inherit"
+              >
+                Filter <Filter className="size-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-background">
+              <div className="p-5">
+                <div className="flex flex-col space-y-4">
+                  <div className="flex justify-between">
+                    <span>Duration</span>
+                  </div>
+                  <DualRangeSlider
+                    value={durationRange}
+                    max={maxDuration}
+                    step={1}
+                    minStepsBetweenThumbs={1}
+                    onValueChange={(value) => setDurationRange(value as [number, number])}
+                    className="w-[200px]"
+                  />
+                  <div className="flex justify-between">
+                    <span className = "font-bold">{durationRange[0]} min</span> 
+                    <span className = "font-bold">{Math.ceil(durationRange[1])} min</span>
+                  </div>
+                </div>
+              </div>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
-      <div className="rounded-md border">
+      <div>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -345,21 +269,26 @@ export default function DataTable() {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+              table.getRowModel().rows.map((row) => {
+                const duration = row.original.duration;
+                const isHidden = isRowHidden(duration);
+
+                return (
+                  <TableRow
+                    key={row.id}
+                    style={{ display: isHidden ? "none" : "table-row" }}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                );
+              })
             ) : (
               <TableRow>
                 <TableCell
@@ -373,37 +302,13 @@ export default function DataTable() {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
-
+      <div className="flex items-center justify-end py-2">
         <div className="space-x-2">
           <Button
             variant="outline"
             size="sm"
-            onClick={handleDownloadSelected}
-            disabled={table.getFilteredSelectedRowModel().rows.length === 0}
           >
-            Download selected invoices
-          </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
+            View more
           </Button>
         </div>
       </div>
