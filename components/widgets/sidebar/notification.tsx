@@ -1,7 +1,6 @@
 import { Bell, CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Popover,
   PopoverContent,
@@ -30,7 +29,7 @@ export function NotificationList({
     notifications.map((notification) => (
       <div
         key={notification.id}
-        className="w-full relative mb-4 flex space-x-4 p-3 cursor-pointer hover:bg-accent mr-2"
+        className="relative mb-4 mr-2 flex w-full cursor-pointer space-x-4 p-3 hover:bg-accent"
       >
         <notification.icon />
         <div className="flex-1 space-y-1">
@@ -56,7 +55,7 @@ export function NotificationList({
       </div>
     ))
   ) : (
-    <p className="text-center text-gray-500 pb-3">No new notifications</p>
+    <p className="pb-3 text-center text-gray-500">No new notifications</p>
   );
 }
 
@@ -113,8 +112,8 @@ export function DesktopNotification({
       <PopoverTrigger asChild className="cursor-pointer">
         {notificationAlert(notifications.length)}
       </PopoverTrigger>
-      <PopoverContent className="w-96 rounded-xl p-0 mr-2">
-        <h1 className="text-center text-lg font-semibold p-4">Notifications</h1>
+      <PopoverContent className="mr-2 w-96 rounded-xl p-0">
+        <h1 className="p-4 text-center text-lg font-semibold">Notifications</h1>
         <NotificationList
           notifications={notifications}
           removeNotification={removeNotification}

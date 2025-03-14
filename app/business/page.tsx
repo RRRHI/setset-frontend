@@ -1,4 +1,5 @@
 import React from "react";
+
 import Business from "@/components/widgets/admin/business-card";
 
 export default function Page() {

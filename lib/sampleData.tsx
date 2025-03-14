@@ -1,7 +1,13 @@
 import {
   CircleHelp,
+  ClipboardCheck, //end of the day notification
   Home,
+  // these are notifications icons
+  MessageCircleMore, //message notification
+  MessageCircleQuestion, //most asked faq question
   MonitorCheck,
+  PackagePlus, //new feature notification
+  PartyPopper, //milestone notificaion
   ShieldAlert,
   ThumbsUp,
   TimerReset,
@@ -9,25 +15,18 @@ import {
   UsersRound,
   Voicemail,
   WalletMinimal,
-  // these are notifications icons
-  MessageCircleMore, //message notification
-  ClipboardCheck, //end of the day notification
-  PartyPopper, //milestone notificaion
-  MessageCircleQuestion, //most asked faq question
-  PackagePlus, //new feature notification
-  Clock, //minutes talked
 } from "lucide-react";
 
 import Settings from "@/lib/settings";
 
 import {
   AppointmentsData,
-  BusinessStat,
+  BusinessCard,
   BusinessInfo,
+  BusinessStat,
   CallRecording,
   FaqData,
   MetricsData,
-  BusinessCard,
   sideBarPageProp,
 } from "./types";
 
@@ -208,7 +207,7 @@ export const faqsData: FaqData[] = [
     id: "3",
     question: "How accurate is the AI in understanding customer inquiries?",
     answer:
-      'If the AI detects low confidence in its response or the caller requests a human agent, it will: Transfer the call to an available representative, Send a detailed summary of the conversation to the agent, Log the request in the dashboard under "Escalated Calls" for review. Businesses can customize escalation thresholds and triggers in the settings.',
+      "If the AI detects low confidence in its response or the caller requests a human agent, it will: Transfer the call to an available representative, Send a detailed summary of the conversation to the agent, Log the request in the dashboard under \"Escalated Calls\" for review. Businesses can customize escalation thresholds and triggers in the settings.",
     frequency: 18,
     icon: <Users className={iconStyles} />,
     timeRangeStart: "4:00 PM",

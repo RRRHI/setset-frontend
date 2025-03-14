@@ -1,9 +1,9 @@
 "use client";
 
 import { Settings } from "lucide-react";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import {
   Sidebar,

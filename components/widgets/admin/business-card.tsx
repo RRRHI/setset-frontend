@@ -1,10 +1,8 @@
 "use client";
+//some icons that needed
+import { MessageSquareText, Search } from "lucide-react";
 import React, { useState } from "react";
-import { Button } from "../../ui/button";
-import { Input } from "../../ui/input";
-import { business } from "@/lib/sampleData";
-import { BusinessInfo } from "@/lib/types";
-import { BusinessPaginate} from "../business/business-pagination";
+
 import {
   Pagination,
   PaginationContent,
@@ -14,10 +12,10 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { business } from "@/lib/sampleData";
+import { BusinessInfo } from "@/lib/types";
 
-//some icons that needed
-import { MessageSquareText, Search } from "lucide-react";
-
+import { Button } from "../../ui/button";
 //shadcn card ui
 import {
   Card,
@@ -27,6 +25,8 @@ import {
   CardHeader,
   CardTitle,
 } from "../../ui/card";
+import { Input } from "../../ui/input";
+import { BusinessPaginate} from "../business/business-pagination";
 
 const layoutFormat = "flex flex-items";
 const paginationItemformat = "bg-card text-card-foreground rounded-lg";
@@ -73,8 +73,8 @@ const Business = ({ isAdminPage }: { isAdminPage: boolean }) => {
   };
   
   return (
-    <div className="flex h-full flex-grow flex-col flex-wrap gap-y-8">
-      <div className="flex w-[20%] flex-row items-center gap-0 rounded-lg border-2 bg-card pb-0 text-card-foreground">
+    <div className="flex h-full grow flex-col flex-wrap gap-y-8">
+      <div className="flex w-1/5 flex-row items-center gap-0 rounded-lg border-2 bg-card pb-0 text-card-foreground">
         <Search className="ml-2" />
         <Input
           type="text"
@@ -84,16 +84,16 @@ const Business = ({ isAdminPage }: { isAdminPage: boolean }) => {
         />
       </div>
 
-      <div className="mb-16 flex flex-grow flex-col gap-y-6">
+      <div className="mb-16 flex grow flex-col gap-y-6">
         {filteredBusiness.slice(startIndex, endIndex).map((business) => (
           <div className={layoutFormat} key={business.id}>
             <Card className="flex w-full flex-row justify-between">
-              <CardContent className="ml-6 flex w-[20%] items-center gap-[1vw] p-0">
+              <CardContent className="ml-6 flex w-1/5 items-center gap-[1vw] p-0">
                 <div className="flex items-center justify-center">
                   <img
                     src="https://png.pngtree.com/png-clipart/20190604/original/pngtree-creative-company-logo-png-image_1197025.jpg"
                     alt="business logo"
-                    className="h-12 w-12 rounded-lg"
+                    className="size-12 rounded-lg"
                   />
                 </div>
                 <div className="min-w-0">
