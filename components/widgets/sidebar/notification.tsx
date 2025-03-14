@@ -30,14 +30,11 @@ export function NotificationList({
     notifications.map((notification) => (
       <div
         key={notification.id}
-        className="relative mb-4 flex items-center space-x-4 pt-3 "
+        className="w-full relative mb-4 flex space-x-4 p-3 cursor-pointer hover:bg-accent mr-2"
       >
-        <Avatar>
-          <AvatarImage src={notification.img} />
-          <AvatarFallback>Setset</AvatarFallback>
-        </Avatar>
+        <notification.icon />
         <div className="flex-1 space-y-1">
-          <p className="text-sm font-medium leading-none">
+          <p className="text-sm font-medium leading-none ">
             {notification.title}
           </p>
           <p className="text-sm text-muted-foreground">
@@ -52,14 +49,14 @@ export function NotificationList({
         </div>
         <button
           onClick={() => removeNotification(notification.id)}
-          className="absolute right-1 top-1 text-gray-500 hover:text-red-500 focus-visible:outline-none"
+          className="absolute right-5 top-1 text-gray-500 hover:text-red-500 focus-visible:outline-none"
         >
           ✕
         </button>
       </div>
     ))
   ) : (
-    <p className="text-center text-gray-500">No new notifications</p>
+    <p className="text-center text-gray-500 pb-3">No new notifications</p>
   );
 }
 
@@ -90,7 +87,7 @@ export function MobileNotification({
       <SheetTrigger className="cursor-pointer">
       {notificationAlert(notifications.length)}
       </SheetTrigger>
-      <SheetContent className="rounded-l-xl"  autoFocus={false} >
+      <SheetContent className="rounded-l-xl !p-0"  autoFocus={false} >
         <SheetHeader>
           <SheetTitle>Notifications</SheetTitle>
           <SheetDescription></SheetDescription>
@@ -116,7 +113,8 @@ export function DesktopNotification({
       <PopoverTrigger asChild className="cursor-pointer">
         {notificationAlert(notifications.length)}
       </PopoverTrigger>
-      <PopoverContent className="w-80 rounded-xl">
+      <PopoverContent className="w-96 rounded-xl p-0 mr-2">
+        <h1 className="text-center text-lg font-semibold p-4">Notifications</h1>
         <NotificationList
           notifications={notifications}
           removeNotification={removeNotification}

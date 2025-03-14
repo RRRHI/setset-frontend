@@ -91,7 +91,7 @@ export type notificationObject = {
   title: string;
   content: string;
   time: string;
-  img: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   read: boolean;
 };
 

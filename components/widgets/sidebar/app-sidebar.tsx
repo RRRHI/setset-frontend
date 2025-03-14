@@ -3,6 +3,7 @@
 import { Settings } from "lucide-react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 import {
   Sidebar,
@@ -60,9 +61,9 @@ export function AppSidebar({
                   onClick={() => handleSelected(item)}
                 >
                   <SidebarMenuButton asChild className="text-base md:text-sm">
-                    <a
+                    <Link
                       href={item.url}
-                      className={`p-[30px] hover:text-sidebar-foreground ${item.title === "Settings" ? "sm:hidden " : ""}`}
+                      className={`p-[30px] hover:text-sidebar-foreground ${item.title === "Settings" ? "sm:hidden " : ""}  ${item.title === "Profile" ? "hidden " : ""}`}
                     >
                       <span
                         className={`flex !size-[38px] shrink-0 items-center justify-center ${currSelected === item.title ? "rounded-lg bg-primary-foreground font-semibold" : "bg-transparent"}`}
@@ -78,7 +79,7 @@ export function AppSidebar({
                       <span className="h-max !text-wrap text-left">
                         {item.title}
                       </span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
