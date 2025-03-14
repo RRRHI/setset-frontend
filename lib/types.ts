@@ -1,5 +1,5 @@
-import { DateRange } from "react-day-picker";
 import { ReactElement } from "react";
+import { DateRange } from "react-day-picker";
 
 export type DateContextType = {
   dateRange?: DateRange;
@@ -91,7 +91,7 @@ export type notificationObject = {
   title: string;
   content: string;
   time: string;
-  img: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   read: boolean;
 };
 

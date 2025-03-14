@@ -36,7 +36,7 @@ export const BusinessPaginate = ({
         {maxPages > 10 ? (
           <>
             {Array.from({ length: 3 }, (_, index) => {
-              let page =
+              const page =
                 activePage <= maxPages - 5
                   ? activePage + index
                   : maxPages - 5 + index;

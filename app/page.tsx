@@ -1,13 +1,14 @@
 "use client";
 import { RefreshCw } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { DatePickerWithRange } from "@/components/ui/date-picker";
 import Appointments from "@/components/widgets/dashboard/appointments";
+import DataTable from "@/components/widgets/dashboard/call-history";
 import Metrics from "@/components/widgets/dashboard/metrics";
 import Footer from "@/components/widgets/footer";
 import { DateProvider } from "@/context/DateContext";
 import { useDateRange } from "@/hooks/use-date-range";
-import DataTable from "@/components/widgets/dashboard/call-history";
 
 function DashboardContent() {
   const { setDateRange } = useDateRange();
