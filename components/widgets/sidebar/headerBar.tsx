@@ -2,7 +2,6 @@ import { UserRound } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Notification from "@/components/widgets/sidebar/notification";
@@ -10,6 +9,7 @@ import { ChangeTheme } from "@/components/widgets/theme_Toggle";
 import SettingIcon from "@/lib/settings";
 import { SettingsHeader } from "@/lib/settings";
 import { sideBarPageProp } from "@/lib/types";
+
 import { ProfilePicture } from "./Profile";
 
 interface HeaderBarProps {

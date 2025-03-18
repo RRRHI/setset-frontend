@@ -5,7 +5,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 import {
   Sheet,
   SheetContent,
@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/sheet";
 import { initialNotifications } from "@/lib/sampleData";
 import { notificationObject } from "@/lib/types";
-
 
 export function NotificationList({
   notifications,
@@ -66,14 +65,12 @@ const notificationAlert = (len: number) => {
       <Bell className="!size-5 fill-foreground stroke-foreground sm:!size-6" />
       {len > 0 && (
         <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-red-500 text-xs font-semibold text-white">
-
           {len}
         </span>
       )}
     </div>
   );
 };
-
 
 export function MobileNotification({
   notifications,
@@ -83,9 +80,9 @@ export function MobileNotification({
   removeNotification: (id: number) => void;
 }) {
   return (
-    <Sheet >
+    <Sheet>
       <SheetTrigger className="cursor-pointer">
-      {notificationAlert(notifications.length)}
+        {notificationAlert(notifications.length)}
       </SheetTrigger>
       <SheetContent className="rounded-l-xl !p-0"  autoFocus={false} >
         <SheetHeader>
@@ -113,7 +110,7 @@ export function DesktopNotification({
       <PopoverTrigger asChild className="cursor-pointer">
         {notificationAlert(notifications.length)}
       </PopoverTrigger>
-      <PopoverContent className="mr-2 w-96 rounded-xl p-0 max-h-[80vh] overflow-y-auto overflow-x-hidden">
+      <PopoverContent className="mr-2 max-h-[80vh] w-96 overflow-y-auto overflow-x-hidden rounded-xl p-0">
 
         <NotificationList
           notifications={notifications}
@@ -121,8 +118,6 @@ export function DesktopNotification({
         />
       </PopoverContent>
     </Popover>
-
-
   );
 }
 

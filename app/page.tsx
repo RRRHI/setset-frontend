@@ -20,10 +20,10 @@ function DashboardContent() {
   };
 
   return (
-    <div className="flex flex-1 flex-col gap-4 p-10 pt-0">
-      <div className="flex flex-row gap-4">
+    <div className="flex flex-1 flex-col gap-4 p-4 pt-0 sm:p-10">
+      <div className="flex flex-col gap-4 sm:flex-row">
         <DatePickerWithRange />
-        <Button className= "flex flex-row gap-2" onClick={handleReset}>
+        <Button className="flex w-fit flex-row gap-2" onClick={handleReset}>
           <RefreshCw />
           <p>Reset Filters</p>
         </Button>

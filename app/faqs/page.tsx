@@ -6,7 +6,7 @@ export default function Faqs({ data = faqsData }: { data: FaqData[] }) {
   const cardContentStyles = "flex flex-col px-4 py-6 justify-center";
 
   return (
-    <div id="faqs" className="flex w-full flex-col gap-8 p-10 pt-0">
+    <div id="faqs" className="flex w-full flex-col gap-8 p-4 sm:p-10">
       {data.map((faq) => (
         <Card key={faq.id} className="flex-1 justify-center">
           <CardContent className={cardContentStyles}>

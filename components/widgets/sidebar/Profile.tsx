@@ -1,10 +1,11 @@
 
+  import {useRouter} from "next/navigation"
+
 import {
     Avatar,
     AvatarFallback,
     AvatarImage,
   } from "@/components/ui/avatar"
-  import {useRouter} from "next/navigation"
   
   export function ProfilePicture({src, alt, className}: {src: string, alt: string, className?: string}) {
     const router = useRouter()

@@ -14,7 +14,7 @@ import { Card, CardContent } from "../../ui/card";
 
 export default function Metrics() {
   const iconStyles =
-    "lg:h-10 lg:w-10 text-white dark:text-black h-8 w-8 bg-black dark:bg-white rounded-lg p-2";
+    "lg:h-10 lg:w-10 text-primary h-8 w-8 bg-secondary rounded-lg p-2";
   const cardContentStyles = "flex flex-col px-4 py-6 justify-center";
   const cardInnerStyles =
     "flex flex-col  justify-center text-lg md:text-lg lg:text-2xl";
@@ -84,7 +84,7 @@ export default function Metrics() {
               <div>{card.icon}</div>
               <div className={cardInnerStyles}>
                 <p className="pt-4 text-xs md:text-sm">{card.title}</p>
-                <div className="flex flex-row items-center gap-2">
+                <div className="flex flex-row items-center gap-2 sm:flex-col sm:items-start sm:gap-1">
                   <p className="font-bold">
                     {formatValue(card.value, card.id)}
                   </p>
