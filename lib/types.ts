@@ -91,16 +91,17 @@ export type notificationObject = {
   title: string;
   content: string;
   time: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: React.ReactNode;
   read: boolean;
 };
 
 export type sideBarPageProp = {
   title: string;
   url: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: React.ReactNode;
 };
-export type settingSVGProp = React.SVGProps<SVGSVGElement> & {
+export type settingSVGProp ={
   fillProp: string;
   circleProp: string;
+  className: string;
 };

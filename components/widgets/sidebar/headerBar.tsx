@@ -10,6 +10,7 @@ import { ChangeTheme } from "@/components/widgets/theme_Toggle";
 import SettingIcon from "@/lib/settings";
 import { SettingsHeader } from "@/lib/settings";
 import { sideBarPageProp } from "@/lib/types";
+import { ProfilePicture } from "./Profile";
 
 interface HeaderBarProps {
   currPage: sideBarPageProp;
@@ -22,7 +23,9 @@ const SidebarIcon = ({ currPage }: { currPage: sideBarPageProp }) => {
         {currPage.title === "Settings" ? (
           <SettingsHeader />
         ) : (
-          <currPage.icon className="!size-6 stroke-primary" />
+          <div className="[&>svg]:!stroke-primary" >
+                            {currPage.icon}
+                          </div>
         )}
       </span>
       <p className="max-w-24 text-pretty text-left leading-none sm:max-w-full">
@@ -37,17 +40,7 @@ const UserButton = () => {
   return true ? (
     //this is the code for the user profile button
 
-    <Link
-      href="/Profile"
-      className={`${buttonVariants({ variant: "link" })} !p-0`}
-    >
-      <img
-        src="https://github.com/shadcn.png"
-        alt="PP"
-        className="size-6 rounded-full"
-        loading="lazy"
-      />
-    </Link>
+    <ProfilePicture src = "https://github.com/shadcn.png" alt="CN" className="!size-6 cursor-pointer"/>
   ) : (
     //this is the code for the login button
     <Button

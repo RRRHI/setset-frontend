@@ -140,7 +140,7 @@ export const initialNotifications = [
     title: "New Message from Support",
     content: "You have a new message from our support team. Check it out!",
     time: "2 mins ago",
-    icon: MessageCircleMore,
+    icon: <MessageCircleMore />,
     read: false,
   },
   {
@@ -149,7 +149,7 @@ export const initialNotifications = [
     title: "Daily Summary",
     content: "Today you spoke with the AI for 45 minutes.",
     time: "10 mins ago",
-    icon: ClipboardCheck,
+    icon: <ClipboardCheck/>,
     read: false,
   },
   {
@@ -158,7 +158,7 @@ export const initialNotifications = [
     title: "Milestone Reached!",
     content: "Congrats! You've booked 100 appointments today!",
     time: "30 mins ago",
-    icon: PartyPopper,
+    icon: <PartyPopper/>,
     read: true,
   },
   {
@@ -167,16 +167,70 @@ export const initialNotifications = [
     title: "Most Asked FAQ of the Week",
     content: "This week, the most asked question was about your new pricing model.",
     time: "1 hour ago",
-    icon: MessageCircleQuestion,
+    icon: <MessageCircleQuestion />,
     read: false,
   },
   {
     id: 5,
+    type: "info",
+    title: "Most Asked FAQ of the Week",
+    content: "This week, the most asked question was about your new pricing model.",
+    time: "1 hour ago",
+    icon: <MessageCircleQuestion />,
+    read: false,
+  },
+  {
+    id: 6,
+    type: "info",
+    title: "Most Asked FAQ of the Week",
+    content: "This week, the most asked question was about your new pricing model.",
+    time: "1 hour ago",
+    icon: <MessageCircleQuestion />,
+    read: false,
+  },
+  {
+    id: 7,
+    type: "info",
+    title: "Most Asked FAQ of the Week",
+    content: "This week, the most asked question was about your new pricing model.",
+    time: "1 hour ago",
+    icon: <MessageCircleQuestion />,
+    read: false,
+  },
+  {
+    id: 8,
+    type: "info",
+    title: "Most Asked FAQ of the Week",
+    content: "This week, the most asked question was about your new pricing model.",
+    time: "1 hour ago",
+    icon: <MessageCircleQuestion />,
+    read: false,
+  },
+  {
+    id: 9,
+    type: "info",
+    title: "Most Asked FAQ of the Week",
+    content: "This week, the most asked question was about your new pricing model.",
+    time: "1 hour ago",
+    icon: <MessageCircleQuestion />,
+    read: false,
+  },
+  {
+    id: 10,
+    type: "info",
+    title: "Most Asked FAQ of the Week",
+    content: "This week, the most asked question was about your new pricing model.",
+    time: "1 hour ago",
+    icon: <MessageCircleQuestion />,
+    read: false,
+  },
+  {
+    id: 11,
     type: "update",
     title: "New Feature Alert!",
     content: "We've just rolled out the new scheduling feature for your appointments.",
     time: "3 hours ago",
-    icon: PackagePlus,
+    icon: <PackagePlus/>,
     read: true,
   },
 ];
@@ -380,36 +434,37 @@ export const business: BusinessInfo[] = [
   },
 ];
 
+const barPageStyle = "!size-6 ";
 export const items: sideBarPageProp[] = [
   {
     title: "Dashboard",
     url: "/",
-    icon: Home,
+    icon: <Home className={barPageStyle} />,
   },
   {
     title: "Recordings & Transcripts",
     url: "/recordings-and-transcripts",
-    icon: Voicemail,
+    icon: <Voicemail className={barPageStyle} />,
   },
   {
     title: "FAQs",
     url: "/faqs",
-    icon: CircleHelp,
+    icon: <CircleHelp className={barPageStyle} />,
   },
   {
     title: "Reports",
     url: "#",
-    icon: ShieldAlert,
+    icon: <ShieldAlert className={barPageStyle} />,
   },
   {
     title: "Settings",
     url: "/Settings",
-    icon: Settings,
+    icon: <Settings/>,
   },
   {
     title: "Profile",
     url: "/Profile",
-    icon: Users,
+    icon: <Users className={barPageStyle} />,
   },
 ];
 

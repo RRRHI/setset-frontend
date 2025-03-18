@@ -18,7 +18,10 @@ import {
 } from "@/components/ui/sidebar";
 import { sideBarPageProp } from "@/lib/types";
 
-const getPageInfo = (path: string, items: sideBarPageProp[]): sideBarPageProp | undefined => {
+const getPageInfo = (
+  path: string,
+  items: sideBarPageProp[],
+): sideBarPageProp | undefined => {
   return items.find((item) => item.url === path);
 };
 
@@ -31,7 +34,7 @@ export function AppSidebar({
 }) {
   const pathname = usePathname();
   const [currSelected, setCurrSelected] = useState(items[0].title);
-  
+
   useEffect(() => {
     const pageInfo = getPageInfo(pathname, items);
     if (pageInfo) {
@@ -63,17 +66,19 @@ export function AppSidebar({
                   <SidebarMenuButton asChild className="text-base md:text-sm">
                     <Link
                       href={item.url}
-                      className={`p-[30px] hover:text-sidebar-foreground ${item.title === "Settings" ? "sm:hidden " : ""}  ${item.title === "Profile" ? "hidden " : ""}`}
+                      className={`p-[30px] hover:text-sidebar-foreground ${item.title === "Settings" ? "sm:hidden" : ""} ${item.title === "Profile" ? "hidden" : ""}`}
                     >
                       <span
-                        className={`flex !size-[38px] shrink-0 items-center justify-center ${currSelected === item.title ? "rounded-lg bg-primary-foreground font-semibold" : "bg-transparent"}`}
+                        className={`flex !size-[38px] shrink-0 justify-center stroke-primary first:items-center ${currSelected === item.title ? "rounded-lg bg-primary-foreground font-semibold" : "bg-transparent"}`}
                       >
                         {item.title === "Settings" ? (
-                          <Settings className={`!size-[18px] ${currSelected === item.title ? "stroke-primary" : "text-muted-foreground"}`} />
-                        ) : (
-                          <item.icon
-                            className={`!size-[18px]  ${currSelected === item.title ? "stroke-primary" : "text-muted-foreground"} `}
+                          <Settings
+                            className={`!size-[18px] ${currSelected === item.title ? "stroke-primary" : "text-muted-foreground"}`}
                           />
+                        ) : (
+                          <div className={` ${currSelected === item.title ?"[&>svg]:!stroke-primary" : "[&>svg]:text-muted-foreground"}`}>
+                            {item.icon}
+                          </div>
                         )}
                       </span>
                       <span className="h-max !text-wrap text-left">

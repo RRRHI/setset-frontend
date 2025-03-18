@@ -31,7 +31,8 @@ export function NotificationList({
         key={notification.id}
         className="relative mb-4 mr-2 flex w-full cursor-pointer space-x-4 p-3 hover:bg-accent"
       >
-        <notification.icon />
+        {notification.icon}
+        {/* <notification.icon /> */}
         <div className="flex-1 space-y-1">
           <p className="text-sm font-medium leading-none ">
             {notification.title}
@@ -112,8 +113,8 @@ export function DesktopNotification({
       <PopoverTrigger asChild className="cursor-pointer">
         {notificationAlert(notifications.length)}
       </PopoverTrigger>
-      <PopoverContent className="mr-2 w-96 rounded-xl p-0">
-        <h1 className="p-4 text-center text-lg font-semibold">Notifications</h1>
+      <PopoverContent className="mr-2 w-96 rounded-xl p-0 max-h-[80vh] overflow-y-auto overflow-x-hidden">
+
         <NotificationList
           notifications={notifications}
           removeNotification={removeNotification}
