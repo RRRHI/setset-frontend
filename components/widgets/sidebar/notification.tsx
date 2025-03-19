@@ -7,13 +7,16 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
 import { initialNotifications } from "@/lib/sampleData";
 import { notificationObject } from "@/lib/types";
 
@@ -33,7 +36,7 @@ export function NotificationList({
         {notification.icon}
         {/* <notification.icon /> */}
         <div className="flex-1 space-y-1">
-          <p className="text-sm font-medium leading-none ">
+          <p className="text-sm font-medium leading-none">
             {notification.title}
           </p>
           <p className="text-sm text-muted-foreground">
@@ -80,21 +83,22 @@ export function MobileNotification({
   removeNotification: (id: number) => void;
 }) {
   return (
-    <Sheet>
-      <SheetTrigger className="cursor-pointer">
-        {notificationAlert(notifications.length)}
-      </SheetTrigger>
-      <SheetContent className="rounded-l-xl !p-0"  autoFocus={false} >
-        <SheetHeader>
-          <SheetTitle>Notifications</SheetTitle>
-          <SheetDescription></SheetDescription>
-        </SheetHeader>
+    <Drawer>
+      <DrawerTrigger> {notificationAlert(notifications.length)}</DrawerTrigger>
+      <DrawerContent className="max-w-[90vw] overflow-y-auto overflow-x-hidden rounded-l-xl !p-0">
+        <DrawerHeader>
+          <DrawerTitle></DrawerTitle>
+          <DrawerDescription></DrawerDescription>
+        </DrawerHeader>
         <NotificationList
           notifications={notifications}
           removeNotification={removeNotification}
         />
-      </SheetContent>
-    </Sheet>
+        <DrawerFooter>
+          <DrawerClose></DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 }
 
@@ -110,8 +114,7 @@ export function DesktopNotification({
       <PopoverTrigger asChild className="cursor-pointer">
         {notificationAlert(notifications.length)}
       </PopoverTrigger>
-      <PopoverContent className="mr-2 max-h-[80vh] w-96 overflow-y-auto overflow-x-hidden rounded-xl p-0">
-
+      <PopoverContent className="scrollbar-hide hover:scrollbar-thin hover:scrollbar-track-transparent hover:scrollbar-thumb-gray-300 scrollbar group mr-2 max-h-[80vh] w-96 overflow-x-hidden overflow-y-scroll rounded-xl p-0 pt-4">
         <NotificationList
           notifications={notifications}
           removeNotification={removeNotification}
