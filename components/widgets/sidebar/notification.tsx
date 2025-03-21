@@ -2,11 +2,6 @@ import { Bell, CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
   Drawer,
   DrawerClose,
   DrawerContent,
@@ -16,7 +11,11 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { initialNotifications } from "@/lib/sampleData";
 import { notificationObject } from "@/lib/types";
 
@@ -31,7 +30,7 @@ export function NotificationList({
     notifications.map((notification) => (
       <div
         key={notification.id}
-        className="relative mb-4 mr-2 flex w-full cursor-pointer space-x-4 p-3 hover:bg-accent"
+        className="relative flex w-full cursor-pointer space-x-4 p-3 hover:bg-accent"
       >
         {notification.icon}
         {/* <notification.icon /> */}
@@ -85,8 +84,8 @@ export function MobileNotification({
   return (
     <Drawer>
       <DrawerTrigger> {notificationAlert(notifications.length)}</DrawerTrigger>
-      <DrawerContent className="max-w-[90vw] overflow-y-auto overflow-x-hidden rounded-l-xl !p-0">
-        <DrawerHeader>
+      <DrawerContent className="max-w-[90vw] overflow-y-auto overflow-x-hidden rounded-l-xl py-6">
+        <DrawerHeader className="hidden">
           <DrawerTitle></DrawerTitle>
           <DrawerDescription></DrawerDescription>
         </DrawerHeader>
@@ -94,8 +93,8 @@ export function MobileNotification({
           notifications={notifications}
           removeNotification={removeNotification}
         />
-        <DrawerFooter>
-          <DrawerClose></DrawerClose>
+        <DrawerFooter className="hidden">
+          <DrawerClose ></DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
@@ -114,7 +113,7 @@ export function DesktopNotification({
       <PopoverTrigger asChild className="cursor-pointer">
         {notificationAlert(notifications.length)}
       </PopoverTrigger>
-      <PopoverContent className="scrollbar-hide hover:scrollbar-thin hover:scrollbar-track-transparent hover:scrollbar-thumb-gray-300 scrollbar group mr-2 max-h-[80vh] w-96 overflow-x-hidden overflow-y-scroll rounded-xl p-0 pt-4">
+      <PopoverContent className="  scrollbar mr-2 max-h-[80vh] w-96 overflow-x-hidden overflow-y-auto rounded-xl p-0 py-6 ">
         <NotificationList
           notifications={notifications}
           removeNotification={removeNotification}
