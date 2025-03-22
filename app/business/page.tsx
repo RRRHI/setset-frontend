@@ -1,16 +1,14 @@
 import React from "react";
 
 import Business from "@/components/widgets/admin/business-card";
+import { containerClassname } from "@/lib/types";
 
 export default function Page() {
   return (
     <>
-      <div>
-        <div className="mt-0 flex flex-col p-10">
-          <Business isAdminPage={false}/>
-        </div>
+      <div id="business" className={containerClassname}>
+        <Business isAdminPage={false} />
       </div>
     </>
   );
 }
-

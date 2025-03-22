@@ -9,6 +9,9 @@ import Metrics from "@/components/widgets/dashboard/metrics";
 import Footer from "@/components/widgets/footer";
 import { DateProvider } from "@/context/DateContext";
 import { useDateRange } from "@/hooks/use-date-range";
+import DataTable from "@/components/widgets/dashboard/call-history";
+import { containerClassname } from "@/lib/types";
+
 
 function DashboardContent() {
   const { setDateRange } = useDateRange();
@@ -20,7 +23,7 @@ function DashboardContent() {
   };
 
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4 pt-0 sm:p-10">
+    <div className={containerClassname}>
       <div className="flex flex-col gap-4 sm:flex-row">
         <DatePickerWithRange />
         <Button className="flex w-fit flex-row gap-2" onClick={handleReset}>
