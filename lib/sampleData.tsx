@@ -150,7 +150,7 @@ export const initialNotifications = [
     title: "Daily Summary",
     content: "Today you spoke with the AI for 45 minutes.",
     time: "10 mins ago",
-    icon: <ClipboardCheck/>,
+    icon: <ClipboardCheck />,
     read: false,
   },
   {
@@ -159,14 +159,15 @@ export const initialNotifications = [
     title: "Milestone Reached!",
     content: "Congrats! You've booked 100 appointments today!",
     time: "30 mins ago",
-    icon: <PartyPopper/>,
+    icon: <PartyPopper />,
     read: true,
   },
   {
     id: 4,
     type: "info",
     title: "Most Asked FAQ of the Week",
-    content: "This week, the most asked question was about your new pricing model.",
+    content:
+      "This week, the most asked question was about your new pricing model.",
     time: "1 hour ago",
     icon: <MessageCircleQuestion />,
     read: false,
@@ -175,7 +176,8 @@ export const initialNotifications = [
     id: 5,
     type: "info",
     title: "Most Asked FAQ of the Week",
-    content: "This week, the most asked question was about your new pricing model.",
+    content:
+      "This week, the most asked question was about your new pricing model.",
     time: "1 hour ago",
     icon: <MessageCircleQuestion />,
     read: false,
@@ -184,7 +186,8 @@ export const initialNotifications = [
     id: 6,
     type: "info",
     title: "Most Asked FAQ of the Week",
-    content: "This week, the most asked question was about your new pricing model.",
+    content:
+      "This week, the most asked question was about your new pricing model.",
     time: "1 hour ago",
     icon: <MessageCircleQuestion />,
     read: false,
@@ -193,7 +196,8 @@ export const initialNotifications = [
     id: 7,
     type: "info",
     title: "Most Asked FAQ of the Week",
-    content: "This week, the most asked question was about your new pricing model.",
+    content:
+      "This week, the most asked question was about your new pricing model.",
     time: "1 hour ago",
     icon: <MessageCircleQuestion />,
     read: false,
@@ -202,7 +206,8 @@ export const initialNotifications = [
     id: 8,
     type: "info",
     title: "Most Asked FAQ of the Week",
-    content: "This week, the most asked question was about your new pricing model.",
+    content:
+      "This week, the most asked question was about your new pricing model.",
     time: "1 hour ago",
     icon: <MessageCircleQuestion />,
     read: false,
@@ -211,7 +216,8 @@ export const initialNotifications = [
     id: 9,
     type: "info",
     title: "Most Asked FAQ of the Week",
-    content: "This week, the most asked question was about your new pricing model.",
+    content:
+      "This week, the most asked question was about your new pricing model.",
     time: "1 hour ago",
     icon: <MessageCircleQuestion />,
     read: false,
@@ -220,7 +226,8 @@ export const initialNotifications = [
     id: 10,
     type: "info",
     title: "Most Asked FAQ of the Week",
-    content: "This week, the most asked question was about your new pricing model.",
+    content:
+      "This week, the most asked question was about your new pricing model.",
     time: "1 hour ago",
     icon: <MessageCircleQuestion />,
     read: false,
@@ -229,9 +236,10 @@ export const initialNotifications = [
     id: 11,
     type: "update",
     title: "New Feature Alert!",
-    content: "We've just rolled out the new scheduling feature for your appointments.",
+    content:
+      "We've just rolled out the new scheduling feature for your appointments.",
     time: "3 hours ago",
-    icon: <PackagePlus/>,
+    icon: <PackagePlus />,
     read: true,
   },
 ];
@@ -261,7 +269,7 @@ export const faqsData: FaqData[] = [
     id: "3",
     question: "How accurate is the AI in understanding customer inquiries?",
     answer:
-      "If the AI detects low confidence in its response or the caller requests a human agent, it will: Transfer the call to an available representative, Send a detailed summary of the conversation to the agent, Log the request in the dashboard under \"Escalated Calls\" for review. Businesses can customize escalation thresholds and triggers in the settings.",
+      'If the AI detects low confidence in its response or the caller requests a human agent, it will: Transfer the call to an available representative, Send a detailed summary of the conversation to the agent, Log the request in the dashboard under "Escalated Calls" for review. Businesses can customize escalation thresholds and triggers in the settings.',
     frequency: 18,
     icon: <Users className={iconStyles} />,
     timeRangeStart: "4:00 PM",
@@ -453,13 +461,13 @@ export const items: sideBarPageProp[] = [
   },
   {
     title: "Reports",
-    url: "#",
+    url: "/reports",
     icon: <ShieldAlert className={barPageStyle} />,
   },
   {
     title: "Settings",
     url: "/Settings",
-    icon: <Settings/>,
+    icon: <Settings />,
   },
   {
     title: "Profile",

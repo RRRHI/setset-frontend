@@ -55,7 +55,7 @@ export default function Reports({
         </TabsContent>
 
         <TabsContent value="resolved">
-          <div className="mt-8 flex flex-col gap-8">
+          <div className="mt-6 flex flex-col gap-6">
             {resolvedReports.map((report) => (
               <Card key={report.id} className="flex-1 justify-center">
                 <CardContent className={cardContentStyles}>

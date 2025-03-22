@@ -6,14 +6,13 @@ export default function Faqs({ data = faqsData }: { data: FaqData[] }) {
   const cardContentStyles = "flex flex-col px-4 py-6 justify-center";
 
   return (
-
     <div id="faqs" className={containerClassname}>
       {data.map((faq) => (
         <Card key={faq.id} className="flex-1 justify-center">
           <CardContent className={cardContentStyles}>
             <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
               <div className="flex flex-col gap-4 lg:flex-row">
-                <div className="text-black">{faq.icon}</div>
+                <div>{faq.icon}</div>
                 <div className="flex flex-col gap-2 lg:max-w-[80vw]">
                   <p className="font-semibold">{faq.question}</p>
                   <p className="text-sm">{faq.answer}</p>
