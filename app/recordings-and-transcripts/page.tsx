@@ -34,10 +34,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-import { CallRecording, containerClassname } from "@/lib/types";
-import { callRecordingsData } from "@/lib/sampleData";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { callRecordingsData } from "@/lib/sampleData";
+import { CallRecording, containerClassname } from "@/lib/types";
 
 const RecordingCell = ({
   recordingUrl,
@@ -198,7 +197,7 @@ export default function Recordings() {
         <div
           className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4" : ""}`}
         >
-          <p className="text-m font-semibold md:text-2xl lg:text-3xl">
+          <p className="text-base font-semibold md:text-2xl lg:text-3xl">
             Call history and transcripts
           </p>
 

@@ -113,7 +113,7 @@ export function DesktopNotification({
       <PopoverTrigger asChild className="cursor-pointer">
         {notificationAlert(notifications.length)}
       </PopoverTrigger>
-      <PopoverContent className="  scrollbar mr-2 max-h-[80vh] w-96 overflow-x-hidden overflow-y-auto rounded-xl p-0 py-6 ">
+      <PopoverContent className="  scrollbar mr-2 max-h-[80vh] w-96 overflow-y-auto overflow-x-hidden rounded-xl p-0 py-6 ">
         <NotificationList
           notifications={notifications}
           removeNotification={removeNotification}

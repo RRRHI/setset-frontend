@@ -1,18 +1,8 @@
 "use client";
-//some icons that needed
+
+import { Folders, Funnel, MessageSquareText, Search } from "lucide-react";
+import Image from "next/image";
 import React, { useState } from "react";
-
-import { business } from "@/lib/sampleData";
-import { BusinessInfo } from "@/lib/types";
-
-//some icons that needed
-import { MessageSquareText, Search, Funnel, Folders } from "lucide-react";
-
-import { Button } from "../../ui/button";
-//shadcn card ui
-import { Card, CardDescription, CardTitle } from "../../ui/card";
-import { Input } from "../../ui/input";
-import { BusinessPaginate } from "../business/business-pagination";
 
 import {
   DropdownMenu,
@@ -20,6 +10,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { business } from "@/lib/sampleData";
+import { BusinessInfo } from "@/lib/types";
+
+import { Button } from "../../ui/button";
+//shadcn card ui
+import { Card, CardDescription, CardTitle } from "../../ui/card";
+import { Input } from "../../ui/input";
+import { BusinessPaginate } from "../business/business-pagination";
 
 const layoutFormat = "flex flex-items";
 const DropdownMenuTriggerFormat =
@@ -133,9 +131,9 @@ const Business = ({ isAdminPage }: { isAdminPage: boolean }) => {
   };
 
   return (
-    <div className="flex flex-grow flex-col gap-y-6">
-      <div className="flex flex-row flex-wrap justify-between gap-x-6 gap-y-6">
-        <div className="border-1 flex h-fit w-fit flex-row items-center gap-0 rounded-lg bg-card pb-0 text-card-foreground">
+    <div className="flex grow flex-col gap-y-6">
+      <div className="flex flex-row flex-wrap justify-between gap-6">
+        <div className="flex size-fit flex-row items-center gap-0 rounded-lg bg-card pb-0 text-card-foreground">
           <Search className="ml-2" size={20} />
           <Input
             type="text"
@@ -192,12 +190,14 @@ const Business = ({ isAdminPage }: { isAdminPage: boolean }) => {
         {filteredBusiness.slice(startIndex, endIndex).map((business) => (
           <div className={layoutFormat} key={business.id}>
             <Card className="flex w-full flex-col flex-wrap justify-between gap-y-6 p-6 lg:flex-row lg:p-2">
-              <div className="flex flex-row items-center gap-x-4 p-0 lg:ml-4 lg:w-[20%]">
+              <div className="flex flex-row items-center gap-x-4 p-0 lg:ml-4 lg:w-1/5">
                 <div className="flex items-center justify-center">
-                  <img
-                    src="https://png.pngtree.com/png-clipart/20190604/original/pngtree-creative-company-logo-png-image_1197025.jpg"
+                  <Image
+                    src="/images/logo.png"
                     alt="business logo"
-                    className="flex h-10 w-10 rounded-lg"
+                    className="flex rounded-lg"
+                    width={50}
+                    height={50}
                   />
                 </div>
                 <div className="flex flex-col gap-y-1">
@@ -214,7 +214,7 @@ const Business = ({ isAdminPage }: { isAdminPage: boolean }) => {
                 {business.cards.map((card) => (
                   <div
                     key={card.id}
-                    className="flex w-[100%] flex-initial flex-wrap gap-x-3 gap-y-3 md:w-[50%] lg:w-[25%]"
+                    className="flex w-full flex-initial flex-wrap gap-3 md:w-1/2 lg:w-1/4"
                   >
                     <div className="flex items-center justify-center rounded-xl">
                       {card.icon}

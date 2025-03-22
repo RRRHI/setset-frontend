@@ -1,8 +1,9 @@
+import { Check,Construction } from "lucide-react";
+
 import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsContent,TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { reportsData } from "@/lib/sampleData";
 import { containerClassname, ReportData } from "@/lib/types";
-import { Construction, Check } from "lucide-react";
 
 export default function Reports({
   data = reportsData,
@@ -20,13 +21,13 @@ export default function Reports({
         <TabsList className="grid w-full grid-cols-2 rounded-xl border-gray-200">
           <TabsTrigger value="pending">
             <div className="flex items-center gap-2">
-              <Construction className="h-4 w-4 border-foreground text-yellow-300" />
+              <Construction className="size-4 border-foreground text-yellow-300" />
               Pending
             </div>
           </TabsTrigger>
           <TabsTrigger value="resolved">
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-green-400" />
+              <Check className="size-4 text-green-400" />
               Resolved
             </div>
           </TabsTrigger>

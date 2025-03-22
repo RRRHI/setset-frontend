@@ -12,13 +12,7 @@ import {
   useReactTable,
   VisibilityState,
 } from "@tanstack/react-table";
-import {
-  ArrowDownUp,
-  ChevronDown,
-  File,
-  Pause,
-  Play,
-} from "lucide-react";
+import { ArrowDownUp, ChevronDown, File, Pause, Play } from "lucide-react";
 import { Filter } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -28,8 +22,6 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DualRangeSlider } from "@/components/ui/dual-slider";
@@ -46,7 +38,15 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { callRecordingsData } from "@/lib/sampleData";
 import { CallRecording } from "@/lib/types";
 
-const RecordingCell = ({ recordingUrl, transcriptUrl, id }: { recordingUrl: string, transcriptUrl: string, id: string }) => {
+const RecordingCell = ({
+  recordingUrl,
+  transcriptUrl,
+  id,
+}: {
+  recordingUrl: string;
+  transcriptUrl: string;
+  id: string;
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -63,11 +63,12 @@ const RecordingCell = ({ recordingUrl, transcriptUrl, id }: { recordingUrl: stri
 
   return (
     <div className="flex justify-end space-x-20">
-      <Button variant="ghost" 
-              size="sm" 
-              className="bg-sidebar-ring text-black" 
-              // onClick={togglePlay}
-              >
+      <Button
+        variant="ghost"
+        size="sm"
+        className="bg-sidebar-ring text-black"
+        // onClick={togglePlay}
+      >
         {isPlaying ? <Pause /> : <Play />}
         Listen
       </Button>
@@ -77,7 +78,7 @@ const RecordingCell = ({ recordingUrl, transcriptUrl, id }: { recordingUrl: stri
         className="bg-foreground text-card"
         onClick={() => console.log("Download transcript:", transcriptUrl)}
       >
-        <File /> 
+        <File />
         Transcript
       </Button>
       <audio
@@ -130,10 +131,16 @@ export const columns: ColumnDef<CallRecording>[] = [
   {
     accessorKey: "recording",
     header: "",
-    cell: ({ row }) => <div className="py-3"><RecordingCell recordingUrl={row.original.recordingUrl} 
-                                                        transcriptUrl={row.original.transcriptUrl}
-                                                        id = {row.original.id}/></div>,
-  }
+    cell: ({ row }) => (
+      <div className="py-3">
+        <RecordingCell
+          recordingUrl={row.original.recordingUrl}
+          transcriptUrl={row.original.transcriptUrl}
+          id={row.original.id}
+        />
+      </div>
+    ),
+  },
 ];
 
 export default function DataTable() {
@@ -149,7 +156,11 @@ export default function DataTable() {
     return minutes + seconds / 60;
   };
 
-  const maxDuration = Math.max(...callRecordingsData.map(recording => convertDurationToMinutes(recording.duration)));
+  const maxDuration = Math.max(
+    ...callRecordingsData.map((recording) =>
+      convertDurationToMinutes(recording.duration),
+    ),
+  );
   useEffect(() => {
     setDurationRange([0, maxDuration]);
   }, [maxDuration]);
@@ -157,12 +168,14 @@ export default function DataTable() {
   const router = useRouter();
   const handleViewMore = () => {
     router.push("/recordings-and-transcripts");
-  }
-
+  };
 
   const isRowHidden = (duration: string) => {
     const durationInMinutes = convertDurationToMinutes(duration);
-    return durationInMinutes < durationRange[0] || durationInMinutes > durationRange[1];
+    return (
+      durationInMinutes < durationRange[0] ||
+      durationInMinutes > durationRange[1]
+    );
   };
 
   const table = useReactTable({
@@ -180,12 +193,16 @@ export default function DataTable() {
 
   return (
     <div id="call-history" className="rounded-lg bg-card p-10">
-      <div className= {`flex flex-col justify-between  md:flex-row ${isMobile ? "space-y-4" : ""}`}>
-        <p className="text-m font-semibold md:text-2xl lg:text-3xl">
+      <div
+        className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4" : ""}`}
+      >
+        <p className="text-base font-semibold md:text-2xl lg:text-3xl">
           Call history and transcripts
         </p>
 
-        <div className={`mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}>
+        <div
+          className={`mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}
+        >
           <Input
             placeholder="Search"
             value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
@@ -246,12 +263,16 @@ export default function DataTable() {
                     max={maxDuration}
                     step={1}
                     minStepsBetweenThumbs={1}
-                    onValueChange={(value) => setDurationRange(value as [number, number])}
+                    onValueChange={(value) =>
+                      setDurationRange(value as [number, number])
+                    }
                     className="w-[200px]"
                   />
                   <div className="flex justify-between">
-                    <span className = "font-bold">{durationRange[0]} min</span> 
-                    <span className = "font-bold">{Math.ceil(durationRange[1])} min</span>
+                    <span className="font-bold">{durationRange[0]} min</span>
+                    <span className="font-bold">
+                      {Math.ceil(durationRange[1])} min
+                    </span>
                   </div>
                 </div>
               </div>
@@ -316,11 +337,7 @@ export default function DataTable() {
       </div>
       <div className="flex items-center justify-end py-2">
         <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleViewMore}
-          >
+          <Button variant="outline" size="sm" onClick={handleViewMore}>
             View more
           </Button>
         </div>

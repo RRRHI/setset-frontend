@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { Settings } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -18,7 +18,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { sideBarPageProp } from "@/lib/types";
-import { Separator } from "@/components/ui/separator";
 
 const getPageInfo = (
   path: string,
