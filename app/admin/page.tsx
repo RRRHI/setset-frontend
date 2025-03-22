@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <>
       <div>
-        <div className="mt-0 flex flex-col p-8 pt-0">
+        <div className="mt-0 flex flex-col p-10">
           <Business isAdminPage={true}/>
         </div>
       </div>

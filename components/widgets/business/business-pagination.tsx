@@ -77,7 +77,7 @@ export const BusinessPaginate = ({
             })}
           </>
         ) : (
-          // If maxPages <= 5, show all pages
+          // If maxPages <= 10, show all pages
           Array.from({ length: maxPages }, (_, index) => (
             <PaginationItem key={index} className={paginationItemformat}>
               <PaginationLink

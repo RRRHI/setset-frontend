@@ -28,6 +28,7 @@ import {
   FaqData,
   MetricsData,
   sideBarPageProp,
+  ReportData,
 } from "./types";
 
 export const metricsData: MetricsData = {
@@ -308,7 +309,7 @@ const testData: BusinessStat = {
 
 //Metric Card for this test business
 const BusinessIconStyles =
-  "lg:h-14 lg:w-14 text-white dark:text-black h-12 w-12 bg-black dark:bg-white rounded-lg p-3";
+  "bg-card-foreground text-accent h-10 w-10 rounded-lg p-2";
 const cards: BusinessCard[] = [
   {
     id: "money-saved",
@@ -341,7 +342,7 @@ const cards2: BusinessCard[] = [
     id: "money-saved",
     icon: <WalletMinimal className={BusinessIconStyles} />,
     title: "Money Saved",
-    value: testData.moneySaved,
+    value: 400162,
   },
   {
     id: "satisfaction",
@@ -369,67 +370,67 @@ export const business: BusinessInfo[] = [
   {
     id: "1",
     title: "Business Name 1",
-    content: "Description 1",
+    content: "Retail & Ecommerce",
     cards: cards,
   },
   {
     id: "2",
     title: "Business Name 2",
-    content: "Description 2",
-    cards: cards,
+    content: "Finance",
+    cards: cards2,
   },
   {
     id: "3",
     title: "Business Name 3",
-    content: "Description 3",
+    content: "Healthcare",
     cards: cards,
   },
   {
     id: "4",
     title: "Business Name 4",
-    content: "Description 4",
+    content: "Retail & Ecommerce",
     cards: cards,
   },
   {
     id: "5",
     title: "Business Name 5",
-    content: "Description 5",
+    content: "Retail & Ecommerce",
     cards: cards,
   },
   {
     id: "6",
     title: "Business Name 6",
-    content: "Description 6",
+    content: "Finance",
     cards: cards,
   },
   {
     id: "7",
     title: "Business Name 7",
-    content: "Description 7",
+    content: "Finance",
     cards: cards2,
   },
   {
     id: "8",
     title: "Business Name 8",
-    content: "Description 8",
+    content: "Healthcare",
     cards: cards,
   },
   {
     id: "9",
     title: "Business Name 9",
-    content: "Description 9",
+    content: "Healthcare",
     cards: cards,
   },
   {
     id: "10",
     title: "Business Name 10345",
-    content: "Description 10",
+    content: "Retail & Ecommerce",
     cards: cards,
   },
   {
     id: "11",
     title: "Business Name 11",
-    content: "Description 11",
+    content: "Tech",
     cards: cards,
   },
 ];
@@ -467,6 +468,39 @@ export const items: sideBarPageProp[] = [
     icon: <Users className={barPageStyle} />,
   },
 ];
+
+
+export const reportsData: ReportData[] = [
+  {
+    id: "1",
+    title: "AI did not transfer call to an agent",
+    description: "The AI system failed to transfer the call to a human agent despite multiple attempts.",
+    date: "2023-10-01",
+    status: "Pending",
+  },
+  {
+    id: "2",
+    title: "Incorrect response from AI",
+    description: "The AI provided an incorrect response to a customer query regarding account balance.",
+    date: "2023-10-02",
+    status: "Resolved",
+  },
+  {
+    id: "3",
+    title: "AI system downtime",
+    description: "The AI system was down for 2 hours, causing delays in customer service.",
+    date: "2023-10-03",
+    status: "Pending",
+  },
+  {
+    id: "4",
+    title: "AI misinterpreted customer request",
+    description: "The AI misinterpreted a customer's request for a refund and provided incorrect information.",
+    date: "2023-10-04",
+    status: "Resolved",
+  },
+];
+
 
 export const callRecordingsData: CallRecording[] = [
   {

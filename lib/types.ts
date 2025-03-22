@@ -105,3 +105,11 @@ export type settingSVGProp ={
   circleProp: string;
   className: string;
 };
+export interface ReportData {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  status: "Pending" | "Resolved";
+}
+

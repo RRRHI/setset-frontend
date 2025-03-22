@@ -29,7 +29,12 @@ import { Input } from "../../ui/input";
 import { BusinessPaginate} from "../business/business-pagination";
 
 const layoutFormat = "flex flex-items";
-const paginationItemformat = "bg-card text-card-foreground rounded-lg";
+const DropdownMenuTriggerFormat =
+  "flex flex-row h-fit gap-x-3 items-center bg-card rounded-lg text-card-foreground text-xs focus:outline-none hover:bg-primary/90 p-2";
+const DropdownMenuContentFormat =
+  "p-2 rounded-lg bg-card text-card-foreground text-xs";
+
+const DropdownMenuIconSize = 12;
 
 //Format value for money and satisfaction
 const formatValue = (value: number, type: string) => {
@@ -43,28 +48,91 @@ const formatValue = (value: number, type: string) => {
   return value.toLocaleString(); // Add commas for large numbers
 };
 
-const getFilteredBusiness = (search: string, business: BusinessInfo[]) => {
-  if (!search) {
+//filtered based on search and Category
+const getFilteredBusiness = (
+  search: string,
+  category: string,
+  business: BusinessInfo[],
+) => {
+  if (!search && !category) {
     return business;
   }
 
-  return business.filter((business) => {
-    return business.title.toLowerCase().includes(search.toLowerCase());
+  return business.filter((b) => {
+    const matchesSearch = search
+      ? b.title.toLowerCase().includes(search.toLowerCase())
+      : true;
+    const matchesCategory = category ? b.content === category : true;
+    return matchesSearch && matchesCategory;
   });
 };
+
+const getSortedBusiness = (
+  filteredBusiness: BusinessInfo[],
+  filterPicked: string,
+) => {
+  switch (filterPicked) {
+    case "Most Money Saved":
+      return [...filteredBusiness].sort(
+        (a, b) => b.cards[0].value - a.cards[0].value,
+      );
+    case "Most Satisfied":
+      return [...filteredBusiness].sort(
+        (a, b) => b.cards[1].value - a.cards[1].value,
+      );
+    case "Most Minutes Saved":
+      return [...filteredBusiness].sort(
+        (a, b) => b.cards[2].value - a.cards[2].value,
+      );
+    case "Most New Callers":
+      return [...filteredBusiness].sort(
+        (a, b) => b.cards[3].value - a.cards[3].value,
+      );
+    default:
+      return filteredBusiness;
+  }
+};
+
 
 const Business = ({ isAdminPage }: { isAdminPage: boolean }) => {
   //calculation for pagination
   //if admin show 5 otherwise show 6
   const itemsPerPage = isAdminPage ? 5 : 6;
-  const maxPages = Math.ceil(business.length / itemsPerPage);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(itemsPerPage);
   const [activePage, setActivePage] = useState(1);
 
   //handle searching
   const [search, setSearch] = useState("");
-  const filteredBusiness = getFilteredBusiness(search, business);
+
+  //handle category
+  // Extract unique categories from business descriptions
+  const uniqueCategories = [
+    "Retail & Ecommerce",
+    "Healthcare",
+    "Tech",
+    "Finance"
+  ]
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  //handle filter
+  const filters = [
+    "Most Money Saved",
+    "Most Satisfied",
+    "Most Minutes Saved",
+    "Most New Callers",
+  ];
+
+  const [filterPicked, setFilterValue] = useState("");
+  let filteredBusiness = getFilteredBusiness(
+    search,
+    selectedCategory,
+    business,
+  );
+
+  filteredBusiness = getSortedBusiness(filteredBusiness, filterPicked);
+
+  const maxPages = Math.ceil(filteredBusiness.length / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     setActivePage(page);
@@ -96,38 +164,38 @@ const Business = ({ isAdminPage }: { isAdminPage: boolean }) => {
                     className="size-12 rounded-lg"
                   />
                 </div>
-                <div className="min-w-0">
-                  <CardTitle className="text-lg font-light">
+                <div className="flex flex-col gap-y-1">
+                  <CardTitle className="text-sm font-light">
                     {business.title}
                   </CardTitle>
-                  <CardDescription className="text-xs">
-                    Card Description
+                  <CardDescription style={{ fontSize: '0.7rem' }}>
+                    {business.content}
                   </CardDescription>
                 </div>
-              </CardContent>
+              </div>
 
-              <CardContent className="flex w-[70%] flex-row justify-between gap-x-10 p-3">
+              <div className="flex gap-y-6 flex-wrap lg:flex-row justify-between lg:p-3 lg:w-[65%]">
                 {business.cards.map((card) => (
-                  <div key={card.id} className="flex w-[15%] gap-x-2">
-                    <div className="flex items-center justify-center rounded-xl p-3">
+                  <div key={card.id} className="flex flex-initial flex-wrap gap-y-3 w-[100%] md:w-[50%] lg:w-[25%] gap-x-3">
+                    <div className="flex items-center justify-center rounded-xl">
                       {card.icon}
                     </div>
                     <div className="flex flex-col justify-center lg:gap-1">
                       <p className="text-xs">{card.title}</p>
-                      <p className="text-2xl font-bold">
+                      <p className={`text-base font-bold`}>
                         {formatValue(card.value, card.id)}
                       </p>
                     </div>
                   </div>
                 ))}
-              </CardContent>
+              </div>
 
-              <CardContent className="mr-6 flex w-[10%] flex-row items-center justify-end p-0">
+              <div className="flex flex-row lg:justify-end pr-6 items-center lg:w-[9%]">
                 <Button className="bg-sidebar-ring text-accent hover:bg-sidebar-ring/50">
                   <MessageSquareText />
-                  <p>Chat</p>
+                  <p className="text-xs">Chat</p>
                 </Button>
-              </CardContent>
+              </div>
             </Card>
           </div>
         ))}
