@@ -23,7 +23,7 @@ export function NewParent({ children }: NewParentProps) {
   useEffect(() => {
     
     const pageInfo = getPageInfo(pathname, items);
-    console.log("here is the page information ", pageInfo);
+  
     if (pageInfo) {
       // setCurrSelected(pageInfo.title);
       setCurrPage(pageInfo);
@@ -33,7 +33,7 @@ export function NewParent({ children }: NewParentProps) {
     const pageInfo = getPageInfo(pathname, items);
     return pageInfo || { title: '', url: '', icon: <></> };
   });
-  console.log("here is the printing");
+
   
   
   const updateCurrPage = useCallback((page: sideBarPageProp) => {

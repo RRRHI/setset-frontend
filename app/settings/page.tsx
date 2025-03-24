@@ -1,53 +1,25 @@
 "use client";
-import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
-
-import { Button } from "@/components/ui/button";
-import { settingMenu } from "@/lib/sampleData"
+import "@/app/globals.css";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SettingSidebar } from "@/components/widgets/sidebar/setting-sidebar";
+import { settingMenu } from "@/lib/sampleData";
+import { SettingHeaderBar } from "@/components/widgets/sidebar/settings-header";
+import {MainContent} from "@/components/widgets/setting/main-content";
 export default function Page() {
-  const [viewSection, setViewSection] = useState<string>("");
-  let sectionIds = settingMenu.map((item) => item.url);
-  console.log("sectionId", sectionIds);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>{
-        entries.forEach((entry) =>{
-          if(entry.isIntersecting){
-            setViewSection(entry.target.id)
-          }
-        })
-      },
-      {
-        threshold: 1.00
-      }
-    );
-      sectionIds.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section) observer.observe(section);
-    });
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [sectionIds]);
 
-  console.log("viewSection", viewSection);
-  
-  
-      
-       
-  
   return (
-    <div className="flex min-w-full flex-col items-center justify-center">
-      <h1>Welcome to the user Setting Page</h1>
-      <div className="flex flex-col items-center justify-center w-full">
-        {settingMenu.map((item) => (
-          <div id =  {item.url} key={item.title}  className={`py-20 m-20 w-[90%] h-[400px] bg-foreground text-primary text-3xl ${viewSection === item.url ? "!bg-primary text-foreground" : ""}`}>
-            {item.title}
+    <SidebarProvider>
+      <SettingSidebar menuItems={settingMenu} />
+      <main className="flex flex-1 flex-col">
+        <header className="my-4 flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[data-collapsible=icon]/sidebar-wrapper:h-12">
+          <div className="flex w-full items-center">
+            <SettingHeaderBar />
           </div>
-        ))}
-      </div>
-    </div>
+        </header>
+        <SidebarTrigger />
+        <MainContent/>
+      </main>
+    </SidebarProvider>
   );
 }
