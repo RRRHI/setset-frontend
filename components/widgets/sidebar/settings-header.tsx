@@ -16,53 +16,37 @@ interface HeaderBarProps {
   currPage: sideBarPageProp;
 }
 
-const SidebarIcon = ({ currPage }: { currPage: sideBarPageProp }) => {
+const SidebarIcon = () => {
   
   return (
     <SidebarTrigger className="flex w-full items-center gap-5 font-semibold text-foreground hover:bg-transparent md:text-2xl">
       <span className="rounded-xl bg-primary-foreground p-2">
-        {currPage.title === "Settings" ? (
+       
           <SettingsHeader />
-        ) : (
-          <div className="[&>svg]:!stroke-primary" >
-                            {currPage.icon}
-                          </div>
-        )}
+      
       </span>
       <p className="max-w-24 text-pretty text-left leading-none sm:max-w-full">
-        {currPage.title}
+        Settings
       </p>
     </SidebarTrigger>
   );
 };
 
 const UserButton = () => {
-  //this is the code for the user profile button for now
-  return true ? (
-    //this is the code for the user profile button
+  
+    return (
 
-    <ProfilePicture src = "https://github.com/shadcn.png" alt="CN" className="!size-6 cursor-pointer"/>
-  ) : (
-    //this is the code for the login button
-    <Button
-      variant="ghost"
-      className="flex items-center gap-2 p-0 hover:bg-transparent"
-      asChild
-    >
-      <Link href={"/Profile"} className="!flex flex-row">
-        <UserRound className="!size-5 fill-foreground stroke-foreground sm:!size-6" />
-        <p className="hidden text-lg md:block">Sign In</p>
-      </Link>
-    </Button>
-  );
+        <ProfilePicture src = "https://github.com/shadcn.png" alt="CN" className="!size-6 cursor-pointer"/>
+        
+    )
 };
 
-export function HeaderBar({ currPage }: HeaderBarProps) {
+export function SettingHeaderBar() {
 
   return (
-    <header className="flex w-full items-center justify-between px-6 md:px-10">
+    <section className="flex w-full items-center justify-between px-6 md:px-10">
       <div className="flex items-center">
-        <SidebarIcon currPage={currPage} />
+        <SidebarIcon  />
       </div>
 
       <div className="flex items-center gap-5 md:gap-[30px]">
@@ -79,6 +63,6 @@ export function HeaderBar({ currPage }: HeaderBarProps) {
         </Button>
         <Notification />
       </div>
-    </header>
+    </section>
   );
 }

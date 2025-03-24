@@ -446,7 +446,7 @@ const barPageStyle = "!size-6 ";
 export const items: sideBarPageProp[] = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "/dashboard",
     icon: <Home className={barPageStyle} />,
   },
   {

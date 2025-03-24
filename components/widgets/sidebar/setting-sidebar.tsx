@@ -9,6 +9,10 @@ export function SettingSidebar({menuItems}: {menuItems: sideBarPageProp[]}) {
           section.scrollIntoView({ behavior: "smooth" ,block: "center"});
         }
       };
+    
+    const currView = () => {
+      
+    }
       
   return (
     <Sidebar>
