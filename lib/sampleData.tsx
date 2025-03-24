@@ -476,6 +476,40 @@ export const items: sideBarPageProp[] = [
   },
 ];
 
+export const settingMenu:sideBarPageProp[] =[
+  {
+    title: "Profile",
+    url: "#Profile",
+    icon: <Home className={barPageStyle} />,
+  },
+  {
+    title: "Password",
+    url: "#Password",
+    icon: <Voicemail className={barPageStyle} />,
+  },
+  {
+    title: "Card Information",
+    url: "#Card_Information",
+    icon: <CircleHelp className={barPageStyle} />,
+  },
+  {
+    title: "Plans",
+    url: "#Plans",
+    icon: <ShieldAlert className={barPageStyle} />,
+  },
+  {
+    title: "Calendar",
+    url: "#Calendar",
+    icon: <Settings />,
+  },
+  {
+    title: "Support",
+    url: "#Support",
+    icon: <Users className={barPageStyle} />,
+  },
+
+];
+
 export const reportsData: ReportData[] = [
   {
     id: "1",

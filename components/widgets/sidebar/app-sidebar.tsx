@@ -3,8 +3,6 @@
 import { Settings } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 import {
   Sidebar,
@@ -19,33 +17,18 @@ import {
 } from "@/components/ui/sidebar";
 import { sideBarPageProp } from "@/lib/types";
 
-const getPageInfo = (
-  path: string,
-  items: sideBarPageProp[],
-): sideBarPageProp | undefined => {
-  return items.find((item) => item.url === path);
-};
-
 export function AppSidebar({
+  currPage,
   updateCurrPage,
   items,
 }: {
+  currPage:sideBarPageProp,
   updateCurrPage: (page: sideBarPageProp) => void;
   items: sideBarPageProp[];
 }) {
-  const pathname = usePathname();
-  const [currSelected, setCurrSelected] = useState(items[0].title);
 
-  useEffect(() => {
-    const pageInfo = getPageInfo(pathname, items);
-    if (pageInfo) {
-      setCurrSelected(pageInfo.title);
-      updateCurrPage(pageInfo);
-    }
-  }, [pathname, items, updateCurrPage]);
 
   const handleSelected = (item: sideBarPageProp) => {
-    setCurrSelected(item.title);
     updateCurrPage(item);
   };
 
@@ -75,7 +58,9 @@ export function AppSidebar({
                   <SidebarMenuItem
                     key={item.title}
                     className=""
-                    onClick={() => handleSelected(item)}
+                    onClick={() => handleSelected(item)
+                      
+                    }
                   >
                     <SidebarMenuButton asChild className="text-base md:text-sm">
                       <Link
@@ -83,15 +68,15 @@ export function AppSidebar({
                         className={`p-[30px] hover:text-sidebar-foreground ${item.title === "Settings" ? "sm:hidden" : ""} ${item.title === "Profile" ? "hidden" : ""}`}
                       >
                         <span
-                          className={`flex !size-[38px] shrink-0 justify-center stroke-primary first:items-center ${currSelected === item.title ? "rounded-lg bg-primary-foreground font-semibold" : "bg-transparent"}`}
+                          className={`flex !size-[38px] shrink-0 justify-center stroke-primary first:items-center ${currPage?.title === item.title ? "rounded-lg bg-primary-foreground font-semibold" : "bg-transparent"}`}
                         >
                           {item.title === "Settings" ? (
                             <Settings
-                              className={`!size-[18px] ${currSelected === item.title ? "stroke-primary" : "text-muted-foreground"}`}
+                              className={`!size-[18px] ${currPage?.title === item.title ? "stroke-primary" : "text-muted-foreground"}`}
                             />
                           ) : (
                             <div
-                              className={` ${currSelected === item.title ? "[&>svg]:!stroke-primary" : "[&>svg]:text-muted-foreground"}`}
+                              className={` ${currPage?.title === item.title ? "[&>svg]:!stroke-primary" : "[&>svg]:text-muted-foreground"}`}
                             >
                               {item.icon}
                             </div>
