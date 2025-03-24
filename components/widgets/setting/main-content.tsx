@@ -1,10 +1,9 @@
 "use client";
-import { redirect } from "next/navigation";
+
 import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import { settingMenu } from "@/lib/sampleData"
-export  function MainContent() {
+export  function MainContent({changeView}: {changeView: (view: string) => void}) {
   const [viewSection, setViewSection] = useState<string>("");
   let sectionIds = settingMenu.map((item) => item.url);
   // console.log("sectionId", sectionIds);
@@ -15,6 +14,8 @@ export  function MainContent() {
         entries.forEach((entry) =>{
           if(entry.isIntersecting){
             setViewSection(entry.target.id)
+            changeView(entry.target.id);
+            
           }
         })
       },
@@ -24,7 +25,10 @@ export  function MainContent() {
     );
       sectionIds.forEach((id) => {
       const section = document.getElementById(id);
-      if (section) observer.observe(section);
+      if (section) {observer.observe(section);
+      //  console.log('here is the section', section);
+       
+      }
     });
 
     return () => {

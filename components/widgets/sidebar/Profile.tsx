@@ -18,14 +18,14 @@ import {
     const router = useRouter()
     const toProfile = () => router.push("/settings/#profile")
     return (
-      <HoverCard openDelay={300}>
+      <HoverCard openDelay={300} >
         <HoverCardTrigger>
           <Avatar onClick={toProfile} className={className}>
             <AvatarImage src={src} alt="@shadcn" />
             <AvatarFallback>{alt}</AvatarFallback>
           </Avatar>
         </HoverCardTrigger>
-        <HoverCardContent className="flex flex-col gap-2 p-4">
+        <HoverCardContent className="flex flex-col gap-2 p-4 rounded-xl">
           <p>achu worifung</p>
           <p>category</p>
           <p>achuworifung@gmail.com</p>
