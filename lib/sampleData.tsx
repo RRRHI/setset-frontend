@@ -479,7 +479,7 @@ export const items: sideBarPageProp[] = [
 export const settingMenu:sideBarPageProp[] =[
   {
     title: "Profile",
-    url: "#Profile",
+    url: "Profile",
     icon: <Home className={barPageStyle} />,
   },
   {
