@@ -15,7 +15,7 @@ import { Card, CardContent } from "../../ui/card";
 export default function Metrics() {
   const iconStyles =
     "lg:h-10 lg:w-10 text-primary h-8 w-8 bg-secondary rounded-lg p-2";
-  const cardContentStyles = "flex flex-col px-4 py-6 justify-center";
+  const cardContentStyles = "flex flex-col px-4 py-4 justify-center";
   const cardInnerStyles =
     "flex flex-col  justify-center text-lg md:text-lg lg:text-2xl";
 
