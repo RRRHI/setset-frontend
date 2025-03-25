@@ -16,7 +16,7 @@ import {
   import { LogOutButton } from "./logoutButton";
   export function ProfilePicture({src, alt, className}: {src: string, alt: string, className?: string}) {
     const router = useRouter()
-    const toProfile = () => router.push("/settings/#profile")
+    const toProfile = () => router.push("/settings/#Profile")
     return (
       <HoverCard openDelay={300} >
         <HoverCardTrigger>
