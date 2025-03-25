@@ -24,8 +24,8 @@ export function SettingSidebar({
   };
 
   return (
-    <Sidebar>
-      <SidebarContent>
+    <Sidebar variant="floating" className="rounded-2xl">
+      <SidebarContent className="rounded-xl">
         <SidebarGroup>
         <SidebarGroupLabel className="mb-0 my-[10px] items-center gap-2 p-[30px]">
           <div className="flex flex-col gap-2">
