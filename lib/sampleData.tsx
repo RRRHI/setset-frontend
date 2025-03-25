@@ -503,6 +503,11 @@ export const settingMenu:sideBarPageProp[] =[
     icon: <Settings />,
   },
   {
+    title: "Invoice",
+    url: "#Invoice",
+    icon: <Settings />,
+  },
+  {
     title: "Support",
     url: "#Support",
     icon: <Users className={barPageStyle} />,

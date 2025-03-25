@@ -22,12 +22,10 @@ export function AppSidebar({
   updateCurrPage,
   items,
 }: {
-  currPage:sideBarPageProp,
+  currPage: sideBarPageProp;
   updateCurrPage: (page: sideBarPageProp) => void;
   items: sideBarPageProp[];
 }) {
-
-
   const handleSelected = (item: sideBarPageProp) => {
     updateCurrPage(item);
   };
@@ -58,9 +56,7 @@ export function AppSidebar({
                   <SidebarMenuItem
                     key={item.title}
                     className=""
-                    onClick={() => handleSelected(item)
-                      
-                    }
+                    onClick={() => handleSelected(item)}
                   >
                     <SidebarMenuButton asChild className="text-base md:text-sm">
                       <Link
@@ -68,23 +64,25 @@ export function AppSidebar({
                         className={`p-[30px] hover:text-sidebar-foreground ${item.title === "Settings" ? "sm:hidden" : ""} ${item.title === "Profile" ? "hidden" : ""}`}
                       >
                         <span
-                          className={`flex !size-[38px] shrink-0 justify-center stroke-primary first:items-center ${currPage?.title === item.title ? "rounded-lg bg-primary-foreground font-semibold" : "bg-transparent"}`}
+                          className={`flex size-[38px] shrink-0 items-center justify-center ${currPage?.title === item.title ? "rounded-lg bg-primary-foreground font-semibold" : ""}`}
                         >
                           {item.title === "Settings" ? (
                             <Settings
-                              className={`!size-[18px] ${currPage?.title === item.title ? "stroke-primary" : "text-muted-foreground"}`}
+                              className={`size-[18px] ${currPage?.title === item.title ? "stroke-primary" : "text-muted-foreground"}`}
                             />
                           ) : (
                             <div
-                              className={` ${currPage?.title === item.title ? "[&>svg]:!stroke-primary" : "[&>svg]:text-muted-foreground"}`}
+                              className={
+                                currPage?.title === item.title
+                                  ? "[&>svg]:stroke-primary"
+                                  : "[&>svg]:text-muted-foreground"
+                              }
                             >
                               {item.icon}
                             </div>
                           )}
                         </span>
-                        <span className="ml-2 h-max !text-wrap text-left">
-                          {item.title}
-                        </span>
+                        <span className="ml-2 text-left !text-wrap">{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
