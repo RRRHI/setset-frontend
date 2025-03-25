@@ -47,7 +47,7 @@ export  function MainContent({changeView}: {changeView: (view: string) => void})
       <h1>Welcome to the user Setting Page</h1>
       <div className="flex flex-col items-center justify-center w-full">
         {settingMenu.map((item) => (
-          <div id =  {item.url} key={item.title}  className={`py-20 m-20 w-[90%] h-[400px] bg-foreground text-primary text-3xl ${viewSection === item.url ? "!bg-primary text-foreground" : ""}`}>
+          <div id = {item.url} key={item.title}  className={`py-20 m-20 w-[90%] h-[400px] bg-foreground text-primary text-3xl ${viewSection === item.url ? "!bg-primary text-foreground" : ""}`}>
             {item.title}
           </div>
         ))}

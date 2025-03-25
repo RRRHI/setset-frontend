@@ -484,32 +484,32 @@ export const settingMenu:sideBarPageProp[] =[
   },
   {
     title: "Password",
-    url: "#Password",
+    url: "Password",
     icon: <Voicemail className={barPageStyle} />,
   },
   {
     title: "Card Information",
-    url: "#Card_Information",
+    url: "Card-Information",
     icon: <CircleHelp className={barPageStyle} />,
   },
   {
     title: "Plans",
-    url: "#Plans",
+    url: "Plans",
     icon: <ShieldAlert className={barPageStyle} />,
   },
   {
     title: "Calendar",
-    url: "#Calendar",
+    url: "Calendar",
     icon: <Settings />,
   },
   {
     title: "Invoice",
-    url: "#Invoice",
+    url: "Invoice",
     icon: <Settings />,
   },
   {
     title: "Support",
-    url: "#Support",
+    url: "Support",
     icon: <Users className={barPageStyle} />,
   },
 
