@@ -1,5 +1,6 @@
 'use client';
 import { Button } from "@/components/ui/button";
+import { LogOut } from 'lucide-react';
 
 
 export  function LogOutButton()
@@ -11,6 +12,6 @@ export  function LogOutButton()
     }
 
     return (
-        <Button variant={"outline"} onClick= {logOUt}>Log out</Button>
+        <Button className= 'bg-primary-foreground hover:bg-muted-foreground text-primary' onClick= {logOUt}><LogOut className="stroke-primary"/>Log out</Button>
     )
 }

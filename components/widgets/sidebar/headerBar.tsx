@@ -10,6 +10,8 @@ import SettingIcon from "@/lib/settings";
 import { SettingsHeader } from "@/lib/settings";
 import { sideBarPageProp } from "@/lib/types";
 import { ProfilePicture } from "./Profile";
+import {profile} from "@/lib/sampleData"
+
 
 
 interface HeaderBarProps {
@@ -41,7 +43,7 @@ const UserButton = () => {
   return true ? (
     //this is the code for the user profile button
 
-    <ProfilePicture src = "https://github.com/shadcn.png" alt="CN" className="!size-6 cursor-pointer"/>
+    <ProfilePicture src = "https://github.com/shadcn.png" alt="CN" className="!size-6 cursor-pointer" profile={profile}/>
   ) : (
     //this is the code for the login button
     <Button

@@ -29,6 +29,7 @@ import {
   MetricsData,
   ReportData,
   sideBarPageProp,
+  ProfileData
 } from "./types";
 
 export const metricsData: MetricsData = {
@@ -503,8 +504,8 @@ export const settingMenu:sideBarPageProp[] =[
     icon: <Settings />,
   },
   {
-    title: "Invoice",
-    url: "Invoice",
+    title: "Invoices",
+    url: "Invoices",
     icon: <Settings />,
   },
   {
@@ -514,6 +515,12 @@ export const settingMenu:sideBarPageProp[] =[
   },
 
 ];
+export const profile:ProfileData =
+{
+  name: "John Doe",
+  category: "Business",
+  email: "iCw3A@example.com",
+}
 
 export const reportsData: ReportData[] = [
   {

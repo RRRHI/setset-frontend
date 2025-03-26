@@ -1,14 +1,13 @@
-import Link from "next/link";
+
 import React from "react";
 
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Notification from "@/components/widgets/sidebar/notification";
 import { ChangeTheme } from "@/components/widgets/theme_Toggle";
-import SettingIcon from "@/lib/settings";
 import { SettingsHeader } from "@/lib/settings";
 import { ProfilePicture } from "./Profile";
-
+import {profile} from "@/lib/sampleData"
 
 
 const SidebarIcon = () => {
@@ -31,7 +30,7 @@ const UserButton = () => {
   
     return (
 
-        <ProfilePicture src = "https://github.com/shadcn.png" alt="CN" className="!size-6 cursor-pointer"/>
+        <ProfilePicture src = "https://github.com/shadcn.png" alt="CN" className="!size-6 cursor-pointer" profile={profile}/>
         
     )
 };
@@ -39,7 +38,7 @@ const UserButton = () => {
 export function SettingHeaderBar() {
 
   return (
-    <section className="flex w-full items-center justify-between px-6 md:px-10">
+    <section className="flex w-full items-center justify-between px-6 md:px-10  ">
       <div className="flex items-center">
         <SidebarIcon  />
       </div>
@@ -52,9 +51,6 @@ export function SettingHeaderBar() {
           className="hidden p-0 hover:bg-transparent sm:block"
           asChild
         >
-          <Link href={"/settings"} className="hidden sm:!flex">
-            <SettingIcon />
-          </Link>
         </Button>
         <Notification />
       </div>
