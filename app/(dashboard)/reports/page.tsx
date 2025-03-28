@@ -1,7 +1,7 @@
-import { Check,Construction } from "lucide-react";
+import { Check, Construction } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent,TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { reportsData } from "@/lib/sampleData";
 import { containerClassname, ReportData } from "@/lib/types";
 
@@ -41,13 +41,18 @@ export default function Reports({
                   <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
                     <div className="flex w-full flex-col gap-4 md:flex-row">
                       <div className="flex w-full flex-col gap-2">
-                        <p className="font-semibold">{report.title}</p>
-                        <p className="text-sm">{report.description}</p>
+                        <div className="flex items-center justify-between">
+                          <p className="font-semibold text-xl">{report.title}</p>
+                          <p className="text-xs text-gray-400">
+                            {report.category}
+                          </p>
+                        </div>
+                        <p className="text-base text-white/70">{report.description}</p>
                         <p className="text-xs text-gray-500">
                           Date: {report.date}
                         </p>
                       </div>
-                    </div>
+                    </div>    
                   </div>
                 </CardContent>
               </Card>
@@ -63,8 +68,13 @@ export default function Reports({
                   <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
                     <div className="flex w-full flex-col gap-4 md:flex-row">
                       <div className="flex w-full flex-col gap-2">
-                        <p className="font-semibold">{report.title}</p>
-                        <p className="text-sm">{report.description}</p>
+                        <div className="flex items-center justify-between">
+                          <p className="font-semibold text-xl">{report.title}</p>
+                          <p className="text-xs text-gray-400">
+                            {report.category}
+                          </p>
+                        </div>
+                        <p className="text-base text-white/70">{report.description}</p>
                         <p className="text-xs text-gray-500">
                           Date: {report.date}
                         </p>
