@@ -12,6 +12,6 @@ export  function LogOutButton()
     }
 
     return (
-        <Button className= 'bg-primary-foreground hover:bg-muted-foreground text-primary' onClick= {logOUt}><LogOut className="stroke-primary"/>Log out</Button>
+        <Button className= 'bg-primary-foreground hover:bg-background text-primary hover:text-foreground' onClick= {logOUt}><LogOut />Log out</Button>
     )
 }

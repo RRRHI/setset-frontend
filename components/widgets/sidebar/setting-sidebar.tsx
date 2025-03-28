@@ -40,13 +40,10 @@ export function SettingSidebar({
              <SidebarMenuItem
              key={item.url}
              onClick={() => handleScrollToSection(item.url)}
-             className={`mx-2 flex h-12 cursor-default list-none items-center justify-start gap-1 rounded-xl p-[30px] transition-transform duration-300 ease-in-out hover:translate-x-4 relative ${currView === item.url ? "[&>span>svg]:stroke-accent [&>span]:bg-primary-foreground [&>span]:text-[38px] [&>span]:text-primary-foreground [&>div]:w-2 [&>div]:bg-primary-foreground bg-foreground text-primary" : "bg-transparent"}`}
+             className={`mx-2 flex h-12 cursor-default list-none items-center justify-start gap-1 rounded-xl p-[30px]  ${currView === item.url ? "dark:bg-background bg-foreground dark:text-foreground text-primary" : "bg-transparent"}`}
            >
-             <div className="absolute left-0 h-[38px] w-2 rounded-xl self-center mx-auto my-auto"></div>
- 
-             <span className="flex size-[38px] items-center justify-center rounded-xl">
               {item.icon}
-             </span>
+            
              <p className="ml-2">{item.title}</p>
            </SidebarMenuItem>
          

@@ -25,10 +25,10 @@ import {
             <AvatarFallback>{alt}</AvatarFallback>
           </Avatar>
         </HoverCardTrigger>
-        <HoverCardContent className="flex flex-col gap-2 p-4 rounded-xl shadow-xl shadow-primary-gray text-sm">
-          <p className="font-semibold text-xl pb-3">{profile.name}</p>
+        <HoverCardContent className="flex flex-col gap-2 p-4 rounded-xl shadow-xl text-sm shadow-primary-gray">
+          <p className="font-semibold text-xl">{profile.name}</p>
           <p>{profile.category}</p>
-          <p>{profile.email}</p>
+          <p className="pt-3">{profile.email}</p>
           <LogOutButton />
         </HoverCardContent>
       </HoverCard>
