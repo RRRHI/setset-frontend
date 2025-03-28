@@ -501,12 +501,12 @@ export const settingMenu:sideBarPageProp[] =[
   {
     title: "Calendar",
     url: "Calendar",
-    icon: <Settings />,
+    icon: <Home className={barPageStyle} />,
   },
   {
     title: "Invoices",
     url: "Invoices",
-    icon: <Settings />,
+    icon: <Home className={barPageStyle} />,
   },
   {
     title: "Support",

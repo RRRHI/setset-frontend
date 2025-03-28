@@ -31,7 +31,7 @@ export function NewParent({ children }: NewParentProps) {
   }, [pathname]);
   const [currPage, setCurrPage] = useState<sideBarPageProp>(() => {
     const pageInfo = getPageInfo(pathname, items);
-    return pageInfo || { title: '', url: '', icon: <></> };
+    return pageInfo || { title: "", url: "", icon: <></> };
   });
 
   

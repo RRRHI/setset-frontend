@@ -82,7 +82,9 @@ export function AppSidebar({
                             </div>
                           )}
                         </span>
-                        <span className="ml-2 text-left !text-wrap">{item.title}</span>
+                        <span className="ml-2 !text-wrap text-left">
+                          {item.title}
+                        </span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
