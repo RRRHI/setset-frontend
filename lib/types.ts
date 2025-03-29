@@ -113,3 +113,9 @@ export interface ReportData {
   date: string;
   status: "Pending" | "Resolved";
 }
+export interface ProfileData
+{
+  name:string;
+  category:string;
+  email:string;
+}

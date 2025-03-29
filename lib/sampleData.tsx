@@ -29,6 +29,7 @@ import {
   MetricsData,
   ReportData,
   sideBarPageProp,
+  ProfileData
 } from "./types";
 
 export const metricsData: MetricsData = {
@@ -446,7 +447,7 @@ const barPageStyle = "!size-6 ";
 export const items: sideBarPageProp[] = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "/dashboard",
     icon: <Home className={barPageStyle} />,
   },
   {
@@ -475,6 +476,51 @@ export const items: sideBarPageProp[] = [
     icon: <Users className={barPageStyle} />,
   },
 ];
+
+export const settingMenu:sideBarPageProp[] =[
+  {
+    title: "Profile",
+    url: "Profile",
+    icon: <Home className={barPageStyle} />,
+  },
+  {
+    title: "Password",
+    url: "Password",
+    icon: <Voicemail className={barPageStyle} />,
+  },
+  {
+    title: "Card Information",
+    url: "Card-Information",
+    icon: <CircleHelp className={barPageStyle} />,
+  },
+  {
+    title: "Plans",
+    url: "Plans",
+    icon: <ShieldAlert className={barPageStyle} />,
+  },
+  {
+    title: "Calendar",
+    url: "Calendar",
+    icon: <Home className={barPageStyle} />,
+  },
+  {
+    title: "Invoices",
+    url: "Invoices",
+    icon: <Home className={barPageStyle} />,
+  },
+  {
+    title: "Support",
+    url: "Support",
+    icon: <Users className={barPageStyle} />,
+  },
+
+];
+export const profile:ProfileData =
+{
+  name: "John Doe",
+  category: "Business",
+  email: "iCw3A@example.com",
+}
 
 export const reportsData: ReportData[] = [
   {
