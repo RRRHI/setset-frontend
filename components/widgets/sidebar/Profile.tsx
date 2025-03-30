@@ -8,7 +8,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { ProfileData } from "@/lib/types";
-import { LogOutButton } from "./logoutButton";
+import { LogOut } from "./logoutButton";
 export function ProfilePicture({
   src,
   alt,
@@ -34,7 +34,7 @@ export function ProfilePicture({
         <p className="text-xl font-semibold">{profile.name}</p>
         <p>{profile.category}</p>
         <p className="pt-3">{profile.email}</p>
-        <LogOutButton />
+        <LogOut />
       </HoverCardContent>
     </HoverCard>
   );
