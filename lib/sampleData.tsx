@@ -529,6 +529,7 @@ export const reportsData: ReportData[] = [
     description:
       "The AI system failed to transfer the call to a human agent despite multiple attempts.",
     date: "2023-10-01",
+    category: "Call related",
     status: "Pending",
   },
   {
@@ -537,6 +538,7 @@ export const reportsData: ReportData[] = [
     description:
       "The AI provided an incorrect response to a customer query regarding account balance.",
     date: "2023-10-02",
+    category: "Other for now",
     status: "Resolved",
   },
   {
@@ -545,6 +547,7 @@ export const reportsData: ReportData[] = [
     description:
       "The AI system was down for 2 hours, causing delays in customer service.",
     date: "2023-10-03",
+    category: "Other for now",
     status: "Pending",
   },
   {
@@ -553,6 +556,7 @@ export const reportsData: ReportData[] = [
     description:
       "The AI misinterpreted a customer's request for a refund and provided incorrect information.",
     date: "2023-10-04",
+    category: "Call related",
     status: "Resolved",
   },
 ];

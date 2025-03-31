@@ -111,6 +111,7 @@ export interface ReportData {
   title: string;
   description: string;
   date: string;
+  category: "Call related" | "Other for now"
   status: "Pending" | "Resolved";
 }
 export interface ProfileData
