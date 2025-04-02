@@ -36,6 +36,8 @@ export function SettingSidebar({
                   alt="logo"
                   width={60}
                   height={60}
+                  className="h-auto"
+                  priority
                 />
                 <h1 className="text-2xl font-semibold text-secondary">
                   Setset

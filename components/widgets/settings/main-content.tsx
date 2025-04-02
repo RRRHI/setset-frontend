@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Password } from "./password";
 
 import { settingMenu } from "@/lib/sample-data";
 export function MainContent({
@@ -42,9 +43,10 @@ export function MainContent({
   // console.log("viewSection", viewSection);
 
   return (
-    <div className="flex min-w-full flex-col items-center justify-center">
+    <div className="flex min-w-full flex-col items-center justify-center px-6 md:px-10">
       <h1 className="p-5">Welcome to the user Setting Page</h1>
       <div className="flex w-full flex-col items-center justify-center">
+        <Password />
         {settingMenu.map((item) => (
           <div
             id={item.url}

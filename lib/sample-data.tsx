@@ -15,6 +15,12 @@ import {
   UsersRound,
   Voicemail,
   WalletMinimal,
+  KeyRound,
+  CreditCard,
+  CalendarCheck,
+  Files,
+  MessageSquare
+
 } from "lucide-react";
 
 import Settings from "@/lib/settings";
@@ -480,17 +486,17 @@ export const settingMenu:sideBarPageProp[] =[
   {
     title: "Profile",
     url: "Profile",
-    icon: <Home className={barPageStyle} />,
+    icon: <Users className={barPageStyle} />,
   },
   {
     title: "Password",
     url: "Password",
-    icon: <Voicemail className={barPageStyle} />,
+    icon: <KeyRound className={barPageStyle} />,
   },
   {
     title: "Card Information",
     url: "Card-Information",
-    icon: <CircleHelp className={barPageStyle} />,
+    icon: <CreditCard className={barPageStyle} />,
   },
   {
     title: "Plans",
@@ -500,17 +506,17 @@ export const settingMenu:sideBarPageProp[] =[
   {
     title: "Calendar",
     url: "Calendar",
-    icon: <Home className={barPageStyle} />,
+    icon: <CalendarCheck className={barPageStyle} />,
   },
   {
     title: "Invoices",
     url: "Invoices",
-    icon: <Home className={barPageStyle} />,
+    icon: <Files className={barPageStyle} />,
   },
   {
     title: "Support",
     url: "Support",
-    icon: <Users className={barPageStyle} />,
+    icon: <MessageSquare className={barPageStyle} />,
   },
 
 ];
