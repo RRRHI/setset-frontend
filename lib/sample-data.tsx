@@ -19,7 +19,8 @@ import {
   CreditCard,
   CalendarCheck,
   Files,
-  MessageSquare
+  MessageSquare,
+  UserRound
 
 } from "lucide-react";
 
@@ -486,7 +487,7 @@ export const settingMenu:sideBarPageProp[] =[
   {
     title: "Profile",
     url: "Profile",
-    icon: <Users className={barPageStyle} />,
+    icon: <UserRound className={barPageStyle} />,
   },
   {
     title: "Password",

@@ -5,8 +5,7 @@ import { Eye, EyeClosed } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Password() {
-
-  const [displayvalid, setDisplayvalid] = useState(false)
+  const [displayvalid, setDisplayvalid] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState({
     currentpassword: false,
     newpassword: false,
@@ -33,34 +32,33 @@ export function Password() {
       ...prev,
       [field]: !prev[field],
     }));
-
-    
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const valid = Object.values(guidelines).every(value => value === true);
+    const valid = Object.values(guidelines).every((value) => value === true);
     const { currentpassword, newpassword, confirmnewpassword } = formData;
-    
+
     if (valid) {
-        alert(alert(`"Password is valid! \n current password: ${currentpassword} \n new password: ${newpassword} \n confirm new password: ${confirmnewpassword}"`));
-    }else 
-    [
-       setDisplayvalid(true)
-    ]
+      //change password login goes here
+      alert(
+        alert(
+          `"Password is valid! \n current password: ${currentpassword} \n new password: ${newpassword} \n confirm new password: ${confirmnewpassword}"`,
+        ),
+      );
+    } else setDisplayvalid(true);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-   setDisplayvalid(false)
+    setDisplayvalid(false);
 
     setFormData((prev) => ({
       ...prev,
       [id]: value,
     }));
-    console.log('guidelines',guidelines);
-    
-    
+    console.log("guidelines", guidelines);
+
     if (id === "newpassword") {
       setGuidelines((prev) => ({
         ...prev,
@@ -106,7 +104,7 @@ export function Password() {
   return (
     <div id="Password" className="w-full">
       <h1 className="py-4 text-3xl font-bold">Change Password</h1>
-      <div className="flex w-full flex-wrap gap-4">
+      <div className="flex w-full flex-col-reverse flex-wrap gap-4 md:flex-row">
         <div className="flex-[100%] md:flex-[48%]">
           <form
             onSubmit={handleSubmit}
@@ -129,17 +127,21 @@ export function Password() {
 
             <a
               href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
+              className="ml-auto text-sm font-semibold text-setSetOrange underline-offset-4 hover:underline"
             >
               Forgot your password?
             </a>
-            <p className={`text-sm text-red-400 ${displayvalid ? "block" : "hidden" }`}>New password does not meet the required guidelines</p>
+            <p
+              className={`text-center text-sm font-semibold text-red-600 ${displayvalid ? "block" : "hidden"}`}
+            >
+              New password does not meet the required guidelines
+            </p>
             <Button type="submit">Change password</Button>
           </form>
         </div>
 
         <div className="flex-[100%] md:flex-[50%]">
-          <h3 className="pb-4 text-2xl font-bold">Password Guidelines</h3>
+          <h4 className="pb-4 text-xl font-bold">Password Guidelines</h4>
           <ul className="flex list-none flex-col gap-4 [&>li]:flex [&>li]:items-center [&>li]:gap-3">
             <li>
               <span
