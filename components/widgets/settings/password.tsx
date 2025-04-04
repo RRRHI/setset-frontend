@@ -1,4 +1,3 @@
-import { Check } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
@@ -11,13 +10,18 @@ export function Password() {
     newpassword: false,
     confirmnewpassword: false,
   });
+  const [warning, setWarning] = useState({
+    lenWarning: false,
+    combinationWarning: false,
+    matchingWarning: false,
+  });
 
   const [guidelines, setGuidelines] = useState({
     length: false,
     specialChar: false,
     hasNumber: false,
     hasLetter: false,
-    match: false,
+    match: true,
   });
 
   const [formData, setFormData] = useState({
@@ -41,37 +45,53 @@ export function Password() {
 
     if (valid) {
       //change password login goes here
+
       alert(
-        alert(
-          `"Password is valid! \n current password: ${currentpassword} \n new password: ${newpassword} \n confirm new password: ${confirmnewpassword}"`,
-        ),
+        `"Password is valid! \n current password: ${currentpassword} \n new password: ${newpassword} \n confirm new password: ${confirmnewpassword}"`,
       );
     } else setDisplayvalid(true);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
+
+
+    const updatedForm = {
+      ...formData,
+      [id]: value,
+    };
+
+    setFormData(updatedForm);
+
+   
     setDisplayvalid(false);
 
-    setFormData((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-    console.log("guidelines", guidelines);
+    if (id === "newpassword" || id === "confirmnewpassword") {
+      const newPassword = updatedForm.newpassword;
+      const confirmPassword = updatedForm.confirmnewpassword;
 
-    if (id === "newpassword") {
-      setGuidelines((prev) => ({
-        ...prev,
-        length: value.length >= 8,
-        specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(value),
-        hasNumber: /\d/.test(value),
-        hasLetter: /[a-zA-Z]/.test(value),
-      }));
-    } else if (id === "confirmnewpassword") {
-      setGuidelines((prev) => ({
-        ...prev,
-        match: value === formData.newpassword,
-      }));
+      
+      const length = newPassword.length >= 8;
+      const specialChar = /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);
+      const hasNumber = /\d/.test(newPassword);
+      const hasLetter = /[a-zA-Z]/.test(newPassword);
+      const match = newPassword === confirmPassword;
+
+      setGuidelines({
+        length,
+        specialChar,
+        hasNumber,
+        hasLetter,
+        match,
+      });
+
+      // Only show warnings for fields that have been touched
+      setWarning({
+        lenWarning: newPassword.length > 0 && !length,
+        combinationWarning:
+          newPassword.length > 0 && !(specialChar && hasNumber && hasLetter),
+        matchingWarning: confirmPassword.length > 0 && !match,
+      });
     }
   };
 
@@ -105,7 +125,7 @@ export function Password() {
     <div id="Password" className="w-full">
       <h1 className="py-4 text-3xl font-bold">Change Password</h1>
       <div className="flex w-full flex-col-reverse flex-wrap gap-4 md:flex-row">
-        <div className="flex-[100%] md:flex-[48%]">
+        <div className="w-full">
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-5 font-medium [&>label]:text-lg"
@@ -118,16 +138,32 @@ export function Password() {
             <label htmlFor="newpassword">
               New Password
               {passwordInput("newpassword")}
+              <p
+                className={`text-sm font-semibold text-red-500 ${warning.lenWarning ? "block" : "hidden"}`}
+              >
+                Password Must be at least 8 characters long
+              </p>
+              <p
+                className={`text-sm font-semibold text-red-500 ${warning.combinationWarning ? "block" : "hidden"}`}
+              >
+                Password must contain a combination of letters, numbers and
+                special characters (!$@&)
+              </p>
             </label>
 
             <label htmlFor="confirmnewpassword">
               Confirm New Password
               {passwordInput("confirmnewpassword")}
+              <p
+                className={`text-sm font-semibold text-red-500 ${warning.matchingWarning ? "block" : "hidden"}`}
+              >
+                Confirmed password does not match
+              </p>
             </label>
 
             <a
               href="#"
-              className="ml-auto text-sm font-semibold text-setSetOrange underline-offset-4 hover:underline"
+              className="text-sm font-semibold text-setSetOrange underline-offset-4 hover:underline"
             >
               Forgot your password?
             </a>
@@ -136,41 +172,13 @@ export function Password() {
             >
               New password does not meet the required guidelines
             </p>
-            <Button type="submit">Change password</Button>
+            <Button
+              type="submit"
+              className="h-11 text-xl  shadow-lg shadow-primary-gray bg-sidebar-ring hover:bg-chart-2"
+            >
+              change password
+            </Button>
           </form>
-        </div>
-
-        <div className="flex-[100%] md:flex-[50%]">
-          <h4 className="pb-4 text-xl font-bold">Password Guidelines</h4>
-          <ul className="flex list-none flex-col gap-4 [&>li]:flex [&>li]:items-center [&>li]:gap-3">
-            <li>
-              <span
-                className={`size-6 rounded-full bg-muted-foreground ${guidelines.length ? "!bg-green-500" : ""}`}
-              >
-                <Check />
-              </span>
-              <p>Password must be at least 8 characters</p>
-            </li>
-            <li>
-              <span
-                className={`size-6 rounded-full bg-muted-foreground ${guidelines.specialChar && guidelines.hasLetter && guidelines.hasNumber ? "!bg-green-500" : ""}`}
-              >
-                <Check />
-              </span>
-              <p>
-                Password must contain a combination of letters, numbers and
-                special characters (!$@&)
-              </p>
-            </li>
-            <li>
-              <span
-                className={`size-6 rounded-full bg-muted-foreground ${guidelines.match ? "!bg-green-500" : ""}`}
-              >
-                <Check />
-              </span>
-              <p>Confirmed password matches</p>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
