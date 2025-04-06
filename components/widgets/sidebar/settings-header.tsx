@@ -35,7 +35,7 @@ const UserButton = () => {
 
 export function SettingHeaderBar() {
   return (
-    <section className="flex w-full items-center justify-between px-6 md:px-10">
+    <section className="flex w-full items-center justify-between px-4">
       <div className="flex items-center">
         <SidebarIcon />
       </div>

@@ -62,7 +62,7 @@ const UserButton = () => {
 
 export function HeaderBar({ currPage }: HeaderBarProps) {
   return (
-    <header className="flex w-full items-center justify-between px-6 md:px-10">
+    <header className="flex w-full items-center justify-between px-4">
       <div className="flex items-center">
         <SidebarIcon currPage={currPage} />
       </div>

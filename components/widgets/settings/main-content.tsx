@@ -43,7 +43,7 @@ export function MainContent({
   // console.log("viewSection", viewSection);
 
   return (
-    <div className="flex min-w-full flex-col items-center justify-center px-6 md:px-10">
+    <div className="flex min-w-full flex-col items-center justify-center px-4">
       <h1 className="p-5">Welcome to the user Setting Page</h1>
       <div className="flex w-full flex-col items-center justify-center">
         <Password />
