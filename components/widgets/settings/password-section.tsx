@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export function Password() {
   const [passwordVisibility, setPasswordVisibility] = useState({
@@ -116,55 +117,57 @@ export function Password() {
   };
 
   return (
-    <div id="Password" className="flex w-full flex-col justify-start">
-      <h1 className="py-4 text-3xl font-bold">Change Password</h1>
-
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-5 font-medium lg:w-[450px] [&>label]:text-lg"
-      >
-        <label htmlFor="currentpassword">
-          Current Password
-          {passwordInput("currentpassword")}
-        </label>
-
-        <label htmlFor="newpassword">
-          New Password
-          {passwordInput("newpassword")}
-          <p
-            className={`text-sm text-red-500 ${warning.lenWarning ? "block" : "hidden"}`}
-          >
-            Password Must be at least 8 characters long
-          </p>
-          <p
-            className={`text-sm text-red-500 ${warning.combinationWarning ? "block" : "hidden"}`}
-          >
-            Password must contain a combination of letters, numbers and special
-            characters (!$@&)
-          </p>
-        </label>
-
-        <label htmlFor="confirmnewpassword">
-          Confirm New Password
-          {passwordInput("confirmnewpassword")}
-          <p
-            className={`text-sm text-red-500 ${warning.matchingWarning ? "block" : "hidden"}`}
-          >
-            Confirmed password does not match
-          </p>
-        </label>
-
-        <a href="#" className="w-fit text-sm text-red-500 hover:underline">
-          Forgot your password?
-        </a>
-
-        <Button
-          type="submit"
-          className="h-11 w-[225px] self-end rounded-xl bg-[#2a870b] text-lg shadow-sm hover:bg-[#2a870b]/60"
-        >
+      <Card id="Password" className="flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground ">
+        <CardHeader className="p-0 text-xl font-normal md:text-2xl lg:text-3xl">
           Change Password
-        </Button>
-      </form>
-    </div>
+        </CardHeader>
+
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-5 font-medium [&>label]:text-lg lg:w-[50%] lg:min-w-[718px] "
+        >
+          <label htmlFor="currentpassword">
+            Current Password
+            {passwordInput("currentpassword")}
+          </label>
+
+          <label htmlFor="newpassword">
+            New Password
+            {passwordInput("newpassword")}
+            <p
+              className={`text-sm text-red-500 ${warning.lenWarning ? "block" : "hidden"}`}
+            >
+              Password Must be at least 8 characters long
+            </p>
+            <p
+              className={`text-sm text-red-500 ${warning.combinationWarning ? "block" : "hidden"}`}
+            >
+              Password must contain a combination of letters, numbers and
+              special characters (!$@&)
+            </p>
+          </label>
+
+          <label htmlFor="confirmnewpassword">
+            Confirm New Password
+            {passwordInput("confirmnewpassword")}
+            <p
+              className={`text-sm text-red-500 ${warning.matchingWarning ? "block" : "hidden"}`}
+            >
+              Confirmed password does not match
+            </p>
+          </label>
+
+          <a href="#" className="w-fit text-sm text-red-500 hover:underline">
+            Forgot your password?
+          </a>
+
+          <Button
+            type="submit"
+            className="h-11 w-[225px] self-end rounded-xl bg-[#2a870b] text-lg shadow-sm shadow-primary-gray hover:bg-[#2a870b]/60"
+          >
+            Change Password
+          </Button>
+        </form>
+      </Card>
   );
 }

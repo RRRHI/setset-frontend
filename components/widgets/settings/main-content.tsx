@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Password } from "./password";
+import { Password } from "./password-section";
 
 import { settingMenu } from "@/lib/sample-data";
 export function MainContent({
