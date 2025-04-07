@@ -117,14 +117,17 @@ export function Password() {
   };
 
   return (
-      <Card id="Password" className="flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground ">
-        <CardHeader className="p-0 text-xl font-normal md:text-2xl lg:text-3xl">
-          Change Password
-        </CardHeader>
-
+    <Card
+      id="Password"
+      className="flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground "
+    >
+      <CardHeader className="p-0 text-xl font-normal md:text-2xl lg:text-3xl">
+        Change Password
+      </CardHeader>
+      <CardContent className="p-0">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-5 font-medium [&>label]:text-lg lg:w-[50%] lg:min-w-[718px] "
+          className="flex flex-col gap-5 font-medium lg:w-1/2 lg:min-w-[718px] [&>label]:text-lg"
         >
           <label htmlFor="currentpassword">
             Current Password
@@ -168,6 +171,7 @@ export function Password() {
             Change Password
           </Button>
         </form>
-      </Card>
+      </CardContent>
+    </Card>
   );
 }
