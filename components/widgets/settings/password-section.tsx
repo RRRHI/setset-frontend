@@ -119,7 +119,7 @@ export function Password() {
   return (
     <Card
       id="Password"
-      className="flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground "
+      className="flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground"
     >
       <CardHeader className="p-0 text-xl font-normal md:text-2xl lg:text-3xl">
         Change Password
@@ -127,15 +127,15 @@ export function Password() {
       <CardContent className="p-0">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-5 font-medium lg:w-1/2 lg:min-w-[718px] [&>label]:text-lg"
+          className="flex flex-col gap-4 font-medium lg:w-1/2 lg:min-w-[718px] [&>label>p]:font-bold [&>label]:!gap-1 [&>label]:text-[16px] [&>label]:text-lg"
         >
           <label htmlFor="currentpassword">
-            Current Password
+            <p>Current Password</p>
             {passwordInput("currentpassword")}
           </label>
 
           <label htmlFor="newpassword">
-            New Password
+            <p>New Password</p>
             {passwordInput("newpassword")}
             <p
               className={`text-sm text-red-500 ${warning.lenWarning ? "block" : "hidden"}`}
@@ -151,7 +151,7 @@ export function Password() {
           </label>
 
           <label htmlFor="confirmnewpassword">
-            Confirm New Password
+            <p>Confirm New Password</p>
             {passwordInput("confirmnewpassword")}
             <p
               className={`text-sm text-red-500 ${warning.matchingWarning ? "block" : "hidden"}`}
@@ -166,7 +166,7 @@ export function Password() {
 
           <Button
             type="submit"
-            className="h-11 w-[225px] self-end rounded-xl bg-[#2a870b] text-lg shadow-sm shadow-primary-gray hover:bg-[#2a870b]/60"
+            className="w-[225px] self-end rounded-xl bg-[#2a870b] shadow-sm hover:bg-[#2a870b]/60"
           >
             Change Password
           </Button>
