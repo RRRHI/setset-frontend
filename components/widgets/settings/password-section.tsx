@@ -127,15 +127,15 @@ export function Password() {
       <CardContent className="p-0">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 font-medium lg:w-1/2 lg:min-w-[718px] [&>label>p]:font-bold [&>label]:!gap-1 [&>label]:text-[16px] [&>label]:text-lg"
+          className="flex flex-col gap-4 font-medium lg:w-1/2 lg:min-w-[718px]"
         >
-          <label htmlFor="currentpassword">
-            <p>Current Password</p>
+          <div className="flex flex-col !gap-1">
+            <p className="font-bold">Current Password</p>
             {passwordInput("currentpassword")}
-          </label>
+          </div>
 
-          <label htmlFor="newpassword">
-            <p>New Password</p>
+          <div className="flex flex-col !gap-1">
+            <p className="font-bold">New Password</p>
             {passwordInput("newpassword")}
             <p
               className={`text-sm text-red-500 ${warning.lenWarning ? "block" : "hidden"}`}
@@ -148,17 +148,17 @@ export function Password() {
               Password must contain a combination of letters, numbers and
               special characters (!$@&)
             </p>
-          </label>
+          </div>
 
-          <label htmlFor="confirmnewpassword">
-            <p>Confirm New Password</p>
+          <div className="flex flex-col !gap-1">
+            <p className="font-bold">Confirm New Password</p>
             {passwordInput("confirmnewpassword")}
             <p
               className={`text-sm text-red-500 ${warning.matchingWarning ? "block" : "hidden"}`}
             >
               Confirmed password does not match
             </p>
-          </label>
+          </div>
 
           <a href="#" className="w-fit text-sm text-red-500 hover:underline">
             Forgot your password?
