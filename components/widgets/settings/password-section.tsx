@@ -166,7 +166,7 @@ export function Password() {
 
           <Button
             type="submit"
-            className="w-[225px] self-end rounded-xl bg-[#2a870b] shadow-sm hover:bg-[#2a870b]/60"
+            className="w-[225px] self-end rounded-lg bg-[#2a870b] shadow-sm hover:bg-[#2a870b]/60"
           >
             Change Password
           </Button>
