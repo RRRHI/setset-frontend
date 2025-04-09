@@ -121,7 +121,7 @@ export function Password() {
       id="Password"
       className="flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground"
     >
-      <CardHeader className="p-0 text-xl font-normal md:text-2xl lg:text-3xl">
+      <CardHeader className="text-xl md:text-2xl lg:text-3xl px-0 pb-7 pt-0">
         Change Password
       </CardHeader>
       <CardContent className="p-0">
