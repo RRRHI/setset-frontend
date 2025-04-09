@@ -1,14 +1,15 @@
+import { Input } from "@/components/ui/input";
 interface EditableFieldProps {
   value: string;
   placeholder?: string;
   componentFormat?: string;
-  isEditing?: boolean;
+  isEditing: boolean;
   fieldName?: string;
   newValue: string; // The value of the input from the parent state
   setNewValue: (value: string) => void; // A function to update the value from the parent
 }
 
-const EditableField: React.FC<EditableFieldProps> = ({
+const EditableField = ({
   value,
   placeholder = "Enter text...",
   componentFormat = "",
@@ -16,18 +17,17 @@ const EditableField: React.FC<EditableFieldProps> = ({
   fieldName = "Field",
   newValue ="",
   setNewValue,
-}) => {
-
+}: EditableFieldProps) => {
   return (
     <div className={componentFormat}>
       {isEditing ? (
         <div className="flex w-full flex-col gap-1 text-base">
           <p>{fieldName}</p>
-          <input
+          <Input
             placeholder={placeholder}
             value={newValue}
             onChange={(e) => setNewValue(e.target.value)}
-            className="w-full rounded-lg bg-card p-2 pl-4 focus-visible:outline-none focus-visible:ring-0"
+            className="w-full border text-sm font-normal focus-visible:outline-none focus-visible:ring-0"
           />
         </div>
       ) : (
