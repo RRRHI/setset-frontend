@@ -11,7 +11,7 @@ import { ProfilePicture } from "./header-profile";
 
 const SidebarIcon = () => {
   return (
-    <SidebarTrigger className="flex w-full items-center gap-5 font-semibold text-foreground hover:bg-transparent md:text-2xl">
+    <SidebarTrigger className="flex w-full items-center gap-5 text-foreground hover:bg-transparent md:text-2xl">
       <span className="rounded-xl bg-primary-foreground p-2">
         <SettingsHeader />
       </span>

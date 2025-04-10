@@ -514,11 +514,7 @@ export const settingMenu:sideBarPageProp[] =[
     url: "Invoices",
     icon: <Files className={barPageStyle} />,
   },
-  {
-    title: "Support",
-    url: "Support",
-    icon: <MessageSquare className={barPageStyle} />,
-  },
+
 
 ];
 export const profile:ProfileData =

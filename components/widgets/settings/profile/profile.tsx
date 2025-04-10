@@ -14,7 +14,7 @@ import { ProfileImage } from "@/components/widgets/settings/profile/profile-imag
 import EditableField from "./editable-field";
 
 const profileComponentFormat =
-  "flex flex-col w-full items-start gap-1 font-bold";
+  "flex flex-col w-full items-start gap-1";
 
 const dropDownButtonFormat =
   "justify-between w-full border border-input text-sm text-card-foreground focus-visible:ring-0";
@@ -169,7 +169,7 @@ export function ProfilePage() {
               </DropdownMenu>
             </div>
           ) : (
-            <p className="font-bold">{category}</p>
+            <p >{category}</p>
           )}
 
           <EditableField

@@ -43,9 +43,12 @@ export function AppSidebar({
                   width={60}
                   height={60}
                 />
-                <h1 className="text-2xl font-semibold text-secondary">
+                <a
+                  href="/dashboard"
+                  className="text-2xl font-semibold text-secondary"
+                >
                   Setset
-                </h1>
+                </a>
               </div>
             </div>
           </SidebarGroupLabel>

@@ -196,7 +196,7 @@ export default function DataTable() {
       <div
         className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4" : ""}`}
       >
-        <p className="text-base font-semibold md:text-2xl lg:text-3xl">
+        <p className="text-xl md:text-2xl lg:text-3xl">
           Call history and transcripts
         </p>
 

@@ -121,7 +121,7 @@ export function Password() {
       id="Password"
       className="flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground"
     >
-      <CardHeader className="text-xl md:text-2xl lg:text-3xl px-0 pb-7 pt-0">
+      <CardHeader className="px-0 pb-7 pt-0 text-xl md:text-2xl lg:text-3xl">
         Change Password
       </CardHeader>
       <CardContent className="p-0">
@@ -130,12 +130,12 @@ export function Password() {
           className="flex flex-col gap-4 font-medium lg:w-1/2 lg:min-w-[718px]"
         >
           <div className="flex flex-col !gap-1">
-            <p className="font-bold">Current Password</p>
+            <p>Current Password</p>
             {passwordInput("currentpassword")}
           </div>
 
           <div className="flex flex-col !gap-1">
-            <p className="font-bold">New Password</p>
+            <p>New Password</p>
             {passwordInput("newpassword")}
             <p
               className={`text-sm text-red-500 ${warning.lenWarning ? "block" : "hidden"}`}
@@ -151,7 +151,7 @@ export function Password() {
           </div>
 
           <div className="flex flex-col !gap-1">
-            <p className="font-bold">Confirm New Password</p>
+            <p>Confirm New Password</p>
             {passwordInput("confirmnewpassword")}
             <p
               className={`text-sm text-red-500 ${warning.matchingWarning ? "block" : "hidden"}`}
