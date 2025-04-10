@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Password } from "./password-section";
 
 import { settingMenu } from "@/lib/sample-data";
-
+import { Invoices } from "@/components/widgets/invoices/invoices";
 import { ProfilePage } from "./profile/profile";
 export function MainContent({
   changeView,
@@ -53,11 +53,17 @@ export function MainContent({
           <div
             id={item.url}
             key={item.title}
-            className={`w-full`}
+            className={`w-full p-4`}
           >
             {item.url !== "Profile" && (
               <p>{item.title}</p>
-              )}
+            )}
+            {item.url==="Invoices" && (
+              <>
+                {/* <Invoices plan="yearly" /> */}
+                <Invoices plan="monthly" />
+              </>
+            )}
           </div>
         ))}
       </div>

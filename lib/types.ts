@@ -113,10 +113,15 @@ export interface ReportData {
   date: string;
   category: "Call related" | "Other for now"
   status: "Pending" | "Resolved";
-}
+};
 export interface ProfileData
 {
   name:string;
   category:string;
   email:string;
+};
+export interface InvoiceData {
+  id: string;
+  date: string;
+  transcriptURL: string;
 }
