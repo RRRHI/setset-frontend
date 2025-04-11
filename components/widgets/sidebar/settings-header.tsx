@@ -9,14 +9,14 @@ import { SettingsHeader } from "@/lib/settings";
 
 import { ProfilePicture } from "./header-profile";
 
-const SidebarIcon = () => {
+const SidebarIcon = ({View}:{View:string}) => {
   return (
     <SidebarTrigger className="flex w-full items-center gap-5 text-foreground hover:bg-transparent md:text-2xl">
       <span className="rounded-xl bg-primary-foreground p-2">
         <SettingsHeader />
       </span>
       <p className="max-w-24 text-pretty text-left leading-none sm:max-w-full">
-        Settings
+        {View || "Settings"}
       </p>
     </SidebarTrigger>
   );
@@ -33,11 +33,11 @@ const UserButton = () => {
   );
 };
 
-export function SettingHeaderBar() {
+export function SettingHeaderBar({currView}: {currView: string}) {
   return (
-    <section className="flex w-full items-center justify-between px-4">
+    <section className="flex w-full items-center justify-between p-4">
       <div className="flex items-center">
-        <SidebarIcon />
+        <SidebarIcon View={currView}/>
       </div>
 
       <div className="flex items-center gap-5 md:gap-[30px]">

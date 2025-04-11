@@ -19,10 +19,21 @@ export function SettingSidebar({
 }) {
   const handleScrollToSection = (id: string) => {
     const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "center" });
+    if(section)
+    {
+      const sectionPos = section.getBoundingClientRect().top
+      const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+      const offsetposition = sectionPos + scrollPos-80
+      // console.log("sectionPos", sectionPos, "scrollPos", scrollPos, "offsetposition", offsetposition);
+      
+
+      window.scrollTo({
+        top:offsetposition,
+        behavior: "smooth",
+      })
     }
   };
+  
 
   return (
     <Sidebar variant="floating" className="rounded-2xl">

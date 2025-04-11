@@ -87,7 +87,7 @@ export function ProfilePage() {
     }
   };
   return (
-    <Card className={`flex p-6 ${isEditing ? "" : "pb-2"}`} id="Profile">
+    <Card className={`flex p-6 ${isEditing ? "" : ""}`} id="Profile">
       <div className="flex w-full flex-col items-start gap-4">
         <ProfileImage
           initialImage="/images/logo.png"
@@ -108,7 +108,8 @@ export function ProfilePage() {
               />
               {!isEditing && (
                 <Button
-                  className="flex size-8 rounded-lg"
+                  variant={"ghost"}
+                  className="flex size-8 rounded-lg hover:bg-transparent"
                   onClick={() => setIsEditing(true)}
                 >
                   <Pencil></Pencil>

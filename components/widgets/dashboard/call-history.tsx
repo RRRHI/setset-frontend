@@ -192,7 +192,7 @@ export default function DataTable() {
   });
 
   return (
-    <div id="call-history" className="rounded-lg bg-card p-10">
+    <div id="call-history" className="rounded-lg bg-card p-6 shadow-md shadow-primary-gray">
       <div
         className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4" : ""}`}
       >
@@ -269,8 +269,8 @@ export default function DataTable() {
                     className="w-[200px]"
                   />
                   <div className="flex justify-between">
-                    <span className="font-bold">{durationRange[0]} min</span>
-                    <span className="font-bold">
+                    <span >{durationRange[0]} min</span>
+                    <span >
                       {Math.ceil(durationRange[1])} min
                     </span>
                   </div>

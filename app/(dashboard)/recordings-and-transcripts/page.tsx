@@ -192,17 +192,17 @@ export default function Recordings() {
   }, [table]);
 
   return (
-    <div id="recordings-and-transcripts" className={containerClassname}>
-      <div className="rounded-lg bg-card p-10">
+
+      <div className="rounded-lg bg-card p-6 !shadow-md !shadow-primary-gray m-4">
         <div
-          className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4" : ""}`}
+          className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4 mb-6" : ""}`}
         >
-          <p className="text-base font-semibold md:text-2xl lg:text-3xl">
+          <p className="text-xl md:text-2xl lg:text-3xl">
             Call history and transcripts
           </p>
 
           <div
-            className={`mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}
+            className={`flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}
           >
             <Input
               placeholder="Search"
@@ -214,7 +214,7 @@ export default function Recordings() {
             />
 
             {/* Dropdown to filter by category */}
-            <DropdownMenu>
+            <DropdownMenu >
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
@@ -253,7 +253,7 @@ export default function Recordings() {
                   variant="outline"
                   className="w-fit justify-between bg-inherit"
                 >
-                  Filter <Filter className="size-4" />
+                  Filter <Filter className="size-4 " />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-background">
@@ -284,7 +284,7 @@ export default function Recordings() {
             </DropdownMenu>
           </div>
         </div>
-        <ScrollArea className="h-[600px] rounded-md border p-7">
+        <ScrollArea className="h-[600px] rounded-md border">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
@@ -356,6 +356,5 @@ export default function Recordings() {
           </div>
         </div>
       </div>
-    </div>
   );
 }

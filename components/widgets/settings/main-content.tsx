@@ -13,59 +13,59 @@ export function MainContent({
 }) {
   // const [viewSection, setViewSection] = useState<string>("");
   const sectionIds = settingMenu.map((item) => item.url);
-  // console.log("sectionId", sectionIds);
+
+
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // setViewSection(entry.target.id);
-            changeView(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 1.0,
-      },
-    );
+    const options = {
+     //switching to multiple thresholds
+      threshold: [0.2, 0.5, 0.9],
+     
+      rootMargin: "20px 0px -20% 0px"
+    };
+  
+    
+    const visibleSections = new Map();
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          visibleSections.set(entry.target.id, entry.intersectionRatio);
+        } else {
+          visibleSections.delete(entry.target.id);
+        }
+        
+        if (visibleSections.size > 0) {
+          const mostVisibleSection = [...visibleSections.entries()].reduce(
+            (prev, current) => (current[1] > prev[1] ? current : prev)
+          );
+          
+          changeView(mostVisibleSection[0]);
+          console.log("viewSection", mostVisibleSection[0], "ratio:", mostVisibleSection[1]);
+        }
+      });
+    }, options);
+
     sectionIds.forEach((id) => {
       const section = document.getElementById(id);
       if (section) {
         observer.observe(section);
-        //  console.log('here is the section', section);
       }
     });
+  
 
     return () => {
       observer.disconnect();
     };
   }, [sectionIds, changeView]);
 
-  // console.log("viewSection", viewSection);
 
   return (
-    <div className="flex flex-col items-start">
-      <div className="flex w-full flex-col gap-96">
+    <div className="flex flex-col items-start p-4">
+      <div className="flex w-full flex-col gap-10">
         <ProfilePage />
         <Password/>
-        {settingMenu.map((item) => (
-          <div
-            id={item.url}
-            key={item.title}
-            className={`w-full p-4`}
-          >
-            {item.url !== "Profile" && (
-              <p>{item.title}</p>
-            )}
-            {item.url==="Invoices" && (
-              <>
-                {/* <Invoices plan="yearly" /> */}
-                <Invoices plan="monthly" />
-              </>
-            )}
-          </div>
-        ))}
+        <Invoices plan="monthly" />
       </div>
     </div>
   );
