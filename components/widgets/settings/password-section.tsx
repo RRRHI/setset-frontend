@@ -1,8 +1,9 @@
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 export function Password() {
   const [passwordVisibility, setPasswordVisibility] = useState({

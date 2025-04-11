@@ -101,25 +101,28 @@ export type sideBarPageProp = {
   url: string;
   icon: React.ReactNode;
 };
-export type settingSVGProp ={
+export type settingSVGProp = {
   fillProp: string;
   circleProp: string;
   className: string;
 };
+
+export const REPORT_CATEGORIES = ["Call related", "Invoice", "Other"] as const;
+export type ReportCategory = (typeof REPORT_CATEGORIES)[number];
+
 export interface ReportData {
   id: string;
   title: string;
   description: string;
   date: string;
-  category: "Call related" | "Other for now"
+  category: ReportCategory;
   status: "Pending" | "Resolved";
-};
-export interface ProfileData
-{
-  name:string;
-  category:string;
-  email:string;
-};
+}
+export interface ProfileData {
+  name: string;
+  category: string;
+  email: string;
+}
 export interface InvoiceData {
   id: string;
   date: string;

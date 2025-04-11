@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Password } from "./password-section";
+import { useEffect } from "react";
 
 import { settingMenu } from "@/lib/sample-data";
-import { Invoices } from "@/components/widgets/invoices/invoices";
+
+import { Invoices } from "./invoices";
+import { Password } from "./password-section";
 import { ProfilePage } from "./profile/profile";
 export function MainContent({
   changeView,
@@ -64,8 +65,18 @@ export function MainContent({
     <div className="flex flex-col items-start p-4">
       <div className="flex w-full flex-col gap-10">
         <ProfilePage />
-        <Password/>
-        <Invoices plan="monthly" />
+        <Password />
+        {settingMenu.map((item) => (
+          <div id={item.url} key={item.title} className={`w-full p-4`}>
+            {item.url !== "Profile" && <p>{item.title}</p>}
+            {item.url === "Invoices" && (
+              <>
+                {/* <Invoices plan="yearly" /> */}
+                <Invoices plan="monthly" />
+              </>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

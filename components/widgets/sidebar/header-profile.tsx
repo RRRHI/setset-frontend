@@ -7,6 +7,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { ProfileData } from "@/lib/types";
+
 import { LogOut } from "./logout-button";
 export function ProfilePicture({
   src,

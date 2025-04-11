@@ -1,28 +1,26 @@
 import {
+  CalendarCheck,
   CircleHelp,
   ClipboardCheck, //end of the day notification
+  CreditCard,
+  Files,
   Home,
+  KeyRound,
   // these are notifications icons
   MessageCircleMore, //message notification
   MessageCircleQuestion, //most asked faq question
+  MessageSquare,
   MonitorCheck,
   PackagePlus, //new feature notification
   PartyPopper, //milestone notificaion
   ShieldAlert,
   ThumbsUp,
   TimerReset,
+  UserRound,
   Users,
   UsersRound,
   Voicemail,
-  WalletMinimal,
-  KeyRound,
-  CreditCard,
-  CalendarCheck,
-  Files,
-  MessageSquare,
-  UserRound
-
-} from "lucide-react";
+  WalletMinimal} from "lucide-react";
 
 import Settings from "@/lib/settings";
 
@@ -33,12 +31,11 @@ import {
   BusinessStat,
   CallRecording,
   FaqData,
+  InvoiceData,
   MetricsData,
   ProfileData,
   ReportData,
-  sideBarPageProp,
-  InvoiceData
-} from "./types";
+  sideBarPageProp} from "./types";
 
 export const metricsData: MetricsData = {
   callMinutes: { minutes: 100227, difference: -1.4 },

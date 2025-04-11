@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown,Phone, ScrollText } from "lucide-react";
+import { ChevronDown, Phone, ScrollText } from "lucide-react";
 import { useState } from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { REPORT_CATEGORIES } from "@/lib/types";
 
 import { Button } from "../ui/button";
 import {
@@ -21,17 +22,21 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 
 export default function Footer() {
   const [problem, setProblem] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [callID, setCallID] = useState("");
+  const [invoiceID, setInvoiceID] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const resetFields = () => {
     setProblem("");
     setCategory("");
     setCallID("");
+    setInvoiceID("");
+    setDescription("");
   };
 
   const handleOpenChange = (open: boolean) => {
@@ -73,7 +78,7 @@ export default function Footer() {
                 </DialogDescription>
               </DialogHeader>
 
-              <div className="mt-4 flex flex-col gap-4">
+              <div className="mt-4 flex w-full flex-col gap-4">
                 <Input
                   id="problem"
                   placeholder="Problem"
@@ -81,20 +86,20 @@ export default function Footer() {
                   onChange={(e) => setProblem(e.target.value)}
                   className="text-sm"
                 />
-
-                <Input
+                <Textarea
                   id="description"
                   placeholder="Explain the problem in details"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="text-sm"
+                  className="resize-none text-sm"
+                  rows={2}
                 />
 
                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
+                  <DropdownMenuTrigger asChild className="w-full">
                     <Button
                       variant="outline"
-                      className="w-fit justify-between bg-inherit"
+                      className="w-full justify-between bg-inherit"
                     >
                       {category || "Category"}
                       <ChevronDown className="size-4" />
@@ -102,9 +107,12 @@ export default function Footer() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="center"
-                    className="rounded-lg bg-background p-2"
+                    className="w-full rounded-lg bg-background p-2"
+                    style={{
+                      width: "var(--radix-dropdown-menu-trigger-width)",
+                    }} // to match the width of the trigger button
                   >
-                    {["Call Related", "Other"].map((status) => (
+                    {REPORT_CATEGORIES.map((status) => (
                       <DropdownMenuCheckboxItem
                         key={status}
                         checked={category === status}
@@ -124,7 +132,17 @@ export default function Footer() {
                     placeholder="Call ID"
                     value={callID}
                     onChange={(e) => setCallID(e.target.value)}
-                    className="w-fit text-sm"
+                    className="text-sm"
+                  />
+                )}
+                {category === "Invoice" && (
+                  <Input
+                    id="invoiceID"
+                    type="number"
+                    placeholder="Invoice ID"
+                    value={invoiceID}
+                    onChange={(e) => setInvoiceID(e.target.value)}
+                    className="text-sm"
                   />
                 )}
               </div>
