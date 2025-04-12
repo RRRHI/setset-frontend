@@ -87,14 +87,14 @@ export function ProfilePage() {
     }
   };
   return (
-    <Card className={`flex p-6 ${isEditing ? "" : ""}`} id="Profile">
+    <Card className={`flex p-6 min-h-[calc(100vh-150px)] ${isEditing ? "" : ""}`} id="Profile">
       <div className="flex w-full flex-col items-start gap-4">
         <ProfileImage
           initialImage="/images/logo.png"
           imageSize={imageSize}
           isEditing={isEditing}
         />
-        <div className="flex w-full flex-col gap-4 lg:w-1/2 lg:min-w-[718px]">
+        <div className="flex w-full flex-col gap-4 lg:w-1/2 lg:min-w-[700px]">
           <div className={`flex flex-col ${isEditing ? "gap-4" : "gap-1"}`}>
             <div className="flex flex-row justify-start gap-4">
               <EditableField

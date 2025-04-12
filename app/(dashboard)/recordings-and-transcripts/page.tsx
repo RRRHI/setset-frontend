@@ -1,5 +1,5 @@
 "use client";
-
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -37,6 +37,7 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording, containerClassname } from "@/lib/types";
+import {cardHeader, card} from "@/lib/constant"
 
 const RecordingCell = ({
   recordingUrl,
@@ -193,13 +194,13 @@ export default function Recordings() {
 
   return (
 
-      <div className="rounded-lg bg-card p-6 !shadow-md !shadow-primary-gray m-4">
+      <Card className={card}>
         <div
           className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4 mb-6" : ""}`}
         >
-          <p className="text-xl md:text-2xl lg:text-3xl">
+          <CardHeader className={cardHeader}>
             Call history and transcripts
-          </p>
+          </CardHeader>
 
           <div
             className={`flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}
@@ -355,6 +356,6 @@ export default function Recordings() {
             ))}
           </div>
         </div>
-      </div>
+      </Card>
   );
 }

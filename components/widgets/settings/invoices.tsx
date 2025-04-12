@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { businessInvoice } from "@/lib/sample-data";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const ITEMS_PER_PAGE = 12;
 const MAX_PAGE_BUTTONS = 5
@@ -121,13 +122,13 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
   };
 
   return ( 
-    <div className="rounded-lg bg-card p-6 shadow-md shadow-primary-gray">
+    <Card id="Invoices" className="rounded-lg bg-card p-6 shadow-md shadow-primary-gray">
       <div
         className={`flex flex-col justify-between py-4 md:flex-row ${isMobile ? "space-y-4" : ""}`}
       >
-        <div className="text-base md:text-2xl lg:text-3xl">
+        <CardHeader className="text-base md:text-2xl lg:text-3xl p-0">
           {plan === "yearly" ? "Annual Invoices" : "Monthly Invoices"}
-        </div>
+        </CardHeader>
         
         <div
           className={`mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}
@@ -147,18 +148,18 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="w-full sm:w-auto">
+              <Button variant="outline" className="w-full sm:w-auto bg-primary">
                 <FilterIcon className="mr-2 size-4" />
                 {selectedYear || "All Years"}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="max-h-60 overflow-y-auto">
+            <DropdownMenuContent className="max-h-60 overflow-y-auto bg-background">
               <DropdownMenuItem 
                 onClick={() => {
                   setSelectedYear(null);
                   setCurrentPage(1);
                 }}
-                className={!selectedYear ? "bg-accent" : ""}
+                className={` my-1 ${!selectedYear ? "" : ""}`}
               >
                 All Years
               </DropdownMenuItem>
@@ -169,7 +170,8 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                     setSelectedYear(year);
                     setCurrentPage(1);
                   }}
-                  className={selectedYear === year ? "bg-accent" : ""}
+                  className={` my-1 ${!selectedYear ? "" : ""}`}
+
                 >
                   {year}
                 </DropdownMenuItem>
@@ -203,7 +205,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                 <TableRow key={invoice.id} className="hover:bg-muted/50">
                   <TableCell>
                     <div>
-                      <p className="text-sm text-muted-foreground">{invoice.id}</p>
+                      <p className="text-sm ">{invoice.id}</p>
                     </div>
                   </TableCell>
                   <TableCell>{invoice.formattedDate}</TableCell>
@@ -259,6 +261,6 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
           </div>
         </div>
       )}
-    </div>
+    </Card>
   );
 }

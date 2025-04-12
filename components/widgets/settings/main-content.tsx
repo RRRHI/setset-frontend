@@ -66,17 +66,8 @@ export function MainContent({
       <div className="flex w-full flex-col gap-10">
         <ProfilePage />
         <Password />
-        {settingMenu.map((item) => (
-          <div id={item.url} key={item.title} className={`w-full p-4`}>
-            {item.url !== "Profile" && <p>{item.title}</p>}
-            {item.url === "Invoices" && (
-              <>
-                {/* <Invoices plan="yearly" /> */}
-                <Invoices plan="monthly" />
-              </>
-            )}
-          </div>
-        ))}
+        <Invoices plan="monthly" />
+
       </div>
     </div>
   );

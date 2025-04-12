@@ -120,7 +120,7 @@ export function Password() {
   return (
     <Card
       id="Password"
-      className="flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground"
+      className="flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground min-h-[calc(100vh-150px)] "
     >
       <CardHeader className="px-0 pb-7 pt-0 text-xl md:text-2xl lg:text-3xl">
         Change Password
@@ -128,7 +128,7 @@ export function Password() {
       <CardContent className="p-0">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 font-medium lg:w-1/2 lg:min-w-[718px]"
+          className="flex flex-col gap-4 font-medium lg:w-1/2 lg:min-w-[700px]"
         >
           <div className="flex flex-col !gap-1">
             <p>Current Password</p>

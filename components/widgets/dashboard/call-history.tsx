@@ -16,7 +16,8 @@ import { ArrowDownUp, ChevronDown, File, Pause, Play } from "lucide-react";
 import { Filter } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {card, cardHeader} from "@/lib/constant"
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -192,13 +193,13 @@ export default function DataTable() {
   });
 
   return (
-    <div id="call-history" className="rounded-lg bg-card p-6 shadow-md shadow-primary-gray">
+    <Card id="call-history" className={card}>
       <div
         className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4" : ""}`}
       >
-        <p className="text-xl md:text-2xl lg:text-3xl">
+        <CardHeader className={cardHeader}>
           Call history and transcripts
-        </p>
+        </CardHeader>
 
         <div
           className={`mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}
@@ -342,6 +343,6 @@ export default function DataTable() {
           </Button>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
