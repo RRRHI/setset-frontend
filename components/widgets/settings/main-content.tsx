@@ -62,8 +62,9 @@ export function MainContent({
 
 
   return (
-    <div className="flex flex-col items-start p-4">
-      <div className="flex w-full flex-col gap-10">
+    <div className=" flex flex-col items-start p-4">
+      <div className=" w-full flex flex-col gap-10">
+
         <ProfilePage />
         <Password />
         <Invoices plan="monthly" />
