@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {setting_green_btn, settingCard} from "@/lib/constant";
+import {cn} from "@/lib/utils";
 
 export function Password() {
   const [passwordVisibility, setPasswordVisibility] = useState({
@@ -120,7 +122,7 @@ export function Password() {
   return (
     <Card
       id="Password"
-      className="min-h-[calc(100vh-150px)] flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground  "
+      className={settingCard}
     >
       <CardHeader className="px-0 pb-7 pt-0 text-xl md:text-2xl lg:text-3xl">
         Change Password
@@ -167,7 +169,7 @@ export function Password() {
 
           <Button
             type="submit"
-            className="w-[225px] self-end rounded-lg bg-[#2a870b] shadow-sm hover:bg-[#2a870b]/60 text-white"
+            className={cn( setting_green_btn, "w-[225px] self-end rounded-lg")}
           >
             Change Password
           </Button>

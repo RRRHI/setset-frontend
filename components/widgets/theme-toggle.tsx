@@ -4,6 +4,7 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
+import { headerButton } from "@/lib/constant";
 export function ChangeTheme() {
   const { setTheme, theme } = useTheme();
 
@@ -20,7 +21,7 @@ export function ChangeTheme() {
 
       <Button
         variant="ghost"
-        className="flex items-center gap-2 p-0 hover:bg-transparent"
+        className={headerButton}
         onClick={changeTheme}
       >
         <Moon className="!size-5 fill-foreground stroke-foreground dark:hidden sm:!size-6" ></Moon>

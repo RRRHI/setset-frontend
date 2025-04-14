@@ -36,6 +36,7 @@ import {
   ProfileData,
   ReportData,
   sideBarPageProp} from "./types";
+import { iconStyles } from "./constant";
 
 export const metricsData: MetricsData = {
   callMinutes: { minutes: 100227, difference: -1.4 },
@@ -249,7 +250,7 @@ export const initialNotifications = [
     read: true,
   },
 ];
-const iconStyles = "text-secondary h-10 w-10 rounded-lg p-2";
+
 export const faqsData: FaqData[] = [
   {
     id: "1",

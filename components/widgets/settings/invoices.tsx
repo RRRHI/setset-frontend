@@ -2,7 +2,8 @@
 
 import { ArrowDownUp,Download, DownloadIcon, FilterIcon, SearchIcon } from "lucide-react";
 import { useMemo,useState } from "react";
-
+import {cn} from "@/lib/utils";
+import { flexBetweenCol, setting_green_btn } from "@/lib/constant";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -21,7 +22,8 @@ import {
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { businessInvoice } from "@/lib/sample-data";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
+import { settingCard } from "@/lib/constant";
 
 const ITEMS_PER_PAGE = 12;
 const MAX_PAGE_BUTTONS = 5
@@ -122,9 +124,9 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
   };
 
   return ( 
-    <Card id="Invoices" className="rounded-lg bg-card p-6 shadow-md shadow-primary-gray">
+    <Card id="Invoices" className={settingCard}>
       <div
-        className={`flex flex-col justify-between py-4 md:flex-row ${isMobile ? "space-y-4" : ""}`}
+        className={cn(flexBetweenCol, `py-4 md:flex-row ${isMobile ? "space-y-4" : ""}`)}
       >
         <CardHeader className="text-base md:text-2xl lg:text-3xl p-0">
           {plan === "yearly" ? "Annual Invoices" : "Monthly Invoices"}
@@ -133,7 +135,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
         <div
           className={`mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}
         >
-          <div className="relative w-full">
+          <div className="relative w-full  max-h-9">
             <SearchIcon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder={`Search ${plan} invoices...`}
@@ -159,7 +161,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                   setSelectedYear(null);
                   setCurrentPage(1);
                 }}
-                className={` my-1 ${!selectedYear ? "" : ""}`}
+                className={` my-1 dark:hover:bg-primary ${!selectedYear ? "" : ""}`}
               >
                 All Years
               </DropdownMenuItem>
@@ -170,7 +172,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                     setSelectedYear(year);
                     setCurrentPage(1);
                   }}
-                  className={` my-1 ${!selectedYear ? "" : ""}`}
+                  className={` my-1 dark:hover:bg-primary ${!selectedYear ? "" : ""}`}
 
                 >
                   {year}
@@ -214,7 +216,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="bg-[#2a870b] shadow-sm hover:bg-[#2a870b]/60"
+                        className={setting_green_btn}
                         onClick={() => handleDownload(invoice.transcriptURL)}
                       >
                         <DownloadIcon className="mr-2 size-4" />

@@ -17,7 +17,7 @@ import { Filter } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import {card, cardHeader} from "@/lib/constant"
+import {card, cardHeader, listenBtn, transcriptBtn} from "@/lib/constant"
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -38,7 +38,8 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording } from "@/lib/types";
-
+import {cn} from "@/lib/utils";
+import { flexBetweenCol } from "@/lib/constant";
 const RecordingCell = ({
   recordingUrl,
   transcriptUrl,
@@ -67,7 +68,7 @@ const RecordingCell = ({
       <Button
         variant="ghost"
         size="sm"
-        className="bg-sidebar-ring text-black"
+        className={listenBtn}
         // onClick={togglePlay}
       >
         {isPlaying ? <Pause /> : <Play />}
@@ -76,7 +77,7 @@ const RecordingCell = ({
       <Button
         variant="ghost"
         size="sm"
-        className="bg-foreground text-card"
+        className={transcriptBtn}
         onClick={() => console.log("Download transcript:", transcriptUrl)}
       >
         <File />

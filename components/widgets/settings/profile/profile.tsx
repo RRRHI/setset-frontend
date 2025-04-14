@@ -9,7 +9,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ProfileImage } from "@/components/widgets/settings/profile/profile-image";
+import { ProfileImage } from "@/components/widgets/settings/profile/profile-image"
+import { settingCard } from "@/lib/constant";
 
 import EditableField from "./editable-field";
 
@@ -87,7 +88,7 @@ export function ProfilePage() {
     }
   };
   return (
-    <Card className={`flex p-6 min-h-[calc(100vh-150px)] ${isEditing ? "" : ""}`} id="Profile">
+    <Card className={`${settingCard} ${isEditing ? "" : ""}`} id="Profile">
       <div className="flex w-full flex-col items-start gap-4">
         <ProfileImage
           initialImage="/images/logo.png"

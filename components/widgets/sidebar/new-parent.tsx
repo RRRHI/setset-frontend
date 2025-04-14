@@ -7,6 +7,8 @@ import { AppSidebar } from "@/components/widgets/sidebar/app-sidebar";
 import { HeaderBar } from "@/components/widgets/sidebar/header-bar";
 import { items } from "@/lib/sample-data";
 import { sideBarPageProp } from "@/lib/types";
+import {headerClassname} from "@/lib/constant";
+import { cn } from "@/lib/utils";
 
 interface NewParentProps {
   children: ReactNode;
@@ -47,12 +49,12 @@ export function NewParent({ children }: NewParentProps) {
       />
       <div className="flex flex-1 flex-col overflow-auto">
         <main className="flex flex-1 flex-col">
-          <header className="sticky top-0 z-10 my-4 flex h-16 shrink-0 items-center gap-2 rounded-xl bg-background transition-[width,height] ease-linear group-has-[data-collapsible=icon]/sidebar-wrapper:h-12 overflow-hidden">
+          <header className={cn(headerClassname)}>
             <div className="flex w-full items-center">
               <HeaderBar currPage={currPage} />
             </div>
           </header>
-          <div className="px-4 pb-8">
+          <div>
             {children}
           </div>
         </main>

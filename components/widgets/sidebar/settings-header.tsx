@@ -6,16 +6,22 @@ import Notification from "@/components/widgets/sidebar/notification";
 import { ChangeTheme } from "@/components/widgets/theme-toggle";
 import { profile } from "@/lib/sample-data";
 import { SettingsHeader } from "@/lib/settings";
-
+import { settingMenu } from "@/lib/sample-data";
 import { ProfilePicture } from "./header-profile";
+import { headerIconSpan, headerSection, headerText, sideBarTrigger } from "@/lib/constant";
+
 
 const SidebarIcon = ({View}:{View:string}) => {
+  const icon = settingMenu.find((item) => item.title === View)?.icon;
   return (
-    <SidebarTrigger className="flex w-full items-center gap-5 text-foreground hover:bg-transparent md:text-2xl">
-      <span className="rounded-xl bg-primary-foreground p-2">
-        <SettingsHeader />
+    <SidebarTrigger className={sideBarTrigger}>
+      <span className={headerIconSpan}>
+        {
+          icon ?(<div className="[&>svg]:!stroke-primary">{icon}</div>): (<SettingsHeader />)
+        }
+     
       </span>
-      <p className="max-w-24 text-pretty text-left leading-none sm:max-w-full">
+      <p className={headerText}>
         {View || "Settings"}
       </p>
     </SidebarTrigger>
@@ -35,7 +41,7 @@ const UserButton = () => {
 
 export function SettingHeaderBar({currView}: {currView: string}) {
   return (
-    <section className="flex w-full items-center justify-between p-4">
+    <section className={headerSection}>
       <div className="flex items-center">
         <SidebarIcon View={currView}/>
       </div>

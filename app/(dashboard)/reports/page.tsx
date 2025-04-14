@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { reportsData } from "@/lib/sample-data";
 import { containerClassname, ReportData } from "@/lib/types";
+import { flexBetweenCol } from "@/lib/constant";
+import {cn} from "@/lib/utils";
 
 export default function Reports({
   data = reportsData,
@@ -38,7 +40,7 @@ export default function Reports({
             {pendingReports.map((report) => (
               <Card key={report.id} className="flex-1 justify-center">
                 <CardContent className={cardContentStyles}>
-                  <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+                  <div className={cn(flexBetweenCol,"gap-4 md:flex-row md:items-center")}>
                     <div className="flex w-full flex-col gap-4 md:flex-row">
                       <div className="flex w-full flex-col gap-2">
                         <div className="flex items-center justify-between">
@@ -69,7 +71,7 @@ export default function Reports({
             {resolvedReports.map((report) => (
               <Card key={report.id} className="flex-1 justify-center">
                 <CardContent className={cardContentStyles}>
-                  <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+                  <div className={cn(flexBetweenCol,"gap-4 md:flex-row md:items-center")}>
                     <div className="flex w-full flex-col gap-4 md:flex-row">
                       <div className="flex w-full flex-col gap-2">
                         <div className="flex items-center justify-between">

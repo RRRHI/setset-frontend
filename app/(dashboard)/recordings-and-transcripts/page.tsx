@@ -37,8 +37,8 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording, containerClassname } from "@/lib/types";
-import {cardHeader, card} from "@/lib/constant"
-
+import {cardHeader, card, flexBetweenCol, listenBtn, transcriptBtn} from "@/lib/constant"
+import { cn } from "@/lib/utils";
 const RecordingCell = ({
   recordingUrl,
   transcriptUrl,
@@ -67,7 +67,7 @@ const RecordingCell = ({
       <Button
         variant="ghost"
         size="sm"
-        className="bg-sidebar-ring text-black"
+        className={listenBtn}
         // onClick={togglePlay}
       >
         {isPlaying ? <Pause /> : <Play />}
@@ -76,7 +76,7 @@ const RecordingCell = ({
       <Button
         variant="ghost"
         size="sm"
-        className="bg-foreground text-card"
+        className={transcriptBtn}
         onClick={() => console.log("Download transcript:", transcriptUrl)}
       >
         <File />
@@ -193,10 +193,12 @@ export default function Recordings() {
   }, [table]);
 
   return (
+    <div className="px-4">
 
-      <Card className={card}>
+
+      <Card className={cn(card)}>
         <div
-          className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4 mb-6" : ""}`}
+          className={cn(flexBetweenCol,`md:flex-row ${isMobile ? "space-y-4 mb-6" : ""}`)}
         >
           <CardHeader className={cardHeader}>
             Call history and transcripts
@@ -274,8 +276,8 @@ export default function Recordings() {
                       className="w-[200px]"
                     />
                     <div className="flex justify-between">
-                      <span className="font-bold">{durationRange[0]} min</span>
-                      <span className="font-bold">
+                      <span >{durationRange[0]} min</span>
+                      <span>
                         {Math.ceil(durationRange[1])} min
                       </span>
                     </div>
@@ -285,8 +287,8 @@ export default function Recordings() {
             </DropdownMenu>
           </div>
         </div>
-        <ScrollArea className="h-[600px] rounded-md border">
-          <Table>
+        <ScrollArea className="h-[600px] rounded-md border ">
+          <Table className = "mr-1">
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
@@ -357,5 +359,6 @@ export default function Recordings() {
           </div>
         </div>
       </Card>
+                            </div>
   );
 }
