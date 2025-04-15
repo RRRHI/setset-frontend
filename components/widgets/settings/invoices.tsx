@@ -25,7 +25,7 @@ import { businessInvoice } from "@/lib/sample-data";
 import { Card, CardHeader } from "@/components/ui/card";
 import { settingCard } from "@/lib/constant";
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 10;
 const MAX_PAGE_BUTTONS = 5
 
 type BillingPlan = "yearly" | "monthly";
@@ -183,7 +183,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
         </div>
       </div>
 
-      <div className="w-full overflow-hidden rounded-lg border py-4">
+      <div className="w-full scrollbar rounded-lg border py-4">
         <Table>
           <TableHeader className="bg-muted/50">
             <TableRow>

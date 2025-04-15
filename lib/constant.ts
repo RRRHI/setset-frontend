@@ -16,7 +16,8 @@ export const cardHeader = "px-0 pb-7 pt-0 text-xl md:text-2xl lg:text-3xl"
 
 export const card = "flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground min-h-[calc(100vh-150px)]"
 
-export const settingCard = "min-h-[calc(100vh-150px)] flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground "
+export const settingCard = "h-[calc(100vh-150px)] flex w-full flex-col justify-start border bg-card p-6 text-card-foreground snap-start snap-normal shrink-0 overflow-y-auto"
+
 
 export const headerButton = "flex items-center gap-2 p-0 hover:bg-transparent"
 export const setSetLogo = "flex flex-col gap-2"

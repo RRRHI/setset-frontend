@@ -38,7 +38,7 @@ export function SettingSidebar({
 
   return (
     <Sidebar variant="floating" className="rounded-2xl">
-      <SidebarContent className="rounded-xl">
+      <SidebarContent className="rounded-xl overflow-y-auto scrollbar ">
         <SidebarGroup>
           <SidebarGroupLabel className="my-[10px] mb-0 items-center gap-2 p-[30px]">
             <div className={setSetLogo}>
@@ -60,7 +60,7 @@ export function SettingSidebar({
               </div>
             </div>
           </SidebarGroupLabel>
-          <SidebarGroupContent className="my-5">
+          <SidebarGroupContent className="my-5 ">
             {menuItems.map((item) => (
               <SidebarMenuItem
                 key={item.url}
