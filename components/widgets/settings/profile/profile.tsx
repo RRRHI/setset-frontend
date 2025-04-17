@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ProfileImage } from "@/components/widgets/settings/profile/profile-image";
-import { settingCard } from "@/lib/constant";
+import { settingCard, settingLabel } from "@/lib/constant";
 
 import EditableField from "./editable-field";
 
@@ -110,7 +110,7 @@ export function ProfilePage() {
   );
 
   return (
-    <Card className={`${settingCard}`} id="Profile">
+    <Card className={`${settingCard}`} >
       <div className="flex w-full flex-col items-start gap-4">
         <ProfileImage
           initialImage="/images/logo.png"
@@ -119,7 +119,7 @@ export function ProfilePage() {
         />
         <div className="flex w-full flex-col gap-4 lg:w-1/2 lg:min-w-[700px]">
           <div className={`flex flex-col ${isEditing ? "gap-4" : "gap-1"}`}>
-            <span className="text-xl flex gap-5">Business Name  {!isEditing && (
+            <span className={settingLabel}>Business Name  {!isEditing && (
                 <Button
                   variant={"ghost"}
                   className="flex size-8 rounded-lg hover:bg-transparent"

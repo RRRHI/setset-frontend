@@ -8,6 +8,7 @@ import { Invoices } from "./invoices";
 import { Password } from "./password-section";
 import { ProfilePage } from "./profile/profile";
 import { cn } from "@/lib/utils";
+import { settingSection } from "@/lib/constant";
 export function MainContent({
   changeView,
 }: {
@@ -65,13 +66,20 @@ export function MainContent({
   return (
     <div
       className={cn(
-        "no-scrollbar flex h-screen w-full snap-y snap-mandatory scroll-py-6 flex-col gap-10 overflow-y-auto overflow-x-hidden scroll-smooth p-4 ",
+        "no-scrollbar h-full w-full snap-y snap-mandatory scroll-py-6 overflow-y-auto overflow-x-hidden scroll-smooth p-4",
       )}
     >
-      <ProfilePage />
-      <Password />
-      <Invoices plan="monthly" />
-      <div className="h-[calc(100vh-150px)] shrink-0" /> 
+
+      <section className= {settingSection} id="Profile">
+        <ProfilePage />
+      </section>
+      <section className= {settingSection} id="Password">
+        <Password />
+      </section>
+      <section className= {settingSection} id="Invoices">
+        <Invoices plan="monthly" />
+      </section>
+
     </div>
   );
 }

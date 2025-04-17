@@ -25,7 +25,7 @@ import { businessInvoice } from "@/lib/sample-data";
 import { Card, CardHeader } from "@/components/ui/card";
 import { settingCard } from "@/lib/constant";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
 const MAX_PAGE_BUTTONS = 5
 
 type BillingPlan = "yearly" | "monthly";
@@ -124,7 +124,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
   };
 
   return ( 
-    <Card id="Invoices" className={settingCard}>
+    <Card  className={settingCard}>
       <div
         className={cn(flexBetweenCol, `py-4 md:flex-row ${isMobile ? "space-y-4" : ""}`)}
       >
@@ -214,9 +214,9 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
                       <Button
-                        variant="ghost"
+                        variant="green"
                         size="sm"
-                        className={setting_green_btn}
+                        className=""
                         onClick={() => handleDownload(invoice.transcriptURL)}
                       >
                         <DownloadIcon className="mr-2 size-4" />

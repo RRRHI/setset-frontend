@@ -65,9 +65,8 @@ const RecordingCell = ({
   return (
     <div className="flex justify-end space-x-20">
       <Button
-        variant="ghost"
+        variant="green"
         size="sm"
-        className={listenBtn}
         // onClick={togglePlay}
       >
         {isPlaying ? <Pause /> : <Play />}

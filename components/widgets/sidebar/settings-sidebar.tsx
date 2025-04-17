@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 import { sideBarPageProp } from "@/lib/types";
 import { imgDiv, setSetLogo, setSetLogoText } from "@/lib/constant";
+import { useRouter } from "next/navigation";
 
 export function SettingSidebar({
   menuItems,
@@ -18,22 +19,12 @@ export function SettingSidebar({
   menuItems: sideBarPageProp[];
   currView: string;
 }) {
+  const router = useRouter();
   const handleScrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if(section)
-    {
-      const sectionPos = section.getBoundingClientRect().top
-      const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
-      const offsetposition = sectionPos + scrollPos-80
-      // console.log("sectionPos", sectionPos, "scrollPos", scrollPos, "offsetposition", offsetposition);
-      
+   router.push(`settings/#${id}`);
+  }
 
-      window.scrollTo({
-        top:offsetposition,
-        behavior: "smooth",
-      })
-    }
-  };
+  
   
 
   return (
@@ -60,12 +51,12 @@ export function SettingSidebar({
               </div>
             </div>
           </SidebarGroupLabel>
-          <SidebarGroupContent className="my-5 ">
+          <SidebarGroupContent className="my-5 scrollbar ">
             {menuItems.map((item) => (
               <SidebarMenuItem
                 key={item.url}
                 onClick={() => handleScrollToSection(item.url)}
-                className={`m-1 flex h-12 cursor-default list-none items-center justify-start gap-1 rounded-xl p-[30px] ${
+                className={` m-1 flex h-12 cursor-default list-none items-center justify-start gap-1 rounded-xl p-[30px] ${
                   currView === item.url
                     ? "bg-foreground text-primary dark:bg-background dark:text-foreground"
                     : "bg-transparent hover:bg-foreground hover:text-primary dark:[&:hover]:bg-background dark:[&:hover]:text-foreground"

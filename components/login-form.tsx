@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
+import { warningText } from "@/lib/constant"
 
 export function LoginForm({
   className,
@@ -109,7 +110,7 @@ export function LoginForm({
           </div>
           
           {isPassword && passwordError && (
-            <p className="text-sm font-bold text-red-300">
+            <p className={warningText}>
               {passwordError}
             </p>
           )}

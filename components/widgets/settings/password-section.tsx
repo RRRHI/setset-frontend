@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {setting_green_btn, settingCard} from "@/lib/constant";
+import {setting_green_btn, settingCard, warningText, settingLabel} from "@/lib/constant";
 import {cn} from "@/lib/utils";
 
 export function Password() {
@@ -121,7 +121,6 @@ export function Password() {
 
   return (
     <Card
-      id="Password"
       className={settingCard}
     >
       <CardHeader className="px-0 pb-7 pt-0 text-xl md:text-2xl lg:text-3xl">
@@ -133,20 +132,20 @@ export function Password() {
           className="flex flex-col gap-4 font-medium lg:w-1/2 lg:min-w-[700px]"
         >
           <div className="flex flex-col !gap-1">
-            <p>Current Password</p>
+            <p className={settingLabel}>Current Password</p>
             {passwordInput("currentpassword")}
           </div>
 
           <div className="flex flex-col !gap-1">
-            <p>New Password</p>
+            <p className={settingLabel}>New Password</p>
             {passwordInput("newpassword")}
             <p
-              className={`text-sm text-red-500 ${warning.lenWarning ? "block" : "hidden"}`}
+              className={cn(warningText,`${warning.lenWarning ? "block" : "hidden"}`)}
             >
               Password Must be at least 8 characters long
             </p>
             <p
-              className={`text-sm text-red-500 ${warning.combinationWarning ? "block" : "hidden"}`}
+              className={cn(warningText,`${warning.combinationWarning ? "block" : "hidden"}`)}
             >
               Password must contain a combination of letters, numbers and
               special characters (!$@&)
@@ -154,22 +153,23 @@ export function Password() {
           </div>
 
           <div className="flex flex-col !gap-1">
-            <p>Confirm New Password</p>
+            <p className={settingLabel}>Confirm New Password</p>
             {passwordInput("confirmnewpassword")}
             <p
-              className={`text-sm text-red-500 ${warning.matchingWarning ? "block" : "hidden"}`}
+              className={cn(warningText,` ${warning.matchingWarning ? "block" : "hidden"}`)}
             >
               Confirmed password does not match
             </p>
           </div>
 
-          <a href="#" className="w-fit text-sm text-red-500 hover:underline">
+          <a href="#" className={cn(warningText,"w-fit hover:underline")}>
             Forgot your password?
           </a>
 
           <Button
             type="submit"
-            className={cn( setting_green_btn, "w-[225px] self-end rounded-lg")}
+            variant={"green"}
+            className={"w-[225px] self-end rounded-lg"}
           >
             Change Password
           </Button>

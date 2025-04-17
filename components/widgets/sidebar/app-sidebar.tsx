@@ -59,7 +59,7 @@ export function AppSidebar({
                 {items.map((item) => (
                   <SidebarMenuItem
                     key={item.title}
-                    className=""
+                    className="scrollbar"
                     onClick={() => handleSelected(item)}
                   >
                     <SidebarMenuButton asChild className="text-base md:text-sm">

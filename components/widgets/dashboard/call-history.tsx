@@ -38,8 +38,7 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording } from "@/lib/types";
-import {cn} from "@/lib/utils";
-import { flexBetweenCol } from "@/lib/constant";
+
 const RecordingCell = ({
   recordingUrl,
   transcriptUrl,
@@ -66,9 +65,9 @@ const RecordingCell = ({
   return (
     <div className="flex justify-end space-x-20">
       <Button
-        variant="ghost"
+        variant="green"
         size="sm"
-        className={listenBtn}
+        className=""
         // onClick={togglePlay}
       >
         {isPlaying ? <Pause /> : <Play />}
@@ -311,6 +310,7 @@ export default function DataTable() {
                 return (
                   <TableRow
                     key={row.id}
+                    className="mr-2"
                     style={{ display: isHidden ? "none" : "table-row" }}
                   >
                     {row.getVisibleCells().map((cell) => (
