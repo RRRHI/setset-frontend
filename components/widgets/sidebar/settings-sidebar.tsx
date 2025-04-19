@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import {
   Sidebar,
@@ -8,9 +9,8 @@ import {
   SidebarGroupLabel,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { sideBarPageProp } from "@/lib/types";
 import { imgDiv, setSetLogo, setSetLogoText } from "@/lib/constant";
-import { useRouter } from "next/navigation";
+import { sideBarPageProp } from "@/lib/types";
 
 export function SettingSidebar({
   menuItems,
@@ -29,7 +29,7 @@ export function SettingSidebar({
 
   return (
     <Sidebar variant="floating" className="rounded-2xl">
-      <SidebarContent className="rounded-xl overflow-y-auto scrollbar ">
+      <SidebarContent className="scrollbar overflow-y-auto rounded-xl ">
         <SidebarGroup>
           <SidebarGroupLabel className="my-[10px] mb-0 items-center gap-2 p-[30px]">
             <div className={setSetLogo}>
@@ -51,7 +51,7 @@ export function SettingSidebar({
               </div>
             </div>
           </SidebarGroupLabel>
-          <SidebarGroupContent className="my-5 scrollbar ">
+          <SidebarGroupContent className="scrollbar my-5 ">
             {menuItems.map((item) => (
               <SidebarMenuItem
                 key={item.url}

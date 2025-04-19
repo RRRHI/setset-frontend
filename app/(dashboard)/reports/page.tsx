@@ -2,9 +2,9 @@ import { Check, Construction } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { flexBetweenCol } from "@/lib/constant";
 import { reportsData } from "@/lib/sample-data";
 import { containerClassname, ReportData } from "@/lib/types";
-import { flexBetweenCol } from "@/lib/constant";
 import {cn} from "@/lib/utils";
 
 export default function Reports({

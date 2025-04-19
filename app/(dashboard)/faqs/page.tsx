@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { flexBetweenCol,cardContentStyles, containerClassname } from "@/lib/constant";
+import { cardContentStyles, containerClassname,flexBetweenCol } from "@/lib/constant";
 import { faqsData } from "@/lib/sample-data";
 import { FaqData } from "@/lib/types";
 import { cn } from "@/lib/utils";

@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Notification from "@/components/widgets/sidebar/notification";
 import { ChangeTheme } from "@/components/widgets/theme-toggle";
+import { headerButton, headerIconSpan, headerSection, headerText, sideBarTrigger } from "@/lib/constant";
 import { profile } from "@/lib/sample-data";
 import SettingIcon from "@/lib/settings";
 import { SettingsHeader } from "@/lib/settings";
 import { sideBarPageProp } from "@/lib/types";
 
 import { ProfilePicture } from "./header-profile";
-import { headerButton, headerIconSpan, headerSection, headerText, sideBarTrigger } from "@/lib/constant";
 interface HeaderBarProps {
   currPage: sideBarPageProp;
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {setting_green_btn, settingCard, warningText, settingLabel, settingHeader, formFieldWrapper} from "@/lib/constant";
+import {formFieldWrapper, settingCard, settingHeader, settingLabel, warningText} from "@/lib/constant";
 import {cn} from "@/lib/utils";
 
 export function Password() {

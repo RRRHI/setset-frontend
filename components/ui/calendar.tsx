@@ -520,7 +520,7 @@ function YearGrid({
       }
 
       return currentMonth;
-    } catch (e) {
+    } catch {
       return currentMonth;
     }
   };

@@ -2,13 +2,13 @@
 
 import { useEffect } from "react";
 
+import { settingSection } from "@/lib/constant";
 import { settingMenu } from "@/lib/sample-data";
+import { cn } from "@/lib/utils";
 
 import { Invoices } from "./invoices";
 import { Password } from "./password-section";
 import { ProfilePage } from "./profile/profile";
-import { cn } from "@/lib/utils";
-import { settingSection } from "@/lib/constant";
 export function MainContent({
   changeView,
 }: {

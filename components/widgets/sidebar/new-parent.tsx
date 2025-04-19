@@ -2,12 +2,11 @@
 import { usePathname } from "next/navigation";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 
-import { SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/widgets/sidebar/app-sidebar";
 import { HeaderBar } from "@/components/widgets/sidebar/header-bar";
+import {headerClassname} from "@/lib/constant";
 import { items } from "@/lib/sample-data";
 import { sideBarPageProp } from "@/lib/types";
-import {headerClassname} from "@/lib/constant";
 import { cn } from "@/lib/utils";
 
 interface NewParentProps {

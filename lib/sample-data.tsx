@@ -9,7 +9,6 @@ import {
   // these are notifications icons
   MessageCircleMore, //message notification
   MessageCircleQuestion, //most asked faq question
-  MessageSquare,
   MonitorCheck,
   PackagePlus, //new feature notification
   PartyPopper, //milestone notificaion
@@ -24,6 +23,7 @@ import {
 
 import Settings from "@/lib/settings";
 
+import { iconStyles } from "./constant";
 import {
   AppointmentsData,
   BusinessCard,
@@ -36,7 +36,6 @@ import {
   ProfileData,
   ReportData,
   sideBarPageProp} from "./types";
-import { iconStyles } from "./constant";
 
 export const metricsData: MetricsData = {
   callMinutes: { minutes: 100227, difference: -1.4 },

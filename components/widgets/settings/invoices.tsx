@@ -9,6 +9,7 @@ import {
 import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,9 +26,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { flexBetweenCol,settingCard,settingHeader } from "@/lib/constant";
 import { businessInvoice } from "@/lib/sample-data";
-import { Card, CardHeader } from "@/components/ui/card";
-import { settingCard,settingHeader, flexBetweenCol } from "@/lib/constant";
 import { cn } from "@/lib/utils";
 
 const ITEMS_PER_PAGE = 12;
@@ -142,7 +142,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
         <div
           className={`mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}
         >
-          <div className="relative w-full  max-h-9">
+          <div className="relative max-h-9  w-full">
             <SearchIcon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder={`Search ${plan} invoices...`}
@@ -157,7 +157,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="w-full sm:w-auto bg-primary">
+              <Button variant="outline" className="w-full bg-primary sm:w-auto">
                 <FilterIcon className="mr-2 size-4" />
                 {selectedYear || "All Years"}
               </Button>
@@ -190,7 +190,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
         </div>
       </div>
 
-      <div className="w-full scrollbar rounded-lg border py-4">
+      <div className="scrollbar w-full rounded-lg border py-4">
         <Table>
           <TableHeader className="bg-muted/50">
             <TableRow>
@@ -263,7 +263,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
               ) : (
                 <Button
                   key={page}
-                  variant={currentPage === page ? "default" : "outline"}
+                  variant={currentPage === page ? "transcript" : "outline"}
                   size="sm"
                   onClick={() => setCurrentPage(Number(page))}
                   className="min-w-[40px]"

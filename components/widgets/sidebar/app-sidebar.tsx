@@ -15,8 +15,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { sideBarPageProp } from "@/lib/types";
 import { imgDiv, setSetLogo, setSetLogoText } from "@/lib/constant";
+import { sideBarPageProp } from "@/lib/types";
 
 export function AppSidebar({
   currPage,

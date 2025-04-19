@@ -1,5 +1,4 @@
 "use client";
-import { Card, CardHeader } from "@/components/ui/card";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -17,6 +16,7 @@ import { Filter } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -35,9 +35,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
+import {card, cardHeader, flexBetweenCol} from "@/lib/constant"
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording } from "@/lib/types";
-import {cardHeader, card, flexBetweenCol} from "@/lib/constant"
 import { cn } from "@/lib/utils";
 const RecordingCell = ({
   recordingUrl,
@@ -52,7 +52,7 @@ const RecordingCell = ({
   const audioRef = useRef<HTMLAudioElement>(null);
 
   return (
-    <div className="flex justify-end space-x-20">
+    <div className="flex justify-end gap-4">
       <Button
         variant="green"
         size="sm"
@@ -329,13 +329,13 @@ export default function Recordings() {
             </TableBody>
           </Table>
         </ScrollArea>
-        <div className="flex items-center justify-end py-2">
+        <div className="flex items-center justify-end p-2">
           <div className="space-x-2">
             {/* Render numbered pagination buttons */}
             {Array.from({ length: table.getPageCount() }).map((_, index) => (
               <Button
                 key={index}
-                variant="outline"
+                variant={index === table.getState().pagination.pageIndex ? "transcript" : "outline"}
                 size="sm"
                 onClick={() => table.setPageIndex(index)}
                 disabled={table.getState().pagination.pageIndex === index}

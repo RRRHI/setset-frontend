@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Notification from "@/components/widgets/sidebar/notification";
 import { ChangeTheme } from "@/components/widgets/theme-toggle";
-import { profile } from "@/lib/sample-data";
-import { SettingsHeader } from "@/lib/settings";
-import { settingMenu } from "@/lib/sample-data";
-import { ProfilePicture } from "./header-profile";
 import { headerIconSpan, headerSection, headerText, sideBarTrigger } from "@/lib/constant";
+import { profile } from "@/lib/sample-data";
+import { settingMenu } from "@/lib/sample-data";
+import { SettingsHeader } from "@/lib/settings";
+
+import { ProfilePicture } from "./header-profile";
 
 
 const SidebarIcon = ({View}:{View:string}) => {

@@ -1,14 +1,14 @@
 "use client";
 import "@/app/globals.css";
 
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useEffect,useState } from "react";
 
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { MainContent } from "@/components/widgets/settings/main-content";
 import { SettingHeaderBar } from "@/components/widgets/sidebar/settings-header";
 import { SettingSidebar } from "@/components/widgets/sidebar/settings-sidebar";
-import { settingMenu } from "@/lib/sample-data";
 import {headerClassname } from "@/lib/constant";
+import { settingMenu } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 
 export default function Page() {
@@ -29,7 +29,7 @@ export default function Page() {
   if (!hasMounted) return null;
 
   return (
-    <SidebarProvider className="flex w-full h-screen">
+    <SidebarProvider className="flex h-screen w-full">
   <SettingSidebar menuItems={settingMenu} currView={currView} />
 
   <main className="flex flex-1 flex-col overflow-hidden">
@@ -40,7 +40,7 @@ export default function Page() {
     </header>
 
     {/* Scrollable content area below the header */}
-    <section className="flex-1 overflow-y-auto no-scrollbar">
+    <section className="no-scrollbar flex-1 overflow-y-auto">
       <MainContent changeView={changeView} />
     </section>
   </main>

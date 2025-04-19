@@ -12,6 +12,7 @@ import {
 import { ProfileImage } from "@/components/widgets/settings/profile/profile-image";
 import { settingCard, settingLabel } from "@/lib/constant";
 import { cn } from "@/lib/utils";
+
 import EditableField from "./editable-field";
 
 const profileComponentFormat =

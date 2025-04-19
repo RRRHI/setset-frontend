@@ -16,9 +16,9 @@ import { ArrowDownUp, ChevronDown, File, Pause, Play } from "lucide-react";
 import { Filter } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import {card, cardHeader} from "@/lib/constant"
+
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -36,6 +36,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
+import {card, cardHeader} from "@/lib/constant"
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording } from "@/lib/types";
 
@@ -52,11 +53,10 @@ const RecordingCell = ({
   const audioRef = useRef<HTMLAudioElement>(null);
 
   return (
-    <div className="flex justify-end space-x-20">
+    <div className="flex justify-end gap-4 px-0">
       <Button
         variant="green"
         size="sm"
-        className=""
         // onClick={togglePlay}
       >
         {isPlaying ? <Pause /> : <Play />}
@@ -65,7 +65,7 @@ const RecordingCell = ({
       <Button
         variant="transcript"
         size="sm"
-        className=""
+        className="!m-0"
         onClick={() => console.log("Download transcript:", transcriptUrl)}
       >
         <File />
@@ -326,8 +326,8 @@ export default function DataTable() {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end py-2">
-        <div className="space-x-2">
+      <div className="flex items-center justify-end p-2">
+        <div className="">
           <Button variant="outline" size="sm" onClick={handleViewMore}>
             View more
           </Button>

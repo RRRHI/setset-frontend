@@ -19,8 +19,8 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         blue: "bg-[#0b5f76] shadow-sm hover:bg-[#0b5f76]/60", 
-        green: "bg-[#2a870b] shadow-sm hover:bg-[#2a870b]/60 text-white hover:text-white dark:text-black dark:hover:text-black", 
-        transcript:"bg-foreground text-card hover:outline hover:outline-inherit hover:outline-solid hover:bg-accent hover:text-accent-foreground"
+        green: "bg-[#2a870b] text-white shadow-sm hover:bg-[#2a870b]/60 hover:text-white min-w-[109.91px]", 
+        transcript:"bg-foreground text-card hover:bg-accent hover:text-accent-foreground hover:outline hover:outline-inherit"
       },
       size: {
         default: "h-9 px-4 py-2",
