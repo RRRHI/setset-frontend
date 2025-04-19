@@ -11,192 +11,189 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ProfileImage } from "@/components/widgets/settings/profile/profile-image";
 import { settingCard, settingLabel } from "@/lib/constant";
-
+import { cn } from "@/lib/utils";
 import EditableField from "./editable-field";
 
-const profileComponentFormat = "flex flex-col w-full items-start gap-1";
+const profileComponentFormat =
+  "flex flex-col w-full items-start gap-1 ";
+
 const dropDownButtonFormat =
   "justify-between w-full border border-input text-sm text-card-foreground focus-visible:ring-0";
+
 const dropDownFieldFormat = "flex flex-col w-full gap-1";
 
-const validateInput = {
-  name: (input: string) => input.trim().length >= 5,
-  email: (input: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.trim()),
-  phone: (input: string) => /^\d{8,}$/.test(input.trim()),
-};
-
-const timezoneOptions = Array.from({ length: 25 }, (_, i) => {
-  const offset = i - 12;
-  const sign = offset >= 0 ? "+" : "";
-  return {
-    value: `GMT${sign}${offset}:00`,
-    label: `GMT${sign}${offset}:00`,
-  };
-});
-
-const uniqueCategories = [
-  "Retail & Ecommerce",
-  "Healthcare",
-  "Tech",
-  "Finance",
-];
-
 export function ProfilePage() {
-  const [formData, setFormData] = useState({
-    name: "Business Name",
-    email: "ExampleEmail@org.com",
-    phone: "0123456789",
-    category: "Business Category",
-    timezone: "GMT-7:00",
+  const [name, setName] = useState("Business Name");
+  const [newName, setNewName] = useState(name);
+
+  const validateName = (input: string) => {
+    return input.trim().length >= 5; // Custom validation: at least 3 characters
+  };
+
+  const [email, setEmail] = useState("ExampleEmail@org.com");
+  const [newEmail, setNewEmail] = useState(email);
+  const validateEmail = (input: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(input.trim());
+  };
+
+  const [phone, setPhone] = useState("0123456789");
+  const [newPhone, setNewPhone] = useState(phone);
+  const validatePhone = (input: string) => {
+    const phoneRegex = /^\d{8,}$/;
+    return phoneRegex.test(input.trim());
+  };
+
+  const [category, setCategory] = useState("Business Category");
+
+  const [isEditing, setIsEditing] = useState(false);
+  const uniqueCategories = [
+    "Retail & Ecommerce",
+    "Healthcare",
+    "Tech",
+    "Finance",
+  ];
+
+  const imageSize = 100;
+  const [timezone, setTimezone] = useState("GMT-7:00"); // Auto-detect timezone
+  // Get formatted timezone options
+  const timezoneOptions = Array.from({ length: 25 }, (_, i) => {
+    const offset = i - 12; // Shifts range to -12 to +12
+    const sign = offset >= 0 ? "+" : "";
+    return {
+      value: `GMT${sign}${offset}:00`,
+      label: `GMT${sign}${offset}:00`,
+    };
   });
 
-  const [newFormData, setNewFormData] = useState({ ...formData });
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleInputChange = (field: string, value: string) => {
-    setNewFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
   const handleSave = () => {
-    const { name, email, phone } = newFormData;
-
     if (
-      validateInput.name(name) &&
-      validateInput.email(email) &&
-      validateInput.phone(phone)
+      validateName(newName) &&
+      validateEmail(newEmail) &&
+      validatePhone(newPhone)
     ) {
-      setFormData(newFormData);
+      setName(newName);
+      setEmail(newEmail);
+      setPhone(newPhone);
       setIsEditing(false);
+    } else if (!validateName(newName)) {
+      alert("Name must be longer than 5 characters!");
+    } else if (!validateEmail(newEmail)) {
+      alert("Invalid email format!");
+    } else if (!validatePhone(newPhone)) {
+      console.log(newPhone.trim());
+      alert("Phone number must be at least 8 digits long!");
     } else {
-      if (!validateInput.name(name))
-        alert("Name must be longer than 5 characters!");
-      else if (!validateInput.email(email)) alert("Invalid email format!");
-      else if (!validateInput.phone(phone))
-        alert("Phone number must be at least 8 digits long!");
-      else alert("Please fill all fields correctly.");
+      alert("Please fill all fields correctly.");
     }
   };
-
-  const renderDropdown = (
-    label: string,
-    options: { value: string; label: string }[],
-    selectedValue: string,
-    onSelect: (value: string) => void,
-  ) => (
-    <div className={dropDownFieldFormat}>
-      <p>{label}</p>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button className={dropDownButtonFormat}>
-            {selectedValue}
-            <ChevronDown />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          className="max-h-[300px] overflow-y-auto"
-          style={{ width: "var(--radix-dropdown-menu-trigger-width)" }}
-        >
-          {options.map((option) => (
-            <DropdownMenuItem
-              key={option.value}
-              onClick={() => onSelect(option.value)}
-            >
-              {option.label}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
-  );
-
   return (
-    <Card className={`${settingCard}`} >
+    <Card className={cn(settingCard)} >
       <div className="flex w-full flex-col items-start gap-4">
         <ProfileImage
           initialImage="/images/logo.png"
-          imageSize={100}
+          imageSize={imageSize}
           isEditing={isEditing}
         />
-        <div className="flex w-full flex-col gap-4 lg:w-1/2 lg:min-w-[700px]">
+        <div className="flex w-full flex-col gap-4 lg:w-1/2 lg:min-w-[718px]">
           <div className={`flex flex-col ${isEditing ? "gap-4" : "gap-1"}`}>
-            <span className={settingLabel}>Business Name  {!isEditing && (
-                <Button
-                  variant={"ghost"}
-                  className="flex size-8 rounded-lg hover:bg-transparent"
-                  onClick={() => setIsEditing(true)}
-                 
-                >
-                  <Pencil />
-                </Button>
-              )}</span>
             <div className="flex flex-row justify-start gap-4">
               <EditableField
-                value={formData.name}
+                value={name}
                 placeholder="Name"
-                componentFormat={`${isEditing ? profileComponentFormat : ""}`}
+                componentFormat={`${isEditing ? profileComponentFormat : " text-2xl"}`}
                 isEditing={isEditing}
                 fieldName="Business Name"
-                newValue={newFormData.name}
-                setNewValue={(value) => handleInputChange("name", value)}
+                newValue={newName}
+                setNewValue={setNewName}
               />
-             
+              {!isEditing && (
+                <Button
+                variant={"ghost"}
+                className="flex size-8 rounded-lg hover:bg-transparent"
+                onClick={() => setIsEditing(true)}
+               
+              >
+                <Pencil />
+              </Button>
+              )}
             </div>
-            
-          </div>
-          <>
-          {isEditing ? (
-              renderDropdown(
-                "Time Zone",
-                timezoneOptions,
-                newFormData.timezone,
-                (value) => handleInputChange("timezone", value),
-              )
-            ) : (
-              <div>
-                <p className="text-xl">Time Zone</p>
-                <p className="pb-3 text-sm text-foreground/80">
-                  {formData.timezone}
-                </p>
+            {isEditing ? (
+              <div className={dropDownFieldFormat}>
+                <p className={cn(settingLabel)} >Time Zone</p>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button className={dropDownButtonFormat}>
+                      <p>{timezone}</p>
+                      <ChevronDown />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="max-h-[300px] overflow-y-auto"
+                  style={{ width: "var(--radix-dropdown-menu-trigger-width)" }}>
+                    {timezoneOptions.map((tz) => (
+                      <DropdownMenuItem
+                        className="text-sm"
+                        key={tz.value}
+                        onClick={() => {
+                          setTimezone(tz.value);
+                        }}
+                      >
+                        {tz.label}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
+            ) : (
+              <p className={cn(settingLabel)}>{timezone}</p>
             )}
-            </>
+          </div>
           {isEditing ? (
-            renderDropdown(
-              "Category",
-              uniqueCategories.map((cat) => ({ value: cat, label: cat })),
-              newFormData.category,
-              (value) => handleInputChange("category", value),
-            )
-          ) : (
-            <div>
-              <p  className="text-xl">Category</p>
-              <p>{formData.category}</p>
+            <div className={dropDownFieldFormat}>
+              <p>Category</p>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button className={dropDownButtonFormat}>
+                    {category}
+                    <ChevronDown />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="flex flex-col"
+                 style={{ width: "var(--radix-dropdown-menu-trigger-width)" }}>
+                  {uniqueCategories.map((cat) => (
+                    <DropdownMenuItem
+                      key={cat}
+                      onClick={() => setCategory(cat)}
+                    >
+                      {cat}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
+          ) : (
+            <p className={cn(settingLabel)}>{category}</p>
           )}
-          <div>
-            {!isEditing && <p  className="text-xl">Phone number</p>}
-            <EditableField
-              value={formData.phone}
-              placeholder="Number"
-              componentFormat={profileComponentFormat}
-              isEditing={isEditing}
-              fieldName="Phone Number"
-              newValue={newFormData.phone}
-              setNewValue={(value) => handleInputChange("phone", value)}
-            />
-          </div>
-          <div>
-            {!isEditing && <p  className="text-xl">Email</p>}
-            <EditableField
-              value={formData.email}
-              placeholder="Email"
-              componentFormat={profileComponentFormat}
-              isEditing={isEditing}
-              fieldName="Email"
-              newValue={newFormData.email}
-              setNewValue={(value) => handleInputChange("email", value)}
-            />
-          </div>
+
+          <EditableField
+            value={phone}
+            placeholder="Number"
+            componentFormat={profileComponentFormat}
+            isEditing={isEditing}
+            fieldName="Phone Number"
+            newValue={newPhone}
+            setNewValue={setNewPhone}
+          />
+
+          <EditableField
+            value={email}
+            placeholder="Email"
+            componentFormat={profileComponentFormat}
+            isEditing={isEditing}
+            fieldName="Email"
+            newValue={newEmail}
+            setNewValue={setNewEmail}
+          />
           <div className="flex items-center justify-end">
             {isEditing && (
               <Button

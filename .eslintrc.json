@@ -15,7 +15,6 @@
       { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
     ], // turn on the eslint unused vars rule
     "import/no-unresolved": "error",
-    "import/named": "error",
     "quotes": ["error", "double", { "allowTemplateLiterals": true }],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"

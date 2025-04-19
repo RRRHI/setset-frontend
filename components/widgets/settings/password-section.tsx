@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {setting_green_btn, settingCard, warningText, settingLabel} from "@/lib/constant";
+import {setting_green_btn, settingCard, warningText, settingLabel, settingHeader, formFieldWrapper} from "@/lib/constant";
 import {cn} from "@/lib/utils";
 
 export function Password() {
@@ -121,22 +121,22 @@ export function Password() {
 
   return (
     <Card
-      className={settingCard}
+      className={cn(settingCard)}
     >
-      <CardHeader className="px-0 pb-7 pt-0 text-xl md:text-2xl lg:text-3xl">
+      <CardHeader className={cn(settingHeader)}>
         Change Password
       </CardHeader>
       <CardContent className="p-0">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 font-medium lg:w-1/2 lg:min-w-[700px]"
+          className="flex flex-col gap-4 lg:w-1/2 lg:min-w-[700px]"
         >
-          <div className="flex flex-col !gap-1">
+          <div className={cn(formFieldWrapper)}>
             <p className={settingLabel}>Current Password</p>
             {passwordInput("currentpassword")}
           </div>
 
-          <div className="flex flex-col !gap-1">
+          <div className={cn(formFieldWrapper)}>
             <p className={settingLabel}>New Password</p>
             {passwordInput("newpassword")}
             <p
@@ -152,7 +152,7 @@ export function Password() {
             </p>
           </div>
 
-          <div className="flex flex-col !gap-1">
+          <div className={cn(formFieldWrapper)}>
             <p className={settingLabel}>Confirm New Password</p>
             {passwordInput("confirmnewpassword")}
             <p

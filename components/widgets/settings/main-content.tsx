@@ -66,19 +66,22 @@ export function MainContent({
   return (
     <div
       className={cn(
-        "no-scrollbar h-full w-full snap-y snap-mandatory scroll-py-6 overflow-y-auto overflow-x-hidden scroll-smooth p-4",
+        "no-scrollbar h-full w-full snap-y snap-mandatory scroll-py-6 overflow-y-auto overflow-x-hidden scroll-smooth p-4 flex space-y-10 flex-col",
       )}
     >
 
-      <section className= {settingSection} id="Profile">
+      <section className= {cn(settingSection)} id="Profile">
         <ProfilePage />
       </section>
-      <section className= {settingSection} id="Password">
+      <section className= {cn(settingSection)} id="Password">
         <Password />
       </section>
-      <section className= {settingSection} id="Invoices">
+      <section className= {cn(settingSection)} id="Invoices">
         <Invoices plan="monthly" />
       </section>
+      {/* <section className="min-h-[10vh] snap-start bg-transparent" /> */}
+
+
 
     </div>
   );

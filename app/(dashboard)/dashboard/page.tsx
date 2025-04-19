@@ -9,7 +9,7 @@ import Metrics from "@/components/widgets/dashboard/metrics";
 import Footer from "@/components/widgets/footer";
 import { DateProvider } from "@/context/date-context";
 import { useDateRange } from "@/hooks/use-date-range";
-import { containerClassname } from "@/lib/types";
+import { containerClassname } from "@/lib/constant";
 
 function DashboardContent() {
   const { setDateRange } = useDateRange();

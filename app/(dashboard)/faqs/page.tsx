@@ -1,11 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { flexBetweenCol } from "@/lib/constant";
+import { flexBetweenCol,cardContentStyles, containerClassname } from "@/lib/constant";
 import { faqsData } from "@/lib/sample-data";
-import { containerClassname, FaqData } from "@/lib/types";
+import { FaqData } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export default function Faqs({ data = faqsData }: { data: FaqData[] }) {
-  const cardContentStyles = "flex flex-col px-4 py-6 justify-center";
+ 
 
   return (
     <div id="faqs" className={containerClassname}>

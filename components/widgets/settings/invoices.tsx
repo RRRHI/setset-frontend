@@ -3,7 +3,7 @@
 import { ArrowDownUp,Download, DownloadIcon, FilterIcon, SearchIcon } from "lucide-react";
 import { useMemo,useState } from "react";
 import {cn} from "@/lib/utils";
-import { flexBetweenCol, setting_green_btn } from "@/lib/constant";
+import { flexBetweenCol, settingHeader } from "@/lib/constant";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -128,7 +128,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
       <div
         className={cn(flexBetweenCol, `py-4 md:flex-row ${isMobile ? "space-y-4" : ""}`)}
       >
-        <CardHeader className="text-base md:text-2xl lg:text-3xl p-0">
+        <CardHeader className={cn(settingHeader)}>
           {plan === "yearly" ? "Annual Invoices" : "Monthly Invoices"}
         </CardHeader>
         
