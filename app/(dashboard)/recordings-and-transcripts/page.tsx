@@ -36,8 +36,8 @@ import {
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { callRecordingsData } from "@/lib/sample-data";
-import { CallRecording, containerClassname } from "@/lib/types";
-import {cardHeader, card, flexBetweenCol, listenBtn, transcriptBtn} from "@/lib/constant"
+import { CallRecording } from "@/lib/types";
+import {cardHeader, card, flexBetweenCol, transcriptBtn} from "@/lib/constant"
 import { cn } from "@/lib/utils";
 const RecordingCell = ({
   recordingUrl,
@@ -62,9 +62,8 @@ const RecordingCell = ({
         Listen
       </Button>
       <Button
-        variant="ghost"
+        variant="transcript"
         size="sm"
-        className={transcriptBtn}
         onClick={() => console.log("Download transcript:", transcriptUrl)}
       >
         <File />

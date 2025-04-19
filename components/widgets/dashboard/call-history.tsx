@@ -63,9 +63,9 @@ const RecordingCell = ({
         Listen
       </Button>
       <Button
-        variant="ghost"
+        variant="transcript"
         size="sm"
-        className={transcriptBtn}
+        className=""
         onClick={() => console.log("Download transcript:", transcriptUrl)}
       >
         <File />
@@ -212,7 +212,7 @@ export default function DataTable() {
                 Category <ChevronDown className="size-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-background">
+            <DropdownMenuContent align="center" className="bg-background">
               {["Booking", "Cancellation", "General Inquiry", "Reschedule"].map(
                 (status) => (
                   <DropdownMenuCheckboxItem

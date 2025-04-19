@@ -1,7 +1,7 @@
 import React from "react";
 
 import Business from "@/components/widgets/admin/business-card";
-import { containerClassname } from "@/lib/types";
+import { containerClassname } from "@/lib/constant";
 
 export default function Page() {
   return (
