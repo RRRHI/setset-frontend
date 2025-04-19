@@ -17,7 +17,7 @@ import { Filter } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import {card, cardHeader, listenBtn, transcriptBtn} from "@/lib/constant"
+import {card, cardHeader} from "@/lib/constant"
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

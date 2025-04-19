@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -37,7 +37,7 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording } from "@/lib/types";
-import {cardHeader, card, flexBetweenCol, transcriptBtn} from "@/lib/constant"
+import {cardHeader, card, flexBetweenCol} from "@/lib/constant"
 import { cn } from "@/lib/utils";
 const RecordingCell = ({
   recordingUrl,

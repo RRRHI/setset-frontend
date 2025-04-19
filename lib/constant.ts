@@ -32,7 +32,7 @@ export const iconStyles ="text-secondary h-10 w-10 rounded-lg p-2"
 export const flexBetweenCol = "flex flex-col justify-between";
 
 export const listenBtn = "bg-sidebar-ring text-black"
-export const transcriptBtn = "bg-foreground text-card hover:outline-solid hover:outline-1 hover:outline-foreground"
+
 
 export const settingSection = "flex align-center justify-center items-center min-h-full snap-center"
 export const warningText = "text-sm text-red-500"
