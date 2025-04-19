@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DualRangeSlider } from "@/components/ui/dual-slider";
 import { Input } from "@/components/ui/input";
-import { ScrollArea, ScrollBar  } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -35,7 +35,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
-import {card, cardHeader, flexBetweenCol} from "@/lib/constant"
+import { card, cardHeader, flexBetweenCol } from "@/lib/constant";
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -181,11 +181,12 @@ export default function Recordings() {
 
   return (
     <div className="px-4">
-
-
       <Card className={cn(card)}>
         <div
-          className={cn(flexBetweenCol,`md:flex-row ${isMobile ? "space-y-4 mb-6" : ""}`)}
+          className={cn(
+            flexBetweenCol,
+            `md:flex-row ${isMobile ? "mb-6 space-y-4" : ""}`,
+          )}
         >
           <CardHeader className={cardHeader}>
             Call history and transcripts
@@ -204,7 +205,7 @@ export default function Recordings() {
             />
 
             {/* Dropdown to filter by category */}
-            <DropdownMenu >
+            <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
@@ -243,7 +244,7 @@ export default function Recordings() {
                   variant="outline"
                   className="w-fit justify-between bg-inherit"
                 >
-                  Filter <Filter className="size-4 " />
+                  Filter <Filter className="size-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-background">
@@ -263,10 +264,8 @@ export default function Recordings() {
                       className="w-[200px]"
                     />
                     <div className="flex justify-between">
-                      <span >{durationRange[0]} min</span>
-                      <span>
-                        {Math.ceil(durationRange[1])} min
-                      </span>
+                      <span>{durationRange[0]} min</span>
+                      <span>{Math.ceil(durationRange[1])} min</span>
                     </div>
                   </div>
                 </div>
@@ -274,8 +273,8 @@ export default function Recordings() {
             </DropdownMenu>
           </div>
         </div>
-        <ScrollArea className="h-[600px] rounded-md border .movedScrollbar">
-          <Table className = "mr-1 overflow-hidden">
+        <ScrollArea className="h-[600px] rounded-md border">
+          <Table className="mr-1 overflow-hidden">
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
@@ -294,7 +293,7 @@ export default function Recordings() {
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody >
+            <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => {
                   const duration = row.original.duration;
@@ -336,7 +335,11 @@ export default function Recordings() {
             {Array.from({ length: table.getPageCount() }).map((_, index) => (
               <Button
                 key={index}
-                variant={index === table.getState().pagination.pageIndex ? "transcript" : "outline"}
+                variant={
+                  index === table.getState().pagination.pageIndex
+                    ? "transcript"
+                    : "outline"
+                }
                 size="sm"
                 onClick={() => table.setPageIndex(index)}
                 disabled={table.getState().pagination.pageIndex === index}
@@ -347,6 +350,6 @@ export default function Recordings() {
           </div>
         </div>
       </Card>
-                            </div>
+    </div>
   );
 }
