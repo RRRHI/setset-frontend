@@ -326,7 +326,7 @@ export default function DataTable() {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end p-2">
+      <div className="flex items-center justify-end py-2">
         <div className="">
           <Button variant="outline" size="sm" onClick={handleViewMore}>
             View more

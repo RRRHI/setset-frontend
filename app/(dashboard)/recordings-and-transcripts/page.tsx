@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DualRangeSlider } from "@/components/ui/dual-slider";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar  } from "@/components/ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -274,8 +274,8 @@ export default function Recordings() {
             </DropdownMenu>
           </div>
         </div>
-        <ScrollArea className="h-[600px] rounded-md border ">
-          <Table className = "mr-1">
+        <ScrollArea className="h-[600px] rounded-md border .movedScrollbar">
+          <Table className = "mr-1 overflow-hidden">
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
@@ -294,7 +294,7 @@ export default function Recordings() {
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody>
+            <TableBody >
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => {
                   const duration = row.original.duration;
@@ -328,8 +328,9 @@ export default function Recordings() {
               )}
             </TableBody>
           </Table>
+          <ScrollBar orientation="horizontal" />
         </ScrollArea>
-        <div className="flex items-center justify-end p-2">
+        <div className="flex items-center justify-end py-2">
           <div className="space-x-2">
             {/* Render numbered pagination buttons */}
             {Array.from({ length: table.getPageCount() }).map((_, index) => (
