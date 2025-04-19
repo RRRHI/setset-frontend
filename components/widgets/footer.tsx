@@ -74,7 +74,7 @@ export default function Footer() {
                 <DialogTitle>Report a problem</DialogTitle>
                 <DialogDescription>
                   Report any issues you faced with the AI assistant. Click send
-                  once you're done.
+                  once you&apos;re done.
                 </DialogDescription>
               </DialogHeader>
 

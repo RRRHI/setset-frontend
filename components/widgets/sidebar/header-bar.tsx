@@ -34,11 +34,9 @@ const SidebarIcon = ({ currPage }: { currPage: sideBarPageProp }) => {
   );
 };
 
-const UserButton = () => {
+const UserButton = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   //this is the code for the user profile button for now
-  return true ? (
-    //this is the code for the user profile button
-
+  return isLoggedIn ? (
     <ProfilePicture
       src="https://github.com/shadcn.png"
       alt="CN"
@@ -69,7 +67,8 @@ export function HeaderBar({ currPage }: HeaderBarProps) {
 
       <div className="flex items-center gap-5 md:gap-[30px]">
         <ChangeTheme />
-        <UserButton />
+        {/* set to true to view the profile button */}
+        <UserButton isLoggedIn={true} />
         <Button
           variant="ghost"
           className="hidden p-0 hover:bg-transparent sm:block"

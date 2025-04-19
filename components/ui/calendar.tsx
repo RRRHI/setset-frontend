@@ -81,7 +81,7 @@ function Calendar({
     }, [yearRange]),
   );
 
-  const { onNextClick, onPrevClick, startMonth, endMonth } = props;
+  const { /*onNextClick,*/ onPrevClick, startMonth, endMonth } = props;
 
   const columnsDisplayed = navView === "years" ? 1 : numberOfMonths;
 
@@ -231,6 +231,7 @@ function Calendar({
             endMonth={endMonth}
             navView={navView}
             setNavView={setNavView}
+            className={className}
             {...props}
           >
             {children}
@@ -321,7 +322,15 @@ function Nav({
     }
     goToMonth(previousMonth);
     onPrevClick?.(previousMonth);
-  }, [previousMonth, goToMonth]);
+  }, [
+    previousMonth,
+    goToMonth,
+    displayYears.from,
+    displayYears.to,
+    navView,
+    onPrevClick,
+    setDisplayYears,
+  ]);
 
   const handleNextClick = React.useCallback(() => {
     if (!nextMonth) return;
@@ -341,7 +350,15 @@ function Nav({
     }
     goToMonth(nextMonth);
     onNextClick?.(nextMonth);
-  }, [goToMonth, nextMonth]);
+  }, [
+    goToMonth,
+    nextMonth,
+    onNextClick,
+    displayYears.from,
+    displayYears.to,
+    navView,
+    setDisplayYears,
+  ]);
   return (
     <nav className={cn("flex items-center", className)}>
       <Button
@@ -446,7 +463,6 @@ function MonthGrid({
     </table>
   );
 }
-
 function YearGrid({
   className,
   displayYears,
@@ -465,21 +481,67 @@ function YearGrid({
 } & React.HTMLAttributes<HTMLDivElement>) {
   const { goToMonth, selected } = useDayPicker();
 
+  const getSelectedMonth = () => {
+    // Default is current month
+    const currentMonth = new Date().getMonth();
+
+    // In case selected is undefined/null
+    if (!selected) {
+      return currentMonth;
+    }
+
+    try {
+      // Casting to any to bypass TypeScript's strict checking as we don't know the exact type of selected
+      const selectedAny = selected as any;
+
+      if (selectedAny instanceof Date) {
+        return selectedAny.getMonth();
+      }
+
+      // If selected is an array of Dates, we can extract the month from the first Date
+      // (e.g., when using multiple selection)
+      if (
+        Array.isArray(selectedAny) &&
+        selectedAny.length > 0 &&
+        selectedAny[0] instanceof Date
+      ) {
+        return selectedAny[0].getMonth();
+      }
+
+      // If selected is an object with a from property that is a Date
+      // (e.g., when using range selection), we can extract the month from it
+      if (
+        selectedAny &&
+        typeof selectedAny === "object" &&
+        "from" in selectedAny &&
+        selectedAny.from instanceof Date
+      ) {
+        return selectedAny.from.getMonth();
+      }
+
+      return currentMonth;
+    } catch (e) {
+      return currentMonth;
+    }
+  };
+
   return (
     <div className={cn("grid grid-cols-4 gap-y-2", className)} {...props}>
       {Array.from(
         { length: displayYears.to - displayYears.from + 1 },
         (_, i) => {
           const isBefore =
+            startMonth &&
             differenceInCalendarDays(
               new Date(displayYears.from + i, 11, 31),
-              startMonth!,
+              startMonth,
             ) < 0;
 
           const isAfter =
+            endMonth &&
             differenceInCalendarDays(
               new Date(displayYears.from + i, 0, 0),
-              endMonth!,
+              endMonth,
             ) > 0;
 
           const isDisabled = isBefore || isAfter;
@@ -494,12 +556,7 @@ function YearGrid({
               variant="ghost"
               onClick={() => {
                 setNavView("days");
-                goToMonth(
-                  new Date(
-                    displayYears.from + i,
-                    (selected as Date | undefined)?.getMonth() ?? 0,
-                  ),
-                );
+                goToMonth(new Date(displayYears.from + i, getSelectedMonth()));
               }}
               disabled={navView === "years" ? isDisabled : undefined}
             >

@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { Eye, EyeClosed } from "lucide-react"
-import { useEffect,useState } from "react"
+import { Eye, EyeClosed } from "lucide-react";
+import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 import { warningText } from "@/lib/constant"
 
 export function LoginForm({
@@ -16,26 +16,26 @@ export function LoginForm({
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
   const [passwordError, setPasswordError] = useState("");
   const [isPassword, setIsPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [id]: value
+      [id]: value,
     }));
 
     if (id === "password" && !isPassword) {
       setIsPassword(true);
     }
-  }
+  };
 
   useEffect(() => {
     if (isPassword) {
@@ -51,45 +51,52 @@ export function LoginForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (formData.password.length < 8) {
       setIsPassword(true);
       setPasswordError("Password must be at least 8 characters");
       return;
     }
     setPasswordError("");
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className={cn("flex flex-col gap-6", className)} {...props}>
+    <form
+      onSubmit={handleSubmit}
+      className={cn("flex flex-col gap-6", className)}
+      {...props}
+    >
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Login to your account</h1>
         <p className="text-balance text-sm text-muted-foreground">
           Enter your email below to login to your account
         </p>
       </div>
-      
+
       <div className="grid gap-6">
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"
             type="email"
-            placeholder="m@example.com"
+            placeholder="username@example.com"
             required
             value={formData.email}
             onChange={handleChange}
           />
         </div>
-        
+
         <div className="grid gap-2">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
-            <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
+            <a
+              href="#"
+              className="ml-auto text-sm underline-offset-4 hover:underline"
+            >
               Forgot your password?
             </a>
           </div>
-          
+
           <div className="relative">
             <Input
               id="password"
@@ -105,37 +112,45 @@ export function LoginForm({
               onClick={togglePasswordVisibility}
               className="absolute right-0 top-0 h-full px-3 py-2 text-muted-foreground hover:text-foreground"
             >
-              {showPassword ? <EyeClosed className="size-4" /> : <Eye className="size-4" />}
+              {showPassword ? (
+                <EyeClosed className="size-4" />
+              ) : (
+                <Eye className="size-4" />
+              )}
             </button>
           </div>
-          
+
           {isPassword && passwordError && (
             <p className={warningText}>
               {passwordError}
             </p>
           )}
         </div>
-        
-        <Button 
-          type="submit" 
-          className="w-full bg-white text-black hover:border hover:border-white hover:bg-card hover:text-white"
+
+        <Button
+          type="submit"
+          className="w-full bg-foreground text-card hover:border hover:border-foreground hover:bg-background hover:text-foreground"
           disabled={!!passwordError && isPassword}
         >
           Login
         </Button>
-        
+
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
           </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="relative z-10 bg-background px-2 text-muted-foreground">
+          <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-foreground">
+            <span className="relative z-10 bg-card px-2 text-muted-foreground">
               Or continue with
             </span>
           </div>
         </div>
-        
-        <Button variant="outline" type="button" className="w-full bg-white text-black hover:text-white">
+
+        <Button
+          variant="outline"
+          type="button"
+          className="w-full bg-foreground text-card hover:border hover:border-foreground hover:bg-background hover:text-foreground"
+        >
           <svg
             className="mr-2 size-4"
             xmlns="http://www.w3.org/2000/svg"
@@ -149,13 +164,13 @@ export function LoginForm({
           Google
         </Button>
       </div>
-      
+
       <div className="text-center text-sm">
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <a href="#" className="font-medium underline underline-offset-4">
           Sign up
         </a>
       </div>
     </form>
-  )
+  );
 }

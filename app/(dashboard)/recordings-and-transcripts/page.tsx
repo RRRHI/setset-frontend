@@ -42,7 +42,7 @@ import { cn } from "@/lib/utils";
 const RecordingCell = ({
   recordingUrl,
   transcriptUrl,
-  id,
+  //id,
 }: {
   recordingUrl: string;
   transcriptUrl: string;
@@ -50,17 +50,6 @@ const RecordingCell = ({
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
 
   return (
     <div className="flex justify-end space-x-20">
