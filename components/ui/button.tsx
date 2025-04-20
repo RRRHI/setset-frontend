@@ -22,7 +22,7 @@ const buttonVariants = cva(
         green: "min-w-[109.91px] bg-[#2a870b] text-white shadow-sm hover:bg-[#2a870b]/60 hover:text-white",
 
         transcript:
-          "bg-foreground text-card hover:bg-accent hover:text-accent-foreground hover:outline hover:outline-inherit",
+          "hover:outline-hover:outline-gray-500 bg-foreground text-card hover:bg-accent hover:text-accent-foreground hover:outline",
       },
       size: {
         default: "h-9 px-4 py-2",

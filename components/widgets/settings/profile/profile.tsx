@@ -10,18 +10,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ProfileImage } from "@/components/widgets/settings/profile/profile-image";
-import { settingCard, settingLabel } from "@/lib/constant";
+import {dropDownButtonFormat, dropDownFieldFormat,profileComponentFormat,settingCard, settingLabel} from "@/lib/constant";
 import { cn } from "@/lib/utils";
 
 import EditableField from "./editable-field";
 
-const profileComponentFormat =
-  "flex flex-col w-full items-start gap-1 ";
 
-const dropDownButtonFormat =
-  "justify-between w-full border border-input text-sm text-card-foreground focus-visible:ring-0";
 
-const dropDownFieldFormat = "flex flex-col w-full gap-1";
+
+
+
 
 export function ProfilePage() {
   const [name, setName] = useState("Business Name");

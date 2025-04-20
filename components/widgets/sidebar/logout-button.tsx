@@ -11,7 +11,8 @@ export function LogOut() {
 
   return (
     <Button
-      className="bg-primary-foreground text-primary hover:bg-background hover:text-foreground"
+    variant={"transcript"}
+
       onClick={logOUt}
     >
       <LogOutIcon />

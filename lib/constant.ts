@@ -46,3 +46,8 @@ export const formFieldWrapper = "flex flex-col gap-1"
 export const cardContentStyles = "flex flex-col px-4 py-6 justify-center";
 
 export const containerClassname = "flex w-full flex-col gap-6 p-4 pt-0";
+
+export const  profileComponentFormat ="flex flex-col w-full items-start gap-1 ";
+export const dropDownButtonFormat ="justify-between w-full border border-input text-sm text-card-foreground focus-visible:ring-0";
+
+export const dropDownFieldFormat = "flex flex-col w-full gap-1";
