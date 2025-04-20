@@ -214,7 +214,7 @@ export default function Recordings() {
                   Category <ChevronDown className="size-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-background">
+              <DropdownMenuContent align="center" className="bg-background">
                 {[
                   "Booking",
                   "Cancellation",
