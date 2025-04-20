@@ -4,9 +4,9 @@ import { Check, Construction } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { flexBetweenCol } from "@/lib/constant";
+import { containerClassname,flexBetweenCol } from "@/lib/constant";
 import { reportsData } from "@/lib/sample-data";
-import { containerClassname, ReportData } from "@/lib/types";
+import { ReportData } from "@/lib/types";
 import {cn} from "@/lib/utils";
 
 function ReportsContent({ data }: { data: ReportData[] }) {
