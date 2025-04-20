@@ -78,60 +78,7 @@ const RecordingCell = ({
   );
 };
 
-export const columns: ColumnDef<CallRecording>[] = [
-  {
-    accessorKey: "id",
-    header: "Call ID",
-    cell: ({ row }) => <div>{row.getValue("id")}</div>,
-  },
-  {
-    accessorKey: "date",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Date
-          <ArrowDownUp className="size-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div>{row.getValue("date")}</div>,
-  },
-  {
-    accessorKey: "category",
-    header: "Category",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("category")}</div>
-    ),
-  },
-  {
-    accessorKey: "confidenceScore",
-    header: "AI confidence score",
-    cell: ({ row }) => <div>{row.getValue("confidenceScore")}</div>,
-  },
-  {
-    accessorKey: "duration",
-    header: "Duration",
-    cell: ({ row }) => <div>{row.getValue("duration")}</div>,
-  },
-  {
-    accessorKey: "recording",
-    header: "",
-    cell: ({ row }) => (
-      <div className="py-3">
-        <RecordingCell
-          recordingUrl={row.original.recordingUrl}
-          transcriptUrl={row.original.transcriptUrl}
-          id={row.original.id}
-        />
-      </div>
-    ),
-  },
-];
-
-export default function Recordings() {
+function RecordingsContent({ data }: { data: CallRecording[] }) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -145,10 +92,9 @@ export default function Recordings() {
   };
 
   const maxDuration = Math.max(
-    ...callRecordingsData.map((recording) =>
-      convertDurationToMinutes(recording.duration),
-    ),
+    ...data.map((recording) => convertDurationToMinutes(recording.duration)),
   );
+
   useEffect(() => {
     setDurationRange([0, maxDuration]);
   }, [maxDuration]);
@@ -161,8 +107,61 @@ export default function Recordings() {
     );
   };
 
+  const columns: ColumnDef<CallRecording>[] = [
+    {
+      accessorKey: "id",
+      header: "Call ID",
+      cell: ({ row }) => <div>{row.getValue("id")}</div>,
+    },
+    {
+      accessorKey: "date",
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Date
+            <ArrowDownUp className="size-4" />
+          </Button>
+        );
+      },
+      cell: ({ row }) => <div>{row.getValue("date")}</div>,
+    },
+    {
+      accessorKey: "category",
+      header: "Category",
+      cell: ({ row }) => (
+        <div className="capitalize">{row.getValue("category")}</div>
+      ),
+    },
+    {
+      accessorKey: "confidenceScore",
+      header: "AI confidence score",
+      cell: ({ row }) => <div>{row.getValue("confidenceScore")}</div>,
+    },
+    {
+      accessorKey: "duration",
+      header: "Duration",
+      cell: ({ row }) => <div>{row.getValue("duration")}</div>,
+    },
+    {
+      accessorKey: "recording",
+      header: "",
+      cell: ({ row }) => (
+        <div className="py-3">
+          <RecordingCell
+            recordingUrl={row.original.recordingUrl}
+            transcriptUrl={row.original.transcriptUrl}
+            id={row.original.id}
+          />
+        </div>
+      ),
+    },
+  ];
+
   const table = useReactTable({
-    data: callRecordingsData,
+    data,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -352,4 +351,10 @@ export default function Recordings() {
       </Card>
     </div>
   );
+}
+
+export default function Recordings() {
+  const data = callRecordingsData;
+
+  return <RecordingsContent data={data} />;
 }

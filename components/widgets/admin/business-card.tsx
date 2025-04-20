@@ -14,7 +14,6 @@ import { business } from "@/lib/sample-data";
 import { BusinessInfo } from "@/lib/types";
 
 import { Button } from "../../ui/button";
-//shadcn card ui
 import { Card, CardDescription, CardTitle } from "../../ui/card";
 import { Input } from "../../ui/input";
 import { BusinessPaginate } from "../business/business-pagination";

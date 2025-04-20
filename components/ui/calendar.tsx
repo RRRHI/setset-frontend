@@ -491,7 +491,7 @@ function YearGrid({
     }
 
     try {
-      // Casting to any to bypass TypeScript's strict checking as we don't know the exact type of selected
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const selectedAny = selected as any;
 
       if (selectedAny instanceof Date) {

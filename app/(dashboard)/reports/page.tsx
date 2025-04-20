@@ -1,3 +1,5 @@
+"use client";
+
 import { Check, Construction } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,11 +9,7 @@ import { reportsData } from "@/lib/sample-data";
 import { containerClassname, ReportData } from "@/lib/types";
 import {cn} from "@/lib/utils";
 
-export default function Reports({
-  data = reportsData,
-}: {
-  data: ReportData[];
-}) {
+function ReportsContent({ data }: { data: ReportData[] }) {
   const cardContentStyles = "flex flex-col px-4 py-6 justify-center";
 
   const pendingReports = data.filter((report) => report.status === "Pending");
@@ -99,4 +97,10 @@ export default function Reports({
       </Tabs>
     </div>
   );
+}
+
+export default function Reports() {
+  const data = reportsData;
+
+  return <ReportsContent data={data} />;
 }

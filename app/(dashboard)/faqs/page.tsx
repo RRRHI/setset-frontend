@@ -4,8 +4,8 @@ import { faqsData } from "@/lib/sample-data";
 import { FaqData } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-export default function Faqs({ data = faqsData }: { data: FaqData[] }) {
- 
+// only client components can accept props and not page components
+function FaqsContent({ data }: { data: FaqData[] }) {
 
   return (
     <div id="faqs" className={containerClassname}>
@@ -33,4 +33,12 @@ export default function Faqs({ data = faqsData }: { data: FaqData[] }) {
       ))}
     </div>
   );
+}
+
+// page component that doesn't accept props
+export default function Faqs() {
+  const data = faqsData; // fetch data
+
+  // pass it to the client component
+  return <FaqsContent data={data} />;
 }
