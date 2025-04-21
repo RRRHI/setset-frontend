@@ -26,7 +26,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { flexBetweenCol,Header,settingCard } from "@/lib/constant";
+import {
+  flexBetweenCol,
+  Header,
+  invoiceMenuItem,
+  settingCard,
+} from "@/lib/constant";
 import { businessInvoice } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 
@@ -130,19 +135,22 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
     setSorting(sorting === "asc" ? "desc" : "asc");
   };
 
-  return ( 
-    <Card  className={settingCard}>
+  return (
+    <Card className={settingCard}>
       <div
-        className={cn(flexBetweenCol, ` md:flex-row ${isMobile ? "space-y-4" : ""}`)}
+        className={cn(
+          flexBetweenCol,
+          `md:flex-row ${isMobile ? "space-y-4" : ""}`,
+        )}
       >
         <CardHeader className={cn(Header)}>
           {plan === "yearly" ? "Annual Invoices" : "Monthly Invoices"}
         </CardHeader>
-        
+
         <div
           className={`mt-2 flex flex-col gap-2 md:mt-0 md:flex-row lg:gap-4 ${isMobile ? "space-y-4" : ""}`}
         >
-          <div className="relative max-h-9  w-full">
+          <div className="relative max-h-9 w-full">
             <SearchIcon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder={`Search ${plan} invoices...`}
@@ -162,13 +170,13 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                 {selectedYear || "All Years"}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="max-h-60 overflow-y-auto bg-background">
-              <DropdownMenuItem 
+            <DropdownMenuContent className="flex max-h-60 w-[--radix-dropdown-menu-trigger-width] flex-col items-center overflow-y-auto bg-background sm:w-auto">
+              <DropdownMenuItem
                 onClick={() => {
                   setSelectedYear(null);
                   setCurrentPage(1);
                 }}
-                className={` my-1 dark:hover:bg-primary ${!selectedYear ? "" : ""}`}
+                className={cn(invoiceMenuItem, `${!selectedYear ? "" : ""}`)}
               >
                 All Years
               </DropdownMenuItem>
@@ -179,8 +187,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                     setSelectedYear(year);
                     setCurrentPage(1);
                   }}
-                  className={` my-1 dark:hover:bg-primary ${!selectedYear ? "" : ""}`}
-
+                  className={cn(invoiceMenuItem, `${!selectedYear ? "" : ""}`)}
                 >
                   {year}
                 </DropdownMenuItem>
@@ -205,7 +212,6 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                   <ArrowDownUp className="ml-2 size-4" />
                 </Button>
               </TableHead>
-            
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -214,7 +220,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                 <TableRow key={invoice.id} className="hover:bg-muted/50">
                   <TableCell>
                     <div>
-                      <p className="text-sm ">{invoice.id}</p>
+                      <p className="text-sm">{invoice.id}</p>
                     </div>
                   </TableCell>
                   <TableCell>{invoice.formattedDate}</TableCell>

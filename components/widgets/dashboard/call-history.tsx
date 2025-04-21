@@ -212,7 +212,7 @@ export default function DataTable() {
                 Category <ChevronDown className="size-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-background">
+            <DropdownMenuContent align={isMobile? "start" : "center"} className="bg-background">
               {["Booking", "Cancellation", "General Inquiry", "Reschedule"].map(
                 (status) => (
                   <DropdownMenuCheckboxItem
@@ -242,7 +242,7 @@ export default function DataTable() {
                 Filter <Filter className="size-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-background">
+            <DropdownMenuContent align={isMobile? "start" : "end"} className="bg-background">
               <div className="p-5">
                 <div className="flex flex-col space-y-4">
                   <div className="flex justify-between">

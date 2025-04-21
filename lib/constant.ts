@@ -3,7 +3,7 @@ export const sideBarTrigger = "flex w-full items-center gap-5 text-foreground ho
 
 export const headerIconSpan = "rounded-xl bg-primary-foreground p-2";
 
-export const headerText = "max-w-24 text-pretty text-left leading-none sm:max-w-full text-xl md:text-2xl lg:text-3xl";
+export const headerText = "max-w-28 text-pretty text-left leading-none sm:max-w-full text-xl md:text-2xl lg:text-3xl";
 
 export const headerClassname = "my-4 flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[data-collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 bg-background z-10 rounded-xl";
 
@@ -47,3 +47,5 @@ export const  profileComponentFormat ="flex flex-col w-full items-start gap-1 ";
 export const dropDownButtonFormat ="justify-between w-full border border-input text-sm text-card-foreground focus-visible:ring-0";
 
 export const dropDownFieldFormat = "flex flex-col w-full gap-1";
+
+export const invoiceMenuItem = "w-full my-1 flex justify-center dark:hover:bg-primary";

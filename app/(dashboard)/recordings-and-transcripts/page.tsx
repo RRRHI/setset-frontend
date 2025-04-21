@@ -35,7 +35,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { card, flexBetweenCol,Header } from "@/lib/constant";
+import { card, flexBetweenCol, Header } from "@/lib/constant";
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -213,7 +213,10 @@ function RecordingsContent({ data }: { data: CallRecording[] }) {
                   Category <ChevronDown className="size-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="bg-background">
+              <DropdownMenuContent
+                align={isMobile ? "start" : "center"}
+                className="bg-background"
+              >
                 {[
                   "Booking",
                   "Cancellation",
@@ -246,7 +249,10 @@ function RecordingsContent({ data }: { data: CallRecording[] }) {
                   Filter <Filter className="size-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-background">
+              <DropdownMenuContent
+                align={isMobile ? "start" : "end"}
+                className="bg-background"
+              >
                 <div className="p-5">
                   <div className="flex flex-col space-y-4">
                     <div className="flex justify-between">
@@ -273,7 +279,7 @@ function RecordingsContent({ data }: { data: CallRecording[] }) {
           </div>
         </div>
         <ScrollArea className="h-[600px] rounded-md border">
-          <Table className="mr-1 overflow-hidden">
+          <Table className="mr-1 w-[99%] overflow-hidden">
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>

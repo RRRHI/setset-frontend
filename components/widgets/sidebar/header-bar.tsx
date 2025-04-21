@@ -6,11 +6,18 @@ import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Notification from "@/components/widgets/sidebar/notification";
 import { ChangeTheme } from "@/components/widgets/theme-toggle";
-import { headerButton, headerIconSpan, headerSection, headerText, sideBarTrigger } from "@/lib/constant";
+import {
+  headerButton,
+  headerIconSpan,
+  headerSection,
+  headerText,
+  sideBarTrigger,
+} from "@/lib/constant";
 import { profile } from "@/lib/sample-data";
 import SettingIcon from "@/lib/settings";
 import { SettingsHeader } from "@/lib/settings";
 import { sideBarPageProp } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 import { ProfilePicture } from "./header-profile";
 interface HeaderBarProps {
@@ -27,9 +34,7 @@ const SidebarIcon = ({ currPage }: { currPage: sideBarPageProp }) => {
           <div className="[&>svg]:!stroke-primary">{currPage.icon}</div>
         )}
       </span>
-      <p className={headerText}>
-        {currPage.title}
-      </p>
+      <p className={cn(headerText, "max-w-48")}>{currPage.title}</p>
     </SidebarTrigger>
   );
 };
@@ -45,11 +50,7 @@ const UserButton = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     />
   ) : (
     //this is the code for the login button
-    <Button
-      variant="ghost"
-      className={headerButton}
-      asChild
-    >
+    <Button variant="ghost" className={headerButton} asChild>
       <Link href={"/Profile"} className="!flex flex-row">
         <UserRound className="!size-5 fill-foreground stroke-foreground sm:!size-6" />
         <p className="hidden text-lg md:block">Sign In</p>
@@ -61,7 +62,7 @@ const UserButton = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 export function HeaderBar({ currPage }: HeaderBarProps) {
   return (
     <section className={headerSection}>
-      <div className="flex items-center">
+      <div className="flex min-w-48 items-center">
         <SidebarIcon currPage={currPage} />
       </div>
 
