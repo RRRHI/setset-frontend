@@ -1,7 +1,6 @@
 "use client";
 
 import { Settings } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -15,8 +14,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { imgDiv, setSetLogo, setSetLogoText } from "@/lib/constant";
 import { sideBarPageProp } from "@/lib/types";
+
+import { Brand } from "./branding";
 
 export function AppSidebar({
   currPage,
@@ -36,22 +36,7 @@ export function AppSidebar({
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="mb-0 mt-[10px] items-center gap-2 p-[30px]">
-            <div className={setSetLogo}>
-              <div className={imgDiv}>
-                <Image
-                  src="/images/logo.png"
-                  alt="logo"
-                  width={60}
-                  height={60}
-                />
-                <a
-                  href="/dashboard"
-                  className={setSetLogoText}
-                >
-                  Setset
-                </a>
-              </div>
-            </div>
+           <Brand />
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>

@@ -36,7 +36,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
-import {card, cardHeader} from "@/lib/constant"
+import {card, Header} from "@/lib/constant"
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording } from "@/lib/types";
 
@@ -186,8 +186,8 @@ export default function DataTable() {
       <div
         className={`flex flex-col justify-between md:flex-row ${isMobile ? "space-y-4" : ""}`}
       >
-        <CardHeader className={cardHeader}>
-          Call history and transcripts
+        <CardHeader className={Header}>
+          Call History and Transcripts
         </CardHeader>
 
         <div

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import {
@@ -9,8 +8,9 @@ import {
   SidebarGroupLabel,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { imgDiv, setSetLogo, setSetLogoText } from "@/lib/constant";
 import { sideBarPageProp } from "@/lib/types";
+
+import { Brand } from "./branding";
 
 export function SettingSidebar({
   menuItems,
@@ -23,33 +23,12 @@ export function SettingSidebar({
   const handleScrollToSection = (id: string) => {
    router.push(`settings/#${id}`);
   }
-
-  
-  
-
   return (
     <Sidebar variant="floating" className="rounded-2xl">
       <SidebarContent className="scrollbar overflow-y-auto rounded-xl ">
         <SidebarGroup>
           <SidebarGroupLabel className="my-[10px] mb-0 items-center gap-2 p-[30px]">
-            <div className={setSetLogo}>
-              <div className={imgDiv}>
-                <Image
-                  src="/images/logo.png"
-                  alt="logo"
-                  width={60}
-                  height={60}
-                  className="h-auto"
-                  priority
-                />
-                <a
-                  href="/dashboard"
-                  className={setSetLogoText}
-                >
-                  Setset
-                </a>
-              </div>
-            </div>
+            <Brand />
           </SidebarGroupLabel>
           <SidebarGroupContent className="scrollbar my-5 ">
             {menuItems.map((item) => (

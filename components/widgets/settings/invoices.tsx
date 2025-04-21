@@ -26,7 +26,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { flexBetweenCol,settingCard,settingHeader } from "@/lib/constant";
+import { flexBetweenCol,Header,settingCard } from "@/lib/constant";
 import { businessInvoice } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 
@@ -133,9 +133,9 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
   return ( 
     <Card  className={settingCard}>
       <div
-        className={cn(flexBetweenCol, `py-4 md:flex-row ${isMobile ? "space-y-4" : ""}`)}
+        className={cn(flexBetweenCol, ` md:flex-row ${isMobile ? "space-y-4" : ""}`)}
       >
-        <CardHeader className={cn(settingHeader)}>
+        <CardHeader className={cn(Header)}>
           {plan === "yearly" ? "Annual Invoices" : "Monthly Invoices"}
         </CardHeader>
         
@@ -205,7 +205,7 @@ export function Invoices({ plan }: { plan: BillingPlan }) {
                   <ArrowDownUp className="ml-2 size-4" />
                 </Button>
               </TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+            
             </TableRow>
           </TableHeader>
           <TableBody>

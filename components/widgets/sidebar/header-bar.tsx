@@ -38,8 +38,8 @@ const UserButton = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   //this is the code for the user profile button for now
   return isLoggedIn ? (
     <ProfilePicture
-      src="https://github.com/shadcn.png"
-      alt="CN"
+      src="/images/logo.png"
+      alt="SS"
       className="!size-6 cursor-pointer"
       profile={profile}
     />

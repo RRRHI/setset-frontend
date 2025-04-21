@@ -519,9 +519,9 @@ export const settingMenu: sideBarPageProp[] = [
 
 ];
 export const profile: ProfileData = {
-  name: "John Doe",
+  name: "Set Set",
   category: "Business",
-  email: "iCw3A@example.com",
+  email: "JohnDoe@SetSet.com",
 };
 
 export const reportsData: ReportData[] = [

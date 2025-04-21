@@ -32,8 +32,8 @@ const SidebarIcon = ({View}:{View:string}) => {
 const UserButton = () => {
   return (
     <ProfilePicture
-      src="https://github.com/shadcn.png"
-      alt="CN"
+      src="/images/logo.png"
+      alt="SS"
       className="!size-6 cursor-pointer"
       profile={profile}
     />

@@ -35,7 +35,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { card, cardHeader, flexBetweenCol } from "@/lib/constant";
+import { card, flexBetweenCol,Header } from "@/lib/constant";
 import { callRecordingsData } from "@/lib/sample-data";
 import { CallRecording } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -187,8 +187,8 @@ function RecordingsContent({ data }: { data: CallRecording[] }) {
             `md:flex-row ${isMobile ? "mb-6 space-y-4" : ""}`,
           )}
         >
-          <CardHeader className={cardHeader}>
-            Call history and transcripts
+          <CardHeader className={Header}>
+            Call History and Transcripts
           </CardHeader>
 
           <div

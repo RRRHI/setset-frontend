@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {formFieldWrapper, settingCard, settingHeader, settingLabel, warningText} from "@/lib/constant";
+import {formFieldWrapper, Header, settingCard, settingLabel, warningText} from "@/lib/constant";
 import {cn} from "@/lib/utils";
 
 export function Password() {
@@ -123,7 +123,7 @@ export function Password() {
     <Card
       className={cn(settingCard)}
     >
-      <CardHeader className={cn(settingHeader)}>
+      <CardHeader className={cn(Header)}>
         Change Password
       </CardHeader>
       <CardContent className="p-0">
