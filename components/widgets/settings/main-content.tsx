@@ -41,12 +41,12 @@ export function MainContent({
           );
 
           changeView(mostVisibleSection[0]);
-          console.log(
-            "viewSection",
-            mostVisibleSection[0],
-            "ratio:",
-            mostVisibleSection[1],
-          );
+          // console.log(
+          //   "viewSection",
+          //   mostVisibleSection[0],
+          //   "ratio:",
+          //   mostVisibleSection[1],
+          // );
         }
       });
     }, options);
