@@ -279,7 +279,7 @@ function RecordingsContent({ data }: { data: CallRecording[] }) {
           </div>
         </div>
         <ScrollArea className="h-[600px] rounded-md border">
-          <Table className="mr-1 w-[99%] overflow-hidden">
+          <Table className="mr-1 w-[calc(100%-5px)] overflow-hidden">
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
