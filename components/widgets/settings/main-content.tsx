@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { settingSection } from "@/lib/constant";
+import { settingCard, settingSection } from "@/lib/constant";
 import { settingMenu } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 
@@ -32,10 +32,33 @@ export function MainContent({
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          //this is working
           visibleSections.set(entry.target.id, entry.intersectionRatio);
+          const firstChild = entry.target.firstChild as HTMLElement;
+          if (firstChild) {
+            firstChild.classList.remove("translate-y-60", "opacity-0");
+            firstChild.classList.add("translate-y-0", "opacity-100");
+          }
+
+          const parent = entry.target.parentElement as HTMLElement;
+          if (parent) {
+            console.log("Parent element:", parent);
+          }
+            
+        
+        
+          // console.log("Setting a new visible section:", entry.target.firstChild);
         } else {
+          const firstChild = entry.target.firstChild as HTMLElement;
+          if (firstChild) {
+            firstChild.classList.add("translate-y-60", "opacity-0");
+            firstChild.classList.remove("translate-y-0", "opacity-100");
+          }
           visibleSections.delete(entry.target.id);
+          // entry.target.classList.firstChild.remove("bg-blue-300");
+          // entry.target.classList.add("opacity-0"); // Fade it out if you want
         }
+        
 
         if (visibleSections.size > 0) {
           const mostVisibleSection = [...visibleSections.entries()].reduce(
@@ -76,7 +99,7 @@ export function MainContent({
   return (
     <div
       className={cn(
-        "no-scrollbar h-full w-full snap-y snap-mandatory scroll-py-6 overflow-y-auto overflow-x-hidden scroll-smooth p-4 flex space-y-10 flex-col",
+        "no-scrollbar h-full w-full snap-y snap-mandatory scroll-py-6 overflow-y-auto overflow-x-hidden  p-4 flex space-y-10 flex-col ",
       )}
     >
 
@@ -91,6 +114,9 @@ export function MainContent({
       </section>
       <section className= {cn(settingSection)} id="Plans">
         <Plan onClickUpdate={() => scrollToSection("Card-Information")}/>
+      </section>
+      <section className= {cn(settingSection)} id="Calendar">
+        <div className={settingCard}> This is the calender section</div>
       </section>
       <section className= {cn(settingSection)} id="Invoices">
         <Invoices plan="monthly" />

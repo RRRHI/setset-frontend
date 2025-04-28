@@ -13,7 +13,7 @@ export const card =
   "flex w-full flex-col justify-start rounded-xl border bg-card p-6 text-card-foreground min-h-[calc(100vh-150px)]";
 
 export const settingCard =
-  "flex w-full max-h-[100%] shrink-0 snap-center flex-col overflow-y-auto p-6 text-card-foreground scrollbar h-fit";
+  "flex w-full max-h-[100%] shrink-0 snap-center flex-col overflow-y-auto p-6 text-card-foreground scrollbar h-fit transition-transform duration-1000 ease-out  translate-y-60 opacity-0";
 
 export const paymentCard =
   "flex w-full max-h-[100%] shrink-0 snap-center flex-col overflow-y-auto p-6 text-card-foreground scrollbar h-fit";
