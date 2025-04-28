@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect , useState} from "react";
 
-import { settingCard, settingSection } from "@/lib/constant";
+import { opacityAnimation, settingCard, settingSection, upwardScrollAnimation } from "@/lib/constant";
 import { settingMenu } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 
@@ -16,6 +16,8 @@ export function MainContent({
 }: {
   changeView: (view: string) => void;
 }) {
+
+  const [currSection, setCurrSection] = useState<string>("Proifle");
   // const [viewSection, setViewSection] = useState<string>("");
   const sectionIds = settingMenu.map((item) => item.url);
 
@@ -32,47 +34,39 @@ export function MainContent({
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          changeView(entry.target.id);
           //this is working
           visibleSections.set(entry.target.id, entry.intersectionRatio);
-          const firstChild = entry.target.firstChild as HTMLElement;
-          if (firstChild) {
-            firstChild.classList.remove("translate-y-60", "opacity-0");
-            firstChild.classList.add("translate-y-0", "opacity-100");
+
+          console.log("Visible section:", sectionIds.indexOf(entry.target.id));
+          if (sectionIds.indexOf(entry.target.id) > sectionIds.indexOf(currSection)) {
+           //animate downwards
+            const firstChild = entry.target.firstChild as HTMLElement;
+            if (firstChild) {
+              firstChild.classList.remove("translate-y-full", "opacity-0");
+              firstChild.classList.add("translate-y-1", "opacity-100"); 
+
+          } else 
+          {
+            //animate upwards
+            const firstChild = entry.target.firstChild as HTMLElement;
+            if (firstChild) {
+              firstChild.classList.remove("-translate-y-full", "opacity-0");
+              firstChild.classList.add("translate-y-1", "opacity-100"); 
+            }
           }
 
-          const parent = entry.target.parentElement as HTMLElement;
-          if (parent) {
-            console.log("Parent element:", parent);
-          }
-            
-        
-        
-          // console.log("Setting a new visible section:", entry.target.firstChild);
+        }
+
         } else {
-          const firstChild = entry.target.firstChild as HTMLElement;
-          if (firstChild) {
-            firstChild.classList.add("translate-y-60", "opacity-0");
-            firstChild.classList.remove("translate-y-0", "opacity-100");
+          const preViewSection = document.getElementById(currSection) as HTMLElement;
+          if(preViewSection){
+            preViewSection.classList.remove("translate-y-1", "duration-100");
+            preViewSection.classList.add("-translate-y-full", "opacity-0", "ease-out", "-translate-y-full");
           }
-          visibleSections.delete(entry.target.id);
-          // entry.target.classList.firstChild.remove("bg-blue-300");
-          // entry.target.classList.add("opacity-0"); // Fade it out if you want
         }
         
 
-        if (visibleSections.size > 0) {
-          const mostVisibleSection = [...visibleSections.entries()].reduce(
-            (prev, current) => (current[1] > prev[1] ? current : prev),
-          );
-
-          changeView(mostVisibleSection[0]);
-          // console.log(
-          //   "viewSection",
-          //   mostVisibleSection[0],
-          //   "ratio:",
-          //   mostVisibleSection[1],
-          // );
-        }
       });
     }, options);
 
