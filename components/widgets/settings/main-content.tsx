@@ -38,33 +38,67 @@ export function MainContent({
           //this is working
           visibleSections.set(entry.target.id, entry.intersectionRatio);
 
-          console.log("Visible section:", sectionIds.indexOf(entry.target.id));
-          if (sectionIds.indexOf(entry.target.id) > sectionIds.indexOf(currSection)) {
+          // console.log("Visible section:", sectionIds.indexOf(entry.target.id));
+          const isScrollingDown = sectionIds.indexOf(entry.target.id) > sectionIds.indexOf(currSection);
+
+          console.log("index of current section", sectionIds.indexOf(currSection));
+          console.log("index of target section", sectionIds.indexOf(entry.target.id));
+          
+          if (isScrollingDown) {
+            console.log("scrolling downwards");
+            
            //animate downwards
             const firstChild = entry.target.firstChild as HTMLElement;
             if (firstChild) {
+              requestAnimationFrame(() => {
               firstChild.classList.remove("translate-y-full", "opacity-0");
               firstChild.classList.add("translate-y-1", "opacity-100"); 
+              });
 
-          } else 
-          {
-            //animate upwards
-            const firstChild = entry.target.firstChild as HTMLElement;
-            if (firstChild) {
-              firstChild.classList.remove("-translate-y-full", "opacity-0");
+              //using the time between for the currsection to update to reset the animation
+
+              const prevViewSection = document.getElementById(currSection)?.firstChild as HTMLElement;
+              if (prevViewSection) {
+                prevViewSection.classList.remove("translate-y-1", "opacity-100");
+                prevViewSection.classList.add("-translate-y-full", "opacity-0"); 
+              }
+              
+              
+
+              console.log("here is the current section", entry.target.id);
+              console.log("here is the current section", currSection);
+              
+              
+          //setting the new section as the current section
+          setCurrSection(entry.target.id);
+
+             
+          } 
+
+          
+
+        } else if (sectionIds.indexOf(entry.target.id) < sectionIds.indexOf(currSection))
+        {
+          //scrolling upwards
+          console.log("scrolling upwards");
+          const firstChild = entry.target.firstChild as HTMLElement;
+          if (firstChild) {
+            requestAnimationFrame(() => {
+              firstChild.classList.remove("translate-y-full", "opacity-0");
               firstChild.classList.add("translate-y-1", "opacity-100"); 
-            }
+              });
+            
+              const prevViewSection = document.getElementById(currSection) as HTMLElement;
+              if (prevViewSection) {
+                prevViewSection.classList.remove("translate-y-1", "opacity-100");
+                prevViewSection.classList.add("translate-y-full", "opacity-0");
+              }
           }
-
+          
+         
         }
 
-        } else {
-          const preViewSection = document.getElementById(currSection) as HTMLElement;
-          if(preViewSection){
-            preViewSection.classList.remove("translate-y-1", "duration-100");
-            preViewSection.classList.add("-translate-y-full", "opacity-0", "ease-out", "-translate-y-full");
-          }
-        }
+        } 
         
 
       });
