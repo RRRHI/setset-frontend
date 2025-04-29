@@ -27,6 +27,7 @@ export function MainContent({ changeView }: { changeView: (view: string) => void
     const handleIntersection = debounce((entries: IntersectionObserverEntry[]) => {
       if (animationLock.current) return;
 
+      // find most visible section
       const mostVisibleEntry = entries.reduce((max, entry) => 
         entry.isIntersecting && entry.intersectionRatio > (max?.intersectionRatio || 0) 
           ? entry 
@@ -84,10 +85,10 @@ export function MainContent({ changeView }: { changeView: (view: string) => void
           animationLock.current = false;
         }, 1000);
       });
-    }, 100); // 150ms debounce duration
+    }, 100); // 100ms debounce duration
 
     const options = {
-      threshold: [0.5], // Simplified to single threshold for better performance
+      threshold: [0.5], 
       rootMargin: "20px 0px -20% 0px",
     };
 

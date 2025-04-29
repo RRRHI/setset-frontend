@@ -26,11 +26,14 @@ export function SettingSidebar({
     const sectionIds = menuItems.map((item) => item.url);
     const currIndex = sectionIds.indexOf(scrollingTo);
     for (const id of sectionIds) {
-      console.log(id);
+      // console.log(id);
       
       if (sectionIds.indexOf(id) === currIndex) continue; // Skip the current section
       const higherIndex = currIndex > sectionIds.indexOf(id);
       if (higherIndex) {
+        // console.log("the selected index is greater than the current index", id);
+        // console.log("does this event run?");
+        
         const sectionFirstChild = document.getElementById(id)
           ?.firstChild as HTMLElement;
         if (sectionFirstChild) {
@@ -40,17 +43,21 @@ export function SettingSidebar({
             "translate-y-1",
           );
           sectionFirstChild.classList.add("-translate-y-full", "opacity-0");
-        } else {
-          const sectionFirstChild = document.getElementById(id)
-            ?.firstChild as HTMLElement;
-          if (sectionFirstChild) {
-            sectionFirstChild.classList.remove(
-              "-translate-y-full",
-              "opacity-100",
-              "translate-y-1",
-            );
-            sectionFirstChild.classList.add("translate-y-full", "opacity-0");
-          }
+        } 
+      }else {
+        //setting the right classes for every section below
+        // console.log("the selected index is less than the current index");
+        
+        const sectionFirstChild = document.getElementById(id)?.firstChild as HTMLElement;
+        // console.log("here is the id", id, "here is the first child ", sectionFirstChild);
+        
+        if (sectionFirstChild) {
+          sectionFirstChild.classList.remove(
+            "-translate-y-full",
+            "opacity-100",
+            "translate-y-1",
+          );
+          sectionFirstChild.classList.add("translate-y-full", "opacity-0");
         }
       }
     }
