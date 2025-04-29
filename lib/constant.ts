@@ -15,19 +15,6 @@ export const card =
 export const settingCard =
   "flex w-full max-h-[100%] shrink-0 snap-center flex-col overflow-y-auto p-6 text-card-foreground scrollbar h-fit  transition-transform duration-1000 ease-out  translate-y-full  opacity-0 will-change-transform";
 
-
-  export const opacityAnimation = "opacity-100 duration-0";
-
-  export const upwardScrollAnimation = "transition-transform duration-1000 ease-out  translate-y-[50vh]";
-
-  export const downwardScrollAnimation = "transition-transform duration-1000 ease-out  -translate-y-[50vh]"
-
-  // export const translateOrigin = "translate"
-
-
-export const paymentCard =
-  "flex w-full max-h-[100%] shrink-0 snap-center flex-col overflow-y-auto p-6 text-card-foreground scrollbar h-fit";
-
 export const headerButton = "flex items-center gap-2 p-0 hover:bg-transparent";
 
 export const setSetLogo = "flex flex-col gap-2";

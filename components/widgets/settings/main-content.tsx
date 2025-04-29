@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
 import { debounce } from "lodash"; // debouce to prevent too many animations
+import { useEffect, useRef,useState } from "react";
+
 import {
-  opacityAnimation,
-  settingCard,
   settingSection,
-  upwardScrollAnimation,
 } from "@/lib/constant";
 import { settingMenu } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
