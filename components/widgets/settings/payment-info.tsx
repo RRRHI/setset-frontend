@@ -25,7 +25,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Header, settingCard } from "@/lib/constant";
 import { cardData } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
-import { set } from "lodash";
 
 export function PaymentInfo() {
   const { toast } = useToast();
