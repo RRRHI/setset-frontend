@@ -1,8 +1,13 @@
 "use client";
 
-import { useEffect , useState} from "react";
-
-import { opacityAnimation, settingCard, settingSection, upwardScrollAnimation } from "@/lib/constant";
+import { useEffect, useState, useRef } from "react";
+import { debounce } from "lodash"; // debouce to prevent too many animations
+import {
+  opacityAnimation,
+  settingCard,
+  settingSection,
+  upwardScrollAnimation,
+} from "@/lib/constant";
 import { settingMenu } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 
@@ -11,146 +16,132 @@ import { Password } from "./password-section";
 import { PaymentInfo } from "./payment-info";
 import { Plan } from "./plan/plan";
 import { Profile } from "./profile/profile";
-export function MainContent({
-  changeView,
-}: {
-  changeView: (view: string) => void;
-}) {
 
-  const [currSection, setCurrSection] = useState<string>("Proifle");
-  // const [viewSection, setViewSection] = useState<string>("");
+export function MainContent({ changeView }: { changeView: (view: string) => void }) {
+  const [currSection, setCurrSection] = useState<string>("Profile");
   const sectionIds = settingMenu.map((item) => item.url);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const animationLock = useRef(false); //prevent overlapping animations
 
   useEffect(() => {
-    const options = {
-      //switching to multiple thresholds
-      threshold: [0.2, 0.5, 0.9],
+    const handleIntersection = debounce((entries: IntersectionObserverEntry[]) => {
+      if (animationLock.current) return;
 
+      const mostVisibleEntry = entries.reduce((max, entry) => 
+        entry.isIntersecting && entry.intersectionRatio > (max?.intersectionRatio || 0) 
+          ? entry 
+          : max
+      , null as IntersectionObserverEntry | null);
+
+      if (!mostVisibleEntry) return;
+
+      const targetId = mostVisibleEntry.target.id;
+      const targetIndex = sectionIds.indexOf(targetId);
+      const currentIndex = sectionIds.indexOf(currSection);
+
+      if (targetIndex === -1 || targetId === currSection) return;
+
+      animationLock.current = true;
+      changeView(targetId);
+
+      const targetCard = mostVisibleEntry.target.firstChild as HTMLElement;
+      const prevSection = document.getElementById(currSection);
+      const prevCard = prevSection?.firstChild as HTMLElement;
+
+      
+      const isScrollingDown = currentIndex !== -1 && targetIndex > currentIndex; //determine scroll direction
+
+      const applyAnimations = () => {
+        if (isScrollingDown) {
+          // Downscroll animation
+          if (targetCard) {
+            targetCard.classList.remove("translate-y-full", "opacity-0");
+            targetCard.classList.add("translate-y-1", "opacity-100");
+          }
+          if (prevCard) {
+            prevCard.classList.remove("translate-y-1", "opacity-100");
+            prevCard.classList.add("-translate-y-full", "opacity-0");
+          }
+        } else {
+          // Upscroll animation
+          if (targetCard) {
+            targetCard.classList.remove("-translate-y-full", "opacity-0");
+            targetCard.classList.add("translate-y-1", "opacity-100");
+          }
+          if (prevCard) {
+            prevCard.classList.remove("translate-y-1", "opacity-100");
+            prevCard.classList.add("translate-y-full", "opacity-0");
+          }
+        }
+      };
+
+      requestAnimationFrame(() => {
+        applyAnimations();
+        
+        // Release lock after animation duration (1000ms matches your CSS)
+        setTimeout(() => {
+          setCurrSection(targetId);
+          animationLock.current = false;
+        }, 1000);
+      });
+    }, 100); // 150ms debounce duration
+
+    const options = {
+      threshold: [0.5], // Simplified to single threshold for better performance
       rootMargin: "20px 0px -20% 0px",
     };
 
-    const visibleSections = new Map();
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          changeView(entry.target.id);
-          //this is working
-          visibleSections.set(entry.target.id, entry.intersectionRatio);
-
-          // console.log("Visible section:", sectionIds.indexOf(entry.target.id));
-          const isScrollingDown = sectionIds.indexOf(entry.target.id) > sectionIds.indexOf(currSection);
-
-          console.log("index of current section", sectionIds.indexOf(currSection));
-          console.log("index of target section", sectionIds.indexOf(entry.target.id));
-          
-          if (isScrollingDown) {
-            console.log("scrolling downwards");
-            
-           //animate downwards
-            const firstChild = entry.target.firstChild as HTMLElement;
-            if (firstChild) {
-              requestAnimationFrame(() => {
-              firstChild.classList.remove("translate-y-full", "opacity-0");
-              firstChild.classList.add("translate-y-1", "opacity-100"); 
-              });
-
-              //using the time between for the currsection to update to reset the animation
-
-              const prevViewSection = document.getElementById(currSection)?.firstChild as HTMLElement;
-              if (prevViewSection) {
-                prevViewSection.classList.remove("translate-y-1", "opacity-100");
-                prevViewSection.classList.add("-translate-y-full", "opacity-0"); 
-              }
-              
-              
-
-              console.log("here is the current section", entry.target.id);
-              console.log("here is the current section", currSection);
-              
-              
-          //setting the new section as the current section
-          setCurrSection(entry.target.id);
-
-             
-          } 
-
-          
-
-        } else if (sectionIds.indexOf(entry.target.id) < sectionIds.indexOf(currSection))
-        {
-          //scrolling upwards
-          console.log("scrolling upwards");
-          const firstChild = entry.target.firstChild as HTMLElement;
-          if (firstChild) {
-            requestAnimationFrame(() => {
-              firstChild.classList.remove("translate-y-full", "opacity-0");
-              firstChild.classList.add("translate-y-1", "opacity-100"); 
-              });
-            
-              const prevViewSection = document.getElementById(currSection) as HTMLElement;
-              if (prevViewSection) {
-                prevViewSection.classList.remove("translate-y-1", "opacity-100");
-                prevViewSection.classList.add("translate-y-full", "opacity-0");
-              }
-          }
-          
-         
-        }
-
-        } 
-        
-
-      });
-    }, options);
+    observerRef.current = new IntersectionObserver(handleIntersection, options);
 
     sectionIds.forEach((id) => {
       const section = document.getElementById(id);
       if (section) {
-        observer.observe(section);
+        observerRef.current?.observe(section);
+        
+        // Initialize first section
+        if (id === "Profile" && currSection === "Profile") {
+          const firstCard = section.firstChild as HTMLElement;
+          if (firstCard) {
+            firstCard.classList.remove("translate-y-full", "opacity-0");
+            firstCard.classList.add("translate-y-1", "opacity-100");
+          }
+        }
       }
     });
 
     return () => {
-      observer.disconnect();
+      observerRef.current?.disconnect();
+      handleIntersection.cancel();
     };
-  }, [sectionIds, changeView]);
+  }, [sectionIds, changeView, currSection]);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
+
   };
 
-
   return (
-    <div
-      className={cn(
-        "no-scrollbar h-full w-full snap-y snap-mandatory scroll-py-6 overflow-y-auto overflow-x-hidden  p-4 flex space-y-10 flex-col ",
-      )}
-    >
-
-      <section className= {cn(settingSection)} id="Profile">
-        <Profile/>
+    <div className={cn(
+      "no-scrollbar flex h-full w-full snap-y snap-mandatory scroll-py-6 flex-col space-y-10 overflow-y-auto overflow-x-hidden p-4",
+    )}>
+      <section className={cn(settingSection)} id="Profile">
+        <Profile />
       </section>
-      <section className= {cn(settingSection)} id="Password">
+      <section className={cn(settingSection)} id="Password">
         <Password />
       </section>
-      <section className= {cn(settingSection)} id="Card-Information">
+      <section className={cn(settingSection)} id="Card-Information">
         <PaymentInfo />
       </section>
-      <section className= {cn(settingSection)} id="Plans">
-        <Plan onClickUpdate={() => scrollToSection("Card-Information")}/>
+      <section className={cn(settingSection)} id="Plans">
+        <Plan onClickUpdate={() => scrollToSection("Card-Information")} />
       </section>
-      <section className= {cn(settingSection)} id="Calendar">
-        <div className={settingCard}> This is the calender section</div>
-      </section>
-      <section className= {cn(settingSection)} id="Invoices">
+      <section className={cn(settingSection)} id="Invoices">
         <Invoices plan="monthly" />
       </section>
-
-      {/* <section className="min-h-[10vh] snap-start bg-transparent" /> */}
-      </div>
+    </div>
   );
 }

@@ -20,22 +20,54 @@ export function SettingSidebar({
   currView: string;
 }) {
   const router = useRouter();
-  const handleScrollToSection = (id: string) => {
-   router.push(`settings/#${id}`);
-  }
+  const handleScrollToSection = (scrollingTo: string) => {
+    router.push(`settings/#${scrollingTo}`);
+    //re-aligning element scroll position
+    const sectionIds = menuItems.map((item) => item.url);
+    const currIndex = sectionIds.indexOf(scrollingTo);
+    for (const id of sectionIds) {
+      console.log(id);
+      
+      if (sectionIds.indexOf(id) === currIndex) continue; // Skip the current section
+      const higherIndex = currIndex > sectionIds.indexOf(id);
+      if (higherIndex) {
+        const sectionFirstChild = document.getElementById(id)
+          ?.firstChild as HTMLElement;
+        if (sectionFirstChild) {
+          sectionFirstChild.classList.remove(
+            "translate-y-full",
+            "opacity-100",
+            "translate-y-1",
+          );
+          sectionFirstChild.classList.add("-translate-y-full", "opacity-0");
+        } else {
+          const sectionFirstChild = document.getElementById(id)
+            ?.firstChild as HTMLElement;
+          if (sectionFirstChild) {
+            sectionFirstChild.classList.remove(
+              "-translate-y-full",
+              "opacity-100",
+              "translate-y-1",
+            );
+            sectionFirstChild.classList.add("translate-y-full", "opacity-0");
+          }
+        }
+      }
+    }
+  };
   return (
     <Sidebar variant="floating" className="rounded-2xl">
-      <SidebarContent className="scrollbar overflow-y-auto rounded-xl ">
+      <SidebarContent className="scrollbar overflow-y-auto rounded-xl">
         <SidebarGroup>
           <SidebarGroupLabel className="my-[10px] mb-0 items-center gap-2 p-[30px]">
             <Brand />
           </SidebarGroupLabel>
-          <SidebarGroupContent className="scrollbar my-5 ">
+          <SidebarGroupContent className="scrollbar my-5">
             {menuItems.map((item) => (
               <SidebarMenuItem
                 key={item.url}
                 onClick={() => handleScrollToSection(item.url)}
-                className={` m-1 flex h-12 cursor-default list-none items-center justify-start gap-1 rounded-xl p-[30px] ${
+                className={`m-1 flex h-12 cursor-default list-none items-center justify-start gap-1 rounded-xl p-[30px] ${
                   currView === item.url
                     ? "bg-foreground text-primary dark:bg-background dark:text-foreground"
                     : "bg-transparent hover:bg-foreground hover:text-primary dark:[&:hover]:bg-background dark:[&:hover]:text-foreground"
