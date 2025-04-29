@@ -34,7 +34,7 @@ const InnerCard = ({
           </p>
           <div className="flex flex-row items-center gap-1">
             <p>CAD</p>
-            <p className="font-bold">{agentPlan.planPrice}</p>
+            <p className="font-bold text-setSetOrange">{agentPlan.planPrice}</p>
             <p>/month</p>
           </div>
         </div>

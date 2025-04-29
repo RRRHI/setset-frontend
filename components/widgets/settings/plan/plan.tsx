@@ -107,7 +107,7 @@ export function Plan({ onClickUpdate }: PlanProps) {
                     </p>
                     <div className="flex flex-row items-center gap-1">
                       <p>CAD</p>
-                      <p className="font-bold">
+                      <p className="font-bold text-setSetOrange">
                         {agent.planPrice.toFixed(2)}
                         {agent.planTitle.toUpperCase() === "ENTERPRISE" && "+"}
                       </p>
